@@ -2,6 +2,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -52,22 +54,27 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           // editUrl:
           //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
+          exclude: isProd
+            ? ['**/tutorial-basics/**', '**/tutorial-extras/**']
+            : [],
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: !isProd
+          ? false
+          : {
+              showReadingTime: true,
+              feedOptions: {
+                type: ['rss', 'atom'],
+                xslt: true,
+              },
+              // Please change this to your repo.
+              // Remove this to remove the "edit this page" links.
+              // editUrl:
+              //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
+              // Useful options to enforce blogging best practices
+              onInlineTags: 'warn',
+              onInlineAuthors: 'warn',
+              onUntruncatedBlogPosts: 'warn',
+            },
         theme: {
           customCss: './src/css/custom.scss',
         },
@@ -101,7 +108,9 @@ const config: Config = {
           label: 'Docs',
           href: '/docs/getting-started/introduction',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        ...(!isProd
+          ? [{ to: '/blog', label: 'Blog', position: 'left' as const }]
+          : []),
         {
           href: 'https://github.com/Ninjaneer87/react-dropdown',
           label: 'GitHub',

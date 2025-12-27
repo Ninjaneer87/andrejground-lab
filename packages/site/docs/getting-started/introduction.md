@@ -18,7 +18,7 @@ Rather than imposing a rigid design system, this library provides high-quality b
 
 ### Why take a "Design-Agnostic" approach?
 
-Most UI libraries come with a "look" you have to fight to change. AndrejGround Lab provides only the essential structural styles. It is designed to be a foundation, not a finished house, making it perfect for projects that already have a unique brand identity or custom CSS requirements.
+Many UI libraries come with a "look" you have to fight to change. AndrejGround Lab provides only the essential structural styles. It is designed to be a foundation, not a finished house, making it perfect for projects that already have a unique brand identity or custom CSS requirements.
 
 ### How are styles handled?
 
@@ -31,7 +31,7 @@ AndrejGround Lab uses the industry-standard `tailwind-merge` and `clsx` to handl
 ```ts
 import { cn } from '@andrejground/lab';
 
-// Defaults are merged seamlessly with your overrides
+// Defaults are merged with your overrides
 const className = cn(
   'p-4 bg-blue-500',
   customStyles && 'p-2 bg-red-500', // 'p-2' and 'bg-red-500' win
