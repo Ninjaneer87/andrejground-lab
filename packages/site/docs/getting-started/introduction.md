@@ -24,7 +24,7 @@ Many UI libraries come with a "look" you have to fight to change. AndrejGround L
 
 To avoid the performance pitfalls of runtime CSS-in-JS, AndrejGround Lab uses TailwindCSS and CSS Modules, generating all styles at build time. This ensures full compatibility with modern environments like Next.js (App Router) and Astro without sacrificing performance.
 
-### How do you handle class conflicts?
+### How are class conflicts handled?
 
 AndrejGround Lab uses the industry-standard `tailwind-merge` and `clsx` to handle class conflicts and even exports the `cn` utility function for easier composition of classes.
 
@@ -46,6 +46,6 @@ const className = cn(
 
 **No**. To provide the best possible developer experience, AndrejGround Lab is built exclusively for the React ecosystem. It is not compatible with Vue, Svelte, or Angular.
 
-## What about Meta-Frameworks?
+### What about Meta-Frameworks?
 
 **Yes**. AndrejGround Lab is compatible with meta frameworks like Next.js or Astro.

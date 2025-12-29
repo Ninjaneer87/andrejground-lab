@@ -58,7 +58,7 @@ const config: Config = {
             ? ['**/tutorial-basics/**', '**/tutorial-extras/**']
             : [],
         },
-        blog: !isProd
+        blog: isProd
           ? false
           : {
               showReadingTime: true,

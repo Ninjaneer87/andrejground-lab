@@ -109,6 +109,10 @@ hr {
   opacity: 0.3;
 }
 
+button {
+  font-family: var(--ifm-font-family-base);
+}
+
 // Code line remove/add
 .code-block-remove-line,
 .code-block-add-line {
@@ -165,7 +169,26 @@ hr {
 // Code block content
 .theme-code-block {
   pre.prism-code {
-    max-height: clamp(400px, 50vh, 800px);
+    max-height: clamp(400px, 50vh, 500px);
     overflow-y: auto;
+  }
+}
+
+.preview-tab {
+  padding: 1.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.placement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: fit-content;
+  place-items: center;
+  gap: 0.5rem;
+
+  @media screen and (max-width: 600px) {
+    margin: 0 auto;
+    grid-template-columns: repeat(1, 1fr);
   }
 }

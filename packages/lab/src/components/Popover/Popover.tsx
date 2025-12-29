@@ -227,7 +227,9 @@ const Popover = ({
         ?.getAttribute('data-popover-content-current-id');
       const id = popoverIdFromClosestTrigger || popoverIdFromClosestContent;
 
-      if (id && id !== popoverId) return;
+      if (id && id !== popoverId) {
+        return;
+      }
 
       const isPopoverTrigger = !!(event.target as Element).closest(
         `[data-popover-trigger-current-id="${popoverId}"]`,
@@ -397,8 +399,8 @@ const Popover = ({
       value={{ isOpen: isExpanded, handleClose, popoverId, handleOpen }}
     >
       <>
-        <ClientPortal>
-          {isMounted && !!backdrop && (
+        {isMounted && !!backdrop && (
+          <ClientPortal>
             <div
               className={cn(backdropClassName, classNames?.backdrop)}
               onClick={(e) => {
@@ -406,8 +408,8 @@ const Popover = ({
                 handleBackdropClick();
               }}
             />
-          )}
-        </ClientPortal>
+          </ClientPortal>
+        )}
 
         <div
           className={cn(baseClassName, classNames?.base)}
@@ -441,8 +443,8 @@ const Popover = ({
             {popoverTrigger}
           </Slot>
 
-          <ClientPortal>
-            {(isMounted || isExpanded) && (
+          {(isMounted || isExpanded) && (
+            <ClientPortal>
               <div
                 data-popover-content-root-id={rootPopoverId ?? popoverId}
                 data-popover-content-current-id={popoverId}
@@ -460,8 +462,8 @@ const Popover = ({
                 {popoverContent}
                 <PopoverFocusTrapper ref={lastFocusableItemRef} />
               </div>
-            )}
-          </ClientPortal>
+            </ClientPortal>
+          )}
         </div>
       </>
     </PopoverContext.Provider>

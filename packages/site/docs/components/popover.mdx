@@ -1,0 +1,57 @@
+import PopoverUsage from '@site/src/components/docs/Popover/PopoverUsage';
+import PopoverPlacements from '@site/src/components/docs/Popover/PopoverPlacements';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import { popoverPlacementsTsx, popoverUsageTsx } from '@site/docs/components/_snippets/popover';
+
+# Popover
+
+A Popover is a non-modal overlay that anchors itself to a trigger element. Unlike a standard tooltip, it is designed to hold interactive rich content—such as forms, lists, or navigation—without breaking the user's current context.
+
+Popover is used as an underlying component for other components like **Dropdown** and **Select**.
+
+## Key Characteristics
+
+- **Non-Modal**: The user can still interact with the rest of the page while the popover is open.
+- **Floating Context**: It uses **position: fixed** in combination with **react-portals** to ensure it remains visible and correctly placed relative to its disclosure, even within scrolling containers, or in any other context. It just works.
+- **Rich Interaction**: Specifically built to handle interactive elements (buttons, inputs) that require focus management and keyboard navigation.
+
+## Import
+
+There are 3 popover related components:
+
+- `Popover`: The main popover component.
+- `PopoverTrigger`: The component that triggers the popover to open or close.
+- `PopoverContent`: The content that is displayed when the popover is open.
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from '@andrejground/lab';
+```
+
+Compound pattern is also supported:
+
+- `Popover.Trigger`
+- `Popover.Content`
+
+## Usage
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <PopoverUsage />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{popoverUsageTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Placement
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <PopoverPlacements />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{popoverPlacementsTsx}</CodeBlock>
+  </TabItem>
+</Tabs>

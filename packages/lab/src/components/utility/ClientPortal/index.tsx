@@ -3,7 +3,7 @@
 import { type PropsWithChildren, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function ReactPortal({ children }: PropsWithChildren) {
+export default function ClientPortal({ children }: PropsWithChildren) {
   const [container] = useState(() => document.createElement('div'));
 
   useEffect(() => {
