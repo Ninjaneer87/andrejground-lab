@@ -1,13 +1,18 @@
 import PopoverUsage from '@site/src/components/docs/Popover/PopoverUsage';
 import PopoverPlacements from '@site/src/components/docs/Popover/PopoverPlacements';
+import PopoverControlled from '@site/src/components/docs/Popover/PopoverControlled';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
-import { popoverPlacementsTsx, popoverUsageTsx } from '@site/docs/components/_snippets/popover';
+import {
+  popoverControlledTsx,
+  popoverPlacementsTsx,
+  popoverUsageTsx,
+} from '@site/docs/components/_snippets/popover';
 
 # Popover
 
-A Popover is a non-modal overlay that anchors itself to a trigger element. Unlike a standard tooltip, it is designed to hold interactive rich content—such as forms, lists, or navigation—without breaking the user's current context.
+A Popover is a non-modal overlay that anchors itself to a trigger element. Unlike a standard tooltip, it is designed to hold interactive rich content such as forms, lists, or navigation, without breaking the user's current context.
 
 Popover is used as an underlying component for other components like **Dropdown** and **Select**.
 
@@ -53,5 +58,16 @@ Compound pattern is also supported:
   </TabItem>
   <TabItem value="code" label="Code">
     <CodeBlock language="tsx">{popoverPlacementsTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <PopoverControlled />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{popoverControlledTsx}</CodeBlock>
   </TabItem>
 </Tabs>

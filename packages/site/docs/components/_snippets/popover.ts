@@ -54,3 +54,31 @@ export default function App() {
   );
 }
 `;
+
+export const popoverControlledTsx = `import React from 'react';
+import { Popover } from '@andrejground/lab';
+
+export default function App() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <Popover isOpen={isOpen} onOpenChange={setIsOpen} placement="top-center">
+        <Popover.Trigger>
+          <button>Open Popover</button>
+        </Popover.Trigger>
+        <Popover.Content>
+          <div>Popover Content</div>
+          <small>This is the popover content</small>
+        </Popover.Content>
+      </Popover>
+
+      <br />
+
+      <div>
+        Open: <code>{\`\${isOpen}\`}</code>
+      </div>
+    </>
+  );
+}
+`
