@@ -10,7 +10,7 @@ function PopoverOffsetContent() {
       {OFFSETS.map((offset) => (
         <SitePopover key={offset} offset={offset} placement="bottom-center">
           <SitePopover.Trigger>
-            <button className="button button--secondary">
+            <button className="button button--secondary button--outline">
               offset: {offset}
             </button>
           </SitePopover.Trigger>

@@ -13,7 +13,9 @@ function PopoverControlledContent() {
         placement="top-center"
       >
         <SitePopover.Trigger>
-          <button className="button button--secondary">Open Popover</button>
+          <button className="button button--secondary button--outline">
+            Open Popover
+          </button>
         </SitePopover.Trigger>
         <SitePopover.Content>
           <div>Popover Content</div>

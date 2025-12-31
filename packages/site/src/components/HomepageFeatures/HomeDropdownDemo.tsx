@@ -23,7 +23,7 @@ function HomeDropdownDemo() {
       {() => (
         <SiteDropdown>
           <SiteDropdown.Trigger>
-            <button className="button button--secondary button--md">
+            <button className="button button--secondary button--outline">
               Actions <Icon path={mdiMenuDown} size={1} />
             </button>
           </SiteDropdown.Trigger>

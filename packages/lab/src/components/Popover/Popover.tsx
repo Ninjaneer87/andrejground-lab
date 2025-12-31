@@ -33,6 +33,7 @@ import { usePreventBodyScroll } from '../../hooks/usePreventBodyScroll';
 import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { usePositionObserver } from '../../hooks/usePositionObserver';
 import { Slot } from '@/components/utility/Slot';
+import { usePrevValue } from '@/hooks';
 
 const Popover = ({
   children,
@@ -67,6 +68,7 @@ const Popover = ({
     trapFocus: true,
   },
 }: PopoverProps & PopoverComposition) => {
+  const prevControlledIsOpen = usePrevValue(controlledIsOpen);
   const { autoFocus, trapFocus } = focusTrapProps;
   const popoverContentRef = useRef<HTMLDivElement>(null);
   const popoverTriggerRef = useRef<HTMLDivElement>(null);
@@ -193,6 +195,15 @@ const Popover = ({
     },
     [isDisabled, focusTriggerOnClose],
   );
+
+  useEffect(() => {
+    const shouldFocusTriggerOnControlledClose =
+      prevControlledIsOpen && !controlledIsOpen && focusTriggerOnClose;
+
+    if (shouldFocusTriggerOnControlledClose) {
+      popoverTriggerRef.current?.focus();
+    }
+  }, [controlledIsOpen, prevControlledIsOpen, focusTriggerOnClose]);
 
   useWindowResize(setContentCoords);
   usePreventBodyScroll(isRootExpanded && isRootPopover && shouldBlockScroll);

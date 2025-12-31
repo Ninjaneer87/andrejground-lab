@@ -1,8 +1,9 @@
 ---
 slug: first-blog-post
 title: First Blog Post
-authors: [slorber, yangshun]
+authors: [andrej]
 tags: [hola, docusaurus]
+draft: true
 ---
 
 Lorem ipsum dolor sit amet...

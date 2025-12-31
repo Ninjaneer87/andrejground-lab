@@ -9,3 +9,4 @@ export { usePreventBodyScroll } from './usePreventBodyScroll';
 export { useResizeObserver } from './useResizeObserver';
 export { useWindowResize } from './useWindowResize';
 export { useLocalStorage } from './useLocalStorage';
+export { usePrevValue } from './usePrevValue';

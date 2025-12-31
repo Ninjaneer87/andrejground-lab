@@ -107,3 +107,100 @@ export default function App() {
   );
 }
 `;
+
+export const popoverWithFormTsx = `import React from 'react';
+import { Popover } from '@andrejground/lab';
+
+const DEFAULT_VALUES = {
+  firstName: '',
+  lastName: '',
+  email: '',
+};
+
+export default function App() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [values, setValues] = React.useState(DEFAULT_VALUES);
+
+  const handleCancel = () => {
+    setValues(DEFAULT_VALUES);
+    setIsOpen(false);
+  };
+
+  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setIsOpen(false);
+    alert(JSON.stringify(values, null, 2));
+  };
+
+  const handleChange =
+    (field: keyof typeof values) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setValues((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+      onClose={handleCancel}
+      onOpen={() => setValues(DEFAULT_VALUES)}
+    >
+      <Popover.Trigger>
+        <button>Open Form</button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <form
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+          onSubmit={handleSave}
+        >
+          <input
+            type="text"
+            className="form-control"
+            placeholder="First Name"
+            value={values.firstName}
+            onChange={handleChange('firstName')}
+          />
+
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Last Name"
+            value={values.lastName}
+            onChange={handleChange('lastName')}
+          />
+
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Email"
+            value={values.email}
+            onChange={handleChange('email')}
+          />
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <button
+              onClick={handleCancel}
+              type="button"
+            >
+              Cancel
+            </button>
+
+            <button
+              onClick={handleSave}
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </Popover.Content>
+    </Popover>
+  );
+}
+`;

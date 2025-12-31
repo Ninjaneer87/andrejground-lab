@@ -172,6 +172,7 @@ button {
   pre.prism-code {
     max-height: clamp(400px, 50vh, 500px);
     overflow-y: auto;
+    font-size: 0.875rem;
   }
 }
 
@@ -198,4 +199,43 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+
+  &--column {
+    flex-direction: column;
+  }
+}
+
+/* src/css/custom.css */
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ifm-font-color-base);
+  background-color: var(--ifm-background-color);
+  background-clip: padding-box;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  &:hover {
+    border-color: var(--ifm-color-emphasis-500);
+  }
+}
+
+.form-control:focus {
+  outline: 0;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(53, 120, 229, 0.25); /* Primary color with transparency */
+}
+
+/* For the --block variant */
+.form-control--block {
+  width: 100%;
+  display: block;
 }

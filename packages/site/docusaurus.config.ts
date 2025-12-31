@@ -50,6 +50,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          sidebarCollapsed: false,
+          // sidebarCollapsible: false,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -58,23 +60,21 @@ const config: Config = {
             ? ['**/tutorial-basics/**', '**/tutorial-extras/**']
             : [],
         },
-        blog: isProd
-          ? false
-          : {
-              showReadingTime: true,
-              feedOptions: {
-                type: ['rss', 'atom'],
-                xslt: true,
-              },
-              // Please change this to your repo.
-              // Remove this to remove the "edit this page" links.
-              // editUrl:
-              //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
-              // Useful options to enforce blogging best practices
-              onInlineTags: 'warn',
-              onInlineAuthors: 'warn',
-              onUntruncatedBlogPosts: 'warn',
-            },
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          // editUrl:
+          //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
+        },
         theme: {
           customCss: './src/css/custom.scss',
         },
@@ -91,6 +91,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },
     navbar: {
@@ -108,9 +109,7 @@ const config: Config = {
           label: 'Docs',
           href: '/docs/getting-started/introduction',
         },
-        ...(!isProd
-          ? [{ to: '/blog', label: 'Blog', position: 'left' as const }]
-          : []),
+        { to: '/blog', label: 'Blog', position: 'left' as const },
         {
           href: 'https://github.com/Ninjaneer87/react-dropdown',
           label: 'GitHub',
