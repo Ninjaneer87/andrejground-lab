@@ -204,3 +204,40 @@ export default function App() {
   );
 }
 `;
+
+export const popoverBackdropTsx = `import { Popover, type Backdrop } from '@andrejground/lab';
+
+const BACKDROPS: Backdrop[] = ['transparent', 'opaque', 'blur'];
+
+export default function App() {
+  return (
+    <>
+      <Popover placement="bottom-center">
+        <Popover.Trigger>
+          <button>none</button>
+        </Popover.Trigger>
+        <Popover.Content>
+          <div>
+            <code>no backdrop</code>
+          </div>
+          <small>This is the popover content</small>
+        </Popover.Content>
+      </Popover>
+
+      {BACKDROPS.map((backdrop) => (
+        <Popover key={backdrop} backdrop={backdrop} placement="bottom-center">
+          <Popover.Trigger>
+            <button>{backdrop}</button>
+          </Popover.Trigger>
+          <Popover.Content>
+            <div>
+              <code>backdrop: {backdrop}</code>
+            </div>
+            <small>This is the popover content</small>
+          </Popover.Content>
+        </Popover>
+      ))}
+    </>
+  );
+}
+`;

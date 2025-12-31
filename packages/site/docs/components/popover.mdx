@@ -3,6 +3,7 @@ import PopoverPlacements from '@site/src/components/docs/Popover/PopoverPlacemen
 import PopoverControlled from '@site/src/components/docs/Popover/PopoverControlled';
 import PopoverOffset from '@site/src/components/docs/Popover/PopoverOffset';
 import PopoverWithForm from '@site/src/components/docs/Popover/PopoverWithForm';
+import PopoverBackdrop from '@site/src/components/docs/Popover/PopoverBackdrop';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
@@ -12,6 +13,7 @@ import {
   popoverUsageTsx,
   popoverOffsetTsx,
   popoverWithFormTsx,
+  popoverBackdropTsx,
 } from '@site/docs/components/_snippets/popover';
 
 # Popover
@@ -95,5 +97,16 @@ Compound pattern is also supported:
   </TabItem>
   <TabItem value="code" label="Code">
     <CodeBlock language="tsx">{popoverWithFormTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Backdrop
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <PopoverBackdrop />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{popoverBackdropTsx}</CodeBlock>
   </TabItem>
 </Tabs>

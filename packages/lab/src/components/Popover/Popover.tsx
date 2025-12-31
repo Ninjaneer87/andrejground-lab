@@ -394,12 +394,12 @@ const Popover = ({
     'grow w-full',
   );
   const contentClassName = cn(
-    'fixed z-10',
+    'fixed z-1010',
     isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
     'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
   );
   const backdropClassName = cn(
-    'fixed z-0 inset-0',
+    'fixed z-1000 inset-0',
     backdrop !== 'transparent' ? 'bg-black/30' : '',
     backdrop === 'blur' ? 'backdrop-blur-xs' : '',
     isRootExpanded ? 'fade-in' : 'fade-out',
