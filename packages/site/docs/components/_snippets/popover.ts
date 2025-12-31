@@ -38,7 +38,7 @@ export default function App() {
   return (
     <>
       {PLACEMENTS.map((placement) => (
-        <Popover key={placement} placement={placement}>
+        <Popover key={placement} placement={placement} fullWidth>
           <Popover.Trigger>
             <button>{placement}</button>
           </Popover.Trigger>
@@ -81,4 +81,29 @@ export default function App() {
     </>
   );
 }
-`
+`;
+
+export const popoverOffsetTsx = `import { Popover } from '@andrejground/lab';
+
+const OFFSETS = [0, 8, 16, 24];
+
+export default function App() {
+  return (
+    <>
+      {OFFSETS.map((offset) => (
+        <Popover key={offset} offset={offset} placement="bottom-center">
+          <Popover.Trigger>
+            <button>offset: {offset}</button>
+          </Popover.Trigger>
+          <Popover.Content>
+            <div>
+              <code>offset: {offset}</code>
+            </div>
+            <small>This is the popover content</small>
+          </Popover.Content>
+        </Popover>
+      ))}
+    </>
+  );
+}
+`;

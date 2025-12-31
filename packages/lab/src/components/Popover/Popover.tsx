@@ -428,8 +428,8 @@ const Popover = ({
               e?.stopPropagation();
               handleToggle();
             }}
+            data-popover-trigger
             data-popover-trigger-root-id={rootPopoverId ?? popoverId}
-            data-trigger-open={isExpanded}
             onKeyDown={onTriggerKeyDown}
             tabIndex={0}
             className={cn(triggerClassName, classNames?.trigger)}
@@ -446,6 +446,7 @@ const Popover = ({
           {(isMounted || isExpanded) && (
             <ClientPortal>
               <div
+                data-popover-content
                 data-popover-content-root-id={rootPopoverId ?? popoverId}
                 data-popover-content-current-id={popoverId}
                 className={cn(contentClassName, classNames?.content)}

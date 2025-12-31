@@ -65,6 +65,7 @@ html[data-theme='dark'] {
 .button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 .card {
@@ -191,4 +192,10 @@ button {
     margin: 0 auto;
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
