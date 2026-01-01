@@ -1,0 +1,56 @@
+name: Publish Lab Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump version
+        working-directory: packages/lab
+        run: npm version ${{ inputs.version }} --no-git-tag-version
+
+      - name: Build
+        run: npm run build --workspace=@andrejground/lab
+
+      - name: Publish
+        working-directory: packages/lab
+        run: npm publish --access public --provenance
+
+      - name: Get new version
+        id: version
+        run: echo "version=$(node -p "require('./packages/lab/package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Commit and tag version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add packages/lab/package.json
+          git commit -m "chore(lab): release v${{ steps.version.outputs.version }}"
+          git tag "lab-v${{ steps.version.outputs.version }}"
+          git push
+          git push --tags

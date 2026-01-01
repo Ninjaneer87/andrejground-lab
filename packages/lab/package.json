@@ -1,6 +1,26 @@
 {
   "name": "@andrejground/lab",
   "version": "0.0.1",
+  "description": "React component library by AndrejGround",
+  "author": "AndrejGround",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ninjaneer87/andrejground-lab.git",
+    "directory": "packages/lab"
+  },
+  "homepage": "https://github.com/Ninjaneer87/andrejground-lab#readme",
+  "bugs": {
+    "url": "https://github.com/Ninjaneer87/andrejground-lab/issues"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "library",
+    "hooks",
+    "utilities"
+  ],
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
