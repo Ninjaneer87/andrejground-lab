@@ -55,7 +55,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
-          //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
+          //   'https://github.com/Ninjaneer87/andrejground-lab/tree/main/packages/create-docusaurus/templates/shared/',
           exclude: isProd
             ? ['**/tutorial-basics/**', '**/tutorial-extras/**']
             : [],
@@ -69,7 +69,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
-          //   'https://github.com/Ninjaneer87/react-dropdown/tree/main/packages/create-docusaurus/templates/shared/',
+          //   'https://github.com/Ninjaneer87/andrejground-lab/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -111,7 +111,7 @@ const config: Config = {
         },
         { to: '/blog', label: 'Blog', position: 'left' as const },
         {
-          href: 'https://github.com/Ninjaneer87/react-dropdown',
+          href: 'https://github.com/Ninjaneer87/andrejground-lab',
           label: 'GitHub',
           position: 'right',
         },
@@ -155,7 +155,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/Ninjaneer87/react-dropdown',
+              href: 'https://github.com/Ninjaneer87/andrejground-lab',
             },
           ],
         },

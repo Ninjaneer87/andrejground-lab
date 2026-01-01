@@ -1,5 +1,5 @@
 {
-  // These settings are specific to the react-dropdown workspace
+  // These settings are specific to the andrejground-lab workspace
   "mdx.experimentalLanguageServer": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "tailwindCSS.classAttributes": [
