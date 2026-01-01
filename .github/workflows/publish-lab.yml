@@ -40,6 +40,8 @@ jobs:
       - name: Publish
         working-directory: packages/lab
         run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Get new version
         id: version
