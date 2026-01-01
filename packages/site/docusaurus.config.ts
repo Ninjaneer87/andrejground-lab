@@ -8,7 +8,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const config: Config = {
   title: 'AndrejGround',
-  tagline: 'A lightweight, accessible React toolkit for custom designs',
+  tagline: 'Lightweight, accessible React toolkit for any design system',
   favicon: 'img/favicon.ico',
   plugins: [
     // require.resolve('./src/plugins/watch-lab'),

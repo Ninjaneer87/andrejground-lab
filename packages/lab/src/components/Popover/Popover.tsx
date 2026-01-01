@@ -44,7 +44,7 @@ const Popover = ({
   shouldCloseOnScroll = !shouldBlockScroll,
   shouldCloseOnBlur = true,
   shouldCloseOnEsc = true,
-  backdrop,
+  backdrop = 'none',
   isNested = false,
   placement = 'bottom-center',
   offset = 8,
@@ -410,7 +410,7 @@ const Popover = ({
       value={{ isOpen: isExpanded, handleClose, popoverId, handleOpen }}
     >
       <>
-        {isMounted && !!backdrop && (
+        {isMounted && !!backdrop && backdrop !== 'none' && (
           <ClientPortal>
             <div
               className={cn(backdropClassName, classNames?.backdrop)}

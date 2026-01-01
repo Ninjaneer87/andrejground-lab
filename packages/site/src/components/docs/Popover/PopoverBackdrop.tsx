@@ -3,25 +3,11 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 import SitePopover from '@site/src/components/lab/SitePopover/SitePopover';
 import React from 'react';
 
-const BACKDROPS: Backdrop[] = ['transparent', 'opaque', 'blur'];
+const BACKDROPS: Backdrop[] = ['none', 'transparent', 'opaque', 'blur'];
 
 function PopoverBackdropContent() {
   return (
     <div className="flex-wrap">
-      <SitePopover placement="bottom-center">
-        <SitePopover.Trigger>
-          <button className="button button--secondary button--outline">
-            none
-          </button>
-        </SitePopover.Trigger>
-        <SitePopover.Content>
-          <div>
-            <code>no backdrop</code>
-          </div>
-          <small>This is the popover content</small>
-        </SitePopover.Content>
-      </SitePopover>
-
       {BACKDROPS.map((backdrop) => (
         <SitePopover
           key={backdrop}

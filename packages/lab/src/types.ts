@@ -5,7 +5,7 @@ export type PopoverPosition = 'top' | 'bottom' | 'left' | 'right';
 export type PopoverAlign = 'start' | 'end' | 'center';
 export type PopoverPlacement = `${PopoverPosition}-${PopoverAlign}`;
 
-export type Backdrop = 'transparent' | 'opaque' | 'blur';
+export type Backdrop = 'none' | 'transparent' | 'opaque' | 'blur';
 
 type PopoverClassNames = {
   base?: string;
