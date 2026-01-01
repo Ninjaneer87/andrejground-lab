@@ -239,3 +239,13 @@ button {
   width: 100%;
   display: block;
 }
+
+.theme-layout-navbar {
+  // border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  box-shadow: none;
+}
+
+.docs-doc-page .theme-layout-navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  box-shadow: none;
+}
