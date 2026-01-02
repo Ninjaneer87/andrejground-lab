@@ -1,13 +1,14 @@
 'use client';
 
+import { forwardRef } from 'react';
 import { useDropdownContext } from '../../context/DropdownContext';
 import { DropdownTriggerProps } from '../../types';
 import { Slot } from '@/components/utility/Slot';
 
-function DropdownTrigger({
-  children,
-  ...rest
-}: DropdownTriggerProps & Record<string, unknown>) {
+const DropdownTrigger = forwardRef<
+  HTMLElement,
+  DropdownTriggerProps & Record<string, unknown>
+>(({ children, ...rest }, ref) => {
   const dropdownContext = useDropdownContext();
 
   if (!dropdownContext) {
@@ -16,7 +17,13 @@ function DropdownTrigger({
     );
   }
 
-  return <Slot {...rest}>{children}</Slot>;
-}
+  return (
+    <Slot {...rest} ref={ref}>
+      {children}
+    </Slot>
+  );
+});
+
+DropdownTrigger.displayName = 'DropdownTrigger';
 
 export default DropdownTrigger;
