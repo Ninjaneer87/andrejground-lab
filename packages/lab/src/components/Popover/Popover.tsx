@@ -32,7 +32,6 @@ import {
 import { usePreventBodyScroll } from '../../hooks/usePreventBodyScroll';
 import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { usePositionObserver } from '../../hooks/usePositionObserver';
-import { Slot } from '@/components/utility/Slot';
 import { usePrevValue } from '@/hooks';
 
 const Popover = ({
@@ -441,7 +440,7 @@ const Popover = ({
               onMouseLeave: handleMouseLeave,
             })}
         >
-          <Slot
+          <div
             onClick={(e: React.MouseEvent) => {
               e?.stopPropagation();
               handleToggle();
@@ -459,7 +458,7 @@ const Popover = ({
               })}
           >
             {popoverTrigger}
-          </Slot>
+          </div>
 
           <ClientPortal>
             {(isMounted || isExpanded) && (
