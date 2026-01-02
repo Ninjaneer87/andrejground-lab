@@ -6,7 +6,6 @@ import React, {
   useCallback,
   useEffect,
   useId,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -266,13 +265,13 @@ const Popover = ({
   }, [shouldCloseOnBlur, isExpanded, isDisabled, handleClose, popoverId]);
 
   // Handle position and scroll
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isExpanded) {
       setContentCoords();
     }
   }, [isExpanded, setContentCoords]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!isExpanded) return;
 
     function handleScroll() {
