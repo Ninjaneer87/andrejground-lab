@@ -1,30 +1,28 @@
 'use client';
 
-import { ElementType } from 'react';
+import { ElementType, forwardRef } from 'react';
 import { useDropdownContext } from '../../context/DropdownContext';
 import { useDropdownMenuContext } from '../../context/DropdownMenuContext';
 import { DropdownItemProps } from '../../types';
 import { usePopoverRootContext } from '../../context/PopoverRootContext';
 import { cn } from '../../utils/common';
 
-function DropdownItem<T extends ElementType = 'div'>(
-  props: DropdownItemProps<T>,
-) {
-  const {
-    children,
-    onClick,
-    isHighlighted,
-    ref,
-    as: Component = 'div',
-    shouldCloseOnSelection,
-    disabled,
-    showDisabledStyles = disabled,
-    startContent,
-    endContent,
-    classNames,
-    description,
-    ...rest
-  } = props;
+const DropdownItem = forwardRef<HTMLElement, DropdownItemProps<ElementType>>(
+  (props, ref) => {
+    const {
+      children,
+      onClick,
+      isHighlighted,
+      as: Component = 'div',
+      shouldCloseOnSelection,
+      disabled,
+      showDisabledStyles = disabled,
+      startContent,
+      endContent,
+      classNames,
+      description,
+      ...rest
+    } = props;
   const dropdownContext = useDropdownContext();
   const dropdownMenuContext = useDropdownMenuContext();
   const popoverRootContext = usePopoverRootContext();
@@ -169,6 +167,9 @@ function DropdownItem<T extends ElementType = 'div'>(
       )}
     </Component>
   );
-}
+  },
+);
+
+DropdownItem.displayName = 'DropdownItem';
 
 export default DropdownItem;
