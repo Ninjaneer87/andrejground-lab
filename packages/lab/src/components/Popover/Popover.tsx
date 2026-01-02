@@ -149,11 +149,18 @@ const Popover = ({
   }
 
   const setContentCoords = useCallback(() => {
+    console.log('[Popover] setContentCoords called', {
+      isExpanded,
+      hasTriggerRef: !!popoverTriggerRef.current,
+      hasContentRef: !!popoverContentRef.current,
+    });
     if (!isExpanded || !popoverTriggerRef.current || !popoverContentRef.current)
       return;
 
     const triggerRect = popoverTriggerRef.current.getBoundingClientRect();
     const popoverRect = popoverContentRef.current.getBoundingClientRect();
+    console.log('[Popover] triggerRect', triggerRect);
+    console.log('[Popover] popoverRect', popoverRect);
 
     if (growContent) {
       const coords = growContentPosition(placement, offset, triggerRect);
@@ -172,6 +179,7 @@ const Popover = ({
       popoverContentRef.current,
     );
 
+    console.log('[Popover] coords', coords);
     setPopoverContentCoords(coords);
   }, [placement, offset, shouldFlip, growContent, isExpanded]);
 
