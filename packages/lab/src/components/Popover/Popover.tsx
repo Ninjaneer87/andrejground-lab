@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -34,6 +35,7 @@ import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { usePositionObserver } from '../../hooks/usePositionObserver';
 import { Slot } from '@/components/utility/Slot';
 import { usePrevValue } from '@/hooks';
+import { composeRefs } from '@/utils/compose-refs';
 
 const Popover = ({
   children,
@@ -265,13 +267,16 @@ const Popover = ({
   }, [shouldCloseOnBlur, isExpanded, isDisabled, handleClose, popoverId]);
 
   // Handle position and scroll
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isExpanded) {
-      setContentCoords();
+      // Use requestAnimationFrame to ensure refs are set after portal renders
+      requestAnimationFrame(() => {
+        setContentCoords();
+      });
     }
   }, [isExpanded, setContentCoords]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isExpanded) return;
 
     function handleScroll() {
@@ -463,12 +468,7 @@ const Popover = ({
                 className={cn(contentClassName, classNames?.content)}
                 style={popoverContentCoords}
                 onClick={(e) => e.stopPropagation()}
-                ref={(node) => {
-                  if (!node) return;
-
-                  popoverContentRef.current = node;
-                  focusContainerRef.current = node;
-                }}
+                ref={composeRefs(popoverContentRef, focusContainerRef)}
               >
                 <PopoverFocusTrapper ref={firstFocusableItemRef} />
                 {popoverContent}
