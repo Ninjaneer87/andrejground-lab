@@ -6,7 +6,6 @@ import React, {
   useCallback,
   useEffect,
   useId,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -35,7 +34,6 @@ import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { usePositionObserver } from '../../hooks/usePositionObserver';
 import { Slot } from '@/components/utility/Slot';
 import { usePrevValue } from '@/hooks';
-import { composeRefs } from '@/utils/compose-refs';
 
 const Popover = ({
   children,
@@ -178,7 +176,6 @@ const Popover = ({
       triggerRect,
       popoverContentRef.current,
     );
-
     console.log('[Popover] coords', coords);
     setPopoverContentCoords(coords);
   }, [placement, offset, shouldFlip, growContent, isExpanded]);
@@ -275,16 +272,13 @@ const Popover = ({
   }, [shouldCloseOnBlur, isExpanded, isDisabled, handleClose, popoverId]);
 
   // Handle position and scroll
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isExpanded) {
-      // Use requestAnimationFrame to ensure refs are set after portal renders
-      requestAnimationFrame(() => {
-        setContentCoords();
-      });
+      setContentCoords();
     }
   }, [isExpanded, setContentCoords]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!isExpanded) return;
 
     function handleScroll() {
@@ -423,8 +417,8 @@ const Popover = ({
       value={{ isOpen: isExpanded, handleClose, popoverId, handleOpen }}
     >
       <>
-        {isMounted && !!backdrop && backdrop !== 'none' && (
-          <ClientPortal>
+        <ClientPortal>
+          {isMounted && !!backdrop && backdrop !== 'none' && (
             <div
               className={cn(backdropClassName, classNames?.backdrop)}
               onClick={(e) => {
@@ -432,8 +426,8 @@ const Popover = ({
                 handleBackdropClick();
               }}
             />
-          </ClientPortal>
-        )}
+          )}
+        </ClientPortal>
 
         <div
           className={cn(baseClassName, classNames?.base)}
@@ -467,8 +461,8 @@ const Popover = ({
             {popoverTrigger}
           </Slot>
 
-          {(isMounted || isExpanded) && (
-            <ClientPortal>
+          <ClientPortal>
+            {(isMounted || isExpanded) && (
               <div
                 data-popover-content
                 data-popover-content-root-id={rootPopoverId ?? popoverId}
@@ -476,14 +470,19 @@ const Popover = ({
                 className={cn(contentClassName, classNames?.content)}
                 style={popoverContentCoords}
                 onClick={(e) => e.stopPropagation()}
-                ref={composeRefs(popoverContentRef, focusContainerRef)}
+                ref={(node) => {
+                  if (!node) return;
+
+                  popoverContentRef.current = node;
+                  focusContainerRef.current = node;
+                }}
               >
                 <PopoverFocusTrapper ref={firstFocusableItemRef} />
                 {popoverContent}
                 <PopoverFocusTrapper ref={lastFocusableItemRef} />
               </div>
-            </ClientPortal>
-          )}
+            )}
+          </ClientPortal>
         </div>
       </>
     </PopoverContext.Provider>
