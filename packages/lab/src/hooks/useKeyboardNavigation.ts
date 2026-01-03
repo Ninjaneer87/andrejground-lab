@@ -92,25 +92,28 @@ export function useKeyboardNavigation<T extends HTMLElement>({
   useEffect(() => {
     if (!isActive || !autoFocus || autoFocus === 'none') return;
 
-    if (autoFocus === 'first-item') {
-      if (!focusableItemsRef.current) return;
+    // Use requestAnimationFrame to ensure DOM is ready after portal renders
+    requestAnimationFrame(() => {
+      if (autoFocus === 'first-item') {
+        if (!focusableItemsRef.current) return;
 
-      focusItem({ index: 0 });
+        focusItem({ index: 0 });
 
-      return;
-    }
+        return;
+      }
 
-    if (autoFocus === 'last-item') {
-      if (!focusableItemsRef.current) return;
+      if (autoFocus === 'last-item') {
+        if (!focusableItemsRef.current) return;
 
-      focusItem({ focusLast: true });
+        focusItem({ focusLast: true });
 
-      return;
-    }
+        return;
+      }
 
-    if (autoFocus === 'menu') {
-      containerRef.current?.focus();
-    }
+      if (autoFocus === 'menu') {
+        containerRef.current?.focus();
+      }
+    });
   }, [autoFocus, isActive, focusItem]);
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  forwardRef,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -40,31 +41,27 @@ type ResizableProps = {
   name: string;
   isVisible?: boolean;
   as?: HtmlTag;
-  /**
-   * Ref attached to the resizable element
-   */
-  ref?: React.RefObject<HTMLElement | null>;
   onResize?: (width: number) => void;
 };
 
 /**
  * Component able to resize it's width on a selected side
  */
-function Resizable(props: ResizableProps) {
-  const {
-    className,
-    children,
-    name,
-    resizableSide,
-    minWidth = 200,
-    maxWidth = 600,
-    initialWidth = 200,
-    isVisible = true,
-    ref,
-    as: Component = 'div',
-    onResize,
-    ...rest
-  } = props;
+const Resizable = forwardRef<HTMLElement, ResizableProps>(
+  (props, ref) => {
+    const {
+      className,
+      children,
+      name,
+      resizableSide,
+      minWidth = 200,
+      maxWidth = 600,
+      initialWidth = 200,
+      isVisible = true,
+      as: Component = 'div',
+      onResize,
+      ...rest
+    } = props;
   const resizableRef = useRef<HTMLDivElement>(null);
 
   const onMouseMoveRef = useRef<((e: MouseEvent) => void) | null>(null);
@@ -203,7 +200,11 @@ function Resizable(props: ResizableProps) {
       className={cn(className, styles.resizable)}
       ref={(node) => {
         resizableRef.current = node;
-        if (ref) ref.current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          ref.current = node;
+        }
       }}
       {...rest}
     >
@@ -222,6 +223,9 @@ function Resizable(props: ResizableProps) {
       {children}
     </Component>
   );
-}
+  },
+);
+
+Resizable.displayName = 'Resizable';
 
 export default Resizable;

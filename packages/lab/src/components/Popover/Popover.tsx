@@ -147,18 +147,11 @@ const Popover = ({
   }
 
   const setContentCoords = useCallback(() => {
-    console.log('[Popover] setContentCoords called', {
-      isExpanded,
-      hasTriggerRef: !!popoverTriggerRef.current,
-      hasContentRef: !!popoverContentRef.current,
-    });
     if (!isExpanded || !popoverTriggerRef.current || !popoverContentRef.current)
       return;
 
     const triggerRect = popoverTriggerRef.current.getBoundingClientRect();
     const popoverRect = popoverContentRef.current.getBoundingClientRect();
-    console.log('[Popover] triggerRect', triggerRect);
-    console.log('[Popover] popoverRect', popoverRect);
 
     if (growContent) {
       const coords = growContentPosition(placement, offset, triggerRect);
@@ -176,7 +169,7 @@ const Popover = ({
       triggerRect,
       popoverContentRef.current,
     );
-    console.log('[Popover] coords', coords);
+
     setPopoverContentCoords(coords);
   }, [placement, offset, shouldFlip, growContent, isExpanded]);
 
@@ -417,8 +410,8 @@ const Popover = ({
       value={{ isOpen: isExpanded, handleClose, popoverId, handleOpen }}
     >
       <>
-        <ClientPortal>
-          {isMounted && !!backdrop && backdrop !== 'none' && (
+        {isMounted && !!backdrop && backdrop !== 'none' && (
+          <ClientPortal>
             <div
               className={cn(backdropClassName, classNames?.backdrop)}
               onClick={(e) => {
@@ -426,8 +419,8 @@ const Popover = ({
                 handleBackdropClick();
               }}
             />
-          )}
-        </ClientPortal>
+          </ClientPortal>
+        )}
 
         <div
           className={cn(baseClassName, classNames?.base)}
@@ -443,8 +436,8 @@ const Popover = ({
         >
           <Slot
             onClick={(e: React.MouseEvent) => {
-              e?.stopPropagation();
-              handleToggle();
+                e?.stopPropagation();
+                handleToggle();
             }}
             data-popover-trigger
             data-popover-trigger-root-id={rootPopoverId ?? popoverId}
@@ -461,8 +454,8 @@ const Popover = ({
             {popoverTrigger}
           </Slot>
 
-          <ClientPortal>
-            {(isMounted || isExpanded) && (
+          {(isMounted || isExpanded) && (
+            <ClientPortal>
               <div
                 data-popover-content
                 data-popover-content-root-id={rootPopoverId ?? popoverId}
@@ -481,8 +474,8 @@ const Popover = ({
                 {popoverContent}
                 <PopoverFocusTrapper ref={lastFocusableItemRef} />
               </div>
-            )}
-          </ClientPortal>
+            </ClientPortal>
+          )}
         </div>
       </>
     </PopoverContext.Provider>
