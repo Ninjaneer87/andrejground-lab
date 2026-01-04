@@ -238,16 +238,19 @@ const Popover = ({
         ?.getAttribute('data-popover-content-current-id');
       const id = popoverIdFromClosestTrigger || popoverIdFromClosestContent;
 
-      if (id && id !== popoverId) {
+      console.log({ id, popoverId, isNested });
+      if (id && id !== popoverId && isNested) {
         return;
       }
 
-      const isPopoverTrigger = !!(event.target as Element).closest(
+      const isPopoverTrigger = (event.target as Element).closest(
         `[data-popover-trigger-current-id="${popoverId}"]`,
       );
-      const isPopoverContent = !!(event.target as Element).closest(
-        `[data-popover-content-current-id="${popoverId}"]`,
+      const isPopoverContent = (event.target as Element).closest(
+        `[data-popover-content-current-id]`,
       );
+
+      console.log({ target: event.target, isPopoverTrigger, isPopoverContent });
 
       if (isPopoverTrigger || isPopoverContent) {
         return;
@@ -262,7 +265,14 @@ const Popover = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [shouldCloseOnBlur, isExpanded, isDisabled, handleClose, popoverId]);
+  }, [
+    shouldCloseOnBlur,
+    isExpanded,
+    isDisabled,
+    handleClose,
+    popoverId,
+    isNested,
+  ]);
 
   // Handle position and scroll
   useEffect(() => {
@@ -436,11 +446,12 @@ const Popover = ({
         >
           <Slot
             onClick={(e: React.MouseEvent) => {
-                e?.stopPropagation();
-                handleToggle();
+              e?.stopPropagation();
+              handleToggle();
             }}
             data-popover-trigger
             data-popover-trigger-root-id={rootPopoverId ?? popoverId}
+            data-popover-trigger-current-id={popoverId}
             onKeyDown={onTriggerKeyDown}
             tabIndex={0}
             className={cn(triggerClassName, classNames?.trigger)}
