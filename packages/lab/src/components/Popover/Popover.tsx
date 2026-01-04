@@ -226,31 +226,31 @@ const Popover = ({
 
   // Handle onBlur
   useEffect(() => {
-    if (isDisabled) return;
-    if (!isExpanded) return;
+    if (isDisabled || !isExpanded) return;
 
     function handleClickOutside(event: MouseEvent) {
-      const popoverIdFromClosestTrigger = (event.target as Element)
-        .closest(`[data-popover-trigger-current-id]`)
-        ?.getAttribute('data-popover-trigger-current-id');
-      const popoverIdFromClosestContent = (event.target as Element)
-        .closest(`[data-popover-content-current-id]`)
-        ?.getAttribute('data-popover-content-current-id');
-      const id = popoverIdFromClosestTrigger || popoverIdFromClosestContent;
+      const rootId = rootPopoverId || popoverId;
+      const clickedTarget = event.target as Element;
 
-      console.log({ id, popoverId, isNested });
-      if (id && id !== popoverId && isNested) {
+      const popoverIdFromClosestTrigger = clickedTarget
+        .closest(`[data-popover-trigger-root-id]`)
+        ?.getAttribute('data-popover-trigger-root-id');
+      const popoverIdFromClosestContent = clickedTarget
+        .closest(`[data-popover-content-root-id]`)
+        ?.getAttribute('data-popover-content-root-id');
+      const clickedRootId =
+        popoverIdFromClosestTrigger || popoverIdFromClosestContent;
+
+      if (clickedRootId && clickedRootId !== rootId && isNested) {
         return;
       }
 
-      const isPopoverTrigger = (event.target as Element).closest(
-        `[data-popover-trigger-current-id="${popoverId}"]`,
+      const isPopoverTrigger = clickedTarget.closest(
+        `[data-popover-trigger-root-id="${rootId}"]`,
       );
-      const isPopoverContent = (event.target as Element).closest(
-        `[data-popover-content-current-id]`,
+      const isPopoverContent = clickedTarget.closest(
+        `[data-popover-content-root-id="${rootId}"]`,
       );
-
-      console.log({ target: event.target, isPopoverTrigger, isPopoverContent });
 
       if (isPopoverTrigger || isPopoverContent) {
         return;
@@ -272,6 +272,7 @@ const Popover = ({
     handleClose,
     popoverId,
     isNested,
+    rootPopoverId,
   ]);
 
   // Handle position and scroll
