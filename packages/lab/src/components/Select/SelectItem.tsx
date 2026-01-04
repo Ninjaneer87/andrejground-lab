@@ -6,6 +6,7 @@ import { useSelectContext } from '../../context/SelectContext';
 import { OptionItem, SelectItemProps } from '../../types';
 import { cn } from '../../utils/common';
 import { Slot } from '../utility/Slot';
+import styles from './SelectItem.module.scss';
 
 function SelectItem<T extends OptionItem>({
   children,
@@ -120,6 +121,7 @@ function SelectItem<T extends OptionItem>({
   }
 
   const baseClassName = cn(
+    styles.item,
     disabled && showDisabledStyles ? 'opacity-60 pointer-events-none' : '',
     'p-2 focus-visible:bg-gray-200 focus-within:bg-gray-200 rounded-lg transition-all w-full flex cursor-pointer items-center gap-2',
   );

@@ -6,6 +6,8 @@ import { useDropdownMenuContext } from '../../context/DropdownMenuContext';
 import { DropdownItemProps } from '../../types';
 import { usePopoverRootContext } from '../../context/PopoverRootContext';
 import { cn } from '../../utils/common';
+import styles from './DropdownItem.module.scss';
+
 
 const DropdownItem = forwardRef<HTMLElement, DropdownItemProps<ElementType>>(
   (props, ref) => {
@@ -84,6 +86,7 @@ const DropdownItem = forwardRef<HTMLElement, DropdownItemProps<ElementType>>(
   }
 
   const baseClassName = cn(
+    styles.item,
     'p-2 focus-visible:bg-gray-200 focus-within:bg-gray-200 rounded-lg transition-all w-full flex cursor-pointer items-center gap-2',
     disabled && showDisabledStyles ? 'opacity-60 pointer-events-none' : '',
     isHighlighted ? 'bg-gray-300' : '',
