@@ -338,6 +338,7 @@ const Popover = ({
         if (event.target !== event.currentTarget) return;
 
         event.preventDefault();
+        event.stopPropagation();
         handleToggle();
       }
     },
