@@ -9,6 +9,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel --color | grep --line-buffered '\\S'",
     "build:lab": "npm run build --workspace=@andrejground/lab",
+    "build:site": "npm run build --workspace=site",
     "site": "npm run start --workspace=site",
     "lint": "npm run lint --workspaces --if-present"
   },
