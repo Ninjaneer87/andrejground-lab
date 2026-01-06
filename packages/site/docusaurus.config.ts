@@ -124,25 +124,33 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Getting Started',
               to: '/docs/getting-started/introduction',
+            },
+            {
+              label: 'Components',
+              to: '/docs/category/components',
+            },
+            {
+              label: 'Hooks',
+              to: '/docs/category/hooks',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Andrej',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'GitHub',
+              href: 'https://github.com/Ninjaneer87',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/andrejforgac87/',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/andrejground',
             },
           ],
         },
@@ -154,7 +162,7 @@ const config: Config = {
               to: '/blog',
             },
             {
-              label: 'GitHub',
+              label: 'Lab GitHub',
               href: 'https://github.com/Ninjaneer87/andrejground-lab',
             },
           ],
