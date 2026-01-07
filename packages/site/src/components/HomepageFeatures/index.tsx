@@ -220,10 +220,8 @@ export default function HomepageFeatures(): ReactNode {
               </Heading>
 
               <CodeBlock language="tsx" title="App.tsx">
-                {`//...
-// add-next-line
-import '@andrejground/lab/style.css';
-//...`}
+                {`// add-next-line
+import '@andrejground/lab/style.css';`}
               </CodeBlock>
             </div>
           </div>
