@@ -12,7 +12,7 @@ Powerful tools shouldn't come with a steep learning curve. Every component is ar
 
 ## Zero-Waste Architecture
 
-Performance is a first-class citizen. Tree-shakable foundation ensures your production bundles only contain the code you actually use—keeping your apps lean and your load times fast.
+Performance is a first-class citizen. Tree-shakable foundation ensures your production bundles only contain the code you actually use, keeping your apps lean and your load times fast.
 
 ## Smooth User Experience
 
