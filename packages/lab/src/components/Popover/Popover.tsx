@@ -211,6 +211,78 @@ const PopoverBase = forwardRef<
       [isDisabled, focusTriggerOnClose],
     );
 
+    const handleOpen = useCallback(() => {
+      if (isDisabled || open) return;
+
+      if (onOpenChangeRef.current) onOpenChangeRef.current(true);
+      if (onOpenRef.current) onOpenRef.current();
+      setIsOpen(true);
+    }, [isDisabled, open]);
+
+    // Handle onOpenChange
+    const handleToggle = useCallback(() => {
+      if (isDisabled || (openOnHover && !isNested)) return;
+
+      if (open) {
+        handleClose();
+        return;
+      }
+
+      handleOpen();
+    }, [isDisabled, open, handleClose, openOnHover, isNested, handleOpen]);
+
+    const handleBackdropClick = useCallback(() => {
+      if (shouldCloseOnBlur) {
+        handleClose();
+      }
+    }, [handleClose, shouldCloseOnBlur]);
+
+    const onTriggerKeyDown = useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+          // Only toggle if the event originated from the trigger itself
+          if (event.target !== event.currentTarget) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+          handleToggle();
+        }
+      },
+      [handleToggle],
+    );
+
+    const handleMouseEnter = useCallback(() => {
+      if (isDisabled) return;
+
+      if (showDelayRef.current) clearTimeout(showDelayRef.current);
+      if (hideDelayRef.current) clearTimeout(hideDelayRef.current);
+
+      showDelayRef.current = setTimeout(() => {
+        setIsHoverOpen(true);
+
+        if (isRootPopover && openOnHover) {
+          onOpenChangeRef.current?.(true);
+          onOpenRef.current?.();
+        }
+      }, delayShow);
+    }, [isDisabled, isRootPopover, openOnHover, delayShow]);
+
+    const handleMouseLeave = useCallback(() => {
+      if (isDisabled) return;
+
+      if (showDelayRef.current) clearTimeout(showDelayRef.current);
+      if (hideDelayRef.current) clearTimeout(hideDelayRef.current);
+
+      hideDelayRef.current = setTimeout(() => {
+        setIsHoverOpen(false);
+
+        if (isRootPopover && openOnHover) {
+          onOpenChangeRef.current?.(false);
+          onCloseRef.current?.();
+        }
+      }, delayHide);
+    }, [isDisabled, isRootPopover, openOnHover, delayHide]);
+
     useEffect(() => {
       const shouldFocusTriggerOnControlledClose =
         prevControlledIsOpen && !controlledIsOpen && focusTriggerOnClose;
@@ -314,52 +386,6 @@ const PopoverBase = forwardRef<
       };
     }, [isExpanded, shouldCloseOnScroll, handleClose, setContentCoords]);
 
-    // Handle onOpenChange
-    const handleToggle = useCallback(() => {
-      if (isDisabled || (openOnHover && !isNested)) return;
-
-      if (onOpenChangeRef.current) {
-        onOpenChangeRef.current(!open);
-      }
-
-      if (open) {
-        handleClose();
-        return;
-      }
-
-      onOpenRef.current?.();
-
-      setIsOpen((prev) => !prev);
-    }, [isDisabled, open, handleClose, openOnHover, isNested]);
-
-    const handleOpen = useCallback(() => {
-      if (isDisabled || open) return;
-
-      if (onOpenChangeRef.current) onOpenChangeRef.current(true);
-      if (onOpenRef.current) onOpenRef.current();
-      setIsOpen(true);
-    }, [isDisabled, open]);
-
-    const handleBackdropClick = useCallback(() => {
-      if (shouldCloseOnBlur) {
-        handleClose();
-      }
-    }, [handleClose, shouldCloseOnBlur]);
-
-    const onTriggerKeyDown = useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === 'Enter') {
-          // Only toggle if the event originated from the trigger itself
-          if (event.target !== event.currentTarget) return;
-
-          event.preventDefault();
-          event.stopPropagation();
-          handleToggle();
-        }
-      },
-      [handleToggle],
-    );
-
     useEffect(() => {
       if (!isExpanded) {
         return;
@@ -387,32 +413,6 @@ const PopoverBase = forwardRef<
         document.removeEventListener('keydown', onPopoverKeyDown);
       };
     }, [shouldCloseOnEsc, isExpanded, handleClose, popoverId]);
-
-    const handleMouseEnter = useCallback(() => {
-      if (isDisabled) return;
-
-      if (showDelayRef.current) clearTimeout(showDelayRef.current);
-      if (hideDelayRef.current) clearTimeout(hideDelayRef.current);
-
-      showDelayRef.current = setTimeout(() => {
-        setIsHoverOpen(true);
-
-        if (isRootPopover && openOnHover) onOpenRef.current?.();
-      }, delayShow);
-    }, [isDisabled, isRootPopover, openOnHover, delayShow]);
-
-    const handleMouseLeave = useCallback(() => {
-      if (isDisabled) return;
-
-      if (showDelayRef.current) clearTimeout(showDelayRef.current);
-      if (hideDelayRef.current) clearTimeout(hideDelayRef.current);
-
-      hideDelayRef.current = setTimeout(() => {
-        setIsHoverOpen(false);
-
-        if (isRootPopover && openOnHover) onCloseRef.current?.();
-      }, delayHide);
-    }, [isDisabled, isRootPopover, openOnHover, delayHide]);
 
     const baseClassName = cn('relative', fullWidth ? 'w-full' : 'w-fit');
     const triggerClassName = cn(

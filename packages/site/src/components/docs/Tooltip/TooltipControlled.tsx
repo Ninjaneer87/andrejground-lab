@@ -10,8 +10,9 @@ function TooltipControlledContent() {
       <SiteTooltip
         content="Controlled tooltip"
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onOpen={() => setIsOpen(true)}
+        // onClose={() => setIsOpen(false)}
+        // onOpen={() => setIsOpen(true)}
+        onOpenChange={setIsOpen}
       >
         <button className="button button--secondary button--outline">
           Hover me
