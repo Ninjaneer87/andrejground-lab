@@ -21,6 +21,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       onOpenChange,
       placement = 'top-center',
       offset = 8,
+      showArrow = true,
       delayShow = 100,
       hoverableContent = false,
       delayHide = hoverableContent ? 200 : 0,
@@ -63,6 +64,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           isOpen={open}
           delayShow={delayShow}
           delayHide={delayHide}
+          showArrow={showArrow}
           hoverableContent={hoverableContent}
           classNames={{
             ...classNames,

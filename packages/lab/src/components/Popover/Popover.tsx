@@ -12,7 +12,11 @@ import React, {
 } from 'react';
 import { PopoverContext } from '../../context/PopoverContext';
 import PopoverTrigger from './PopoverTrigger';
-import { PopoverComposition, PopoverProps } from '../../types';
+import {
+  PopoverComposition,
+  PopoverPlacement,
+  PopoverProps,
+} from '../../types';
 import { useDelayUnmount } from '../../hooks/useDelayUnmount';
 import PopoverContent from './PopoverContent';
 import {
@@ -54,7 +58,7 @@ const PopoverBase = forwardRef<
       isNested = false,
       placement = 'bottom-center',
       offset = 8,
-      // showArrow = false,
+      showArrow = false,
       isDisabled,
       isOpen: controlledIsOpen,
       onOpen,
@@ -83,6 +87,7 @@ const PopoverBase = forwardRef<
     const popoverTriggerRef = useRef<HTMLDivElement>(null);
     const showDelayRef = useRef<NodeJS.Timeout | null>(null);
     const hideDelayRef = useRef<NodeJS.Timeout | null>(null);
+    const fitPlacementRef = useRef<PopoverPlacement | null>(null);
 
     const onOpenRef = useRef(onOpen);
     const onCloseRef = useRef(onClose);
@@ -184,6 +189,8 @@ const PopoverBase = forwardRef<
         triggerRect,
         popoverContentRef.current,
       );
+
+      fitPlacementRef.current = fitPlacement;
 
       setPopoverContentCoords(coords);
     }, [placement, offset, shouldFlip, growContent, isExpanded]);
@@ -424,6 +431,7 @@ const PopoverBase = forwardRef<
       'fixed z-1010',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
       'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
+      showArrow && 'popover-arrow',
     );
     const backdropClassName = cn(
       'fixed z-1000 inset-0',
@@ -492,6 +500,7 @@ const PopoverBase = forwardRef<
                   data-popover-content
                   data-popover-content-root-id={rootPopoverId ?? popoverId}
                   data-popover-content-current-id={popoverId}
+                  data-popover-placement={fitPlacementRef.current}
                   className={cn(contentClassName, classNames?.content)}
                   style={popoverContentCoords}
                   onClick={(e) => e.stopPropagation()}

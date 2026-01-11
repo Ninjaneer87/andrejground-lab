@@ -38,6 +38,7 @@ const Dropdown = ({
   openOnHover = isNested,
   growContent,
   offset,
+  showArrow = false,
   autoFocus = 'menu',
   focusTrapProps = {
     autoFocus: autoFocus === 'none',
@@ -118,6 +119,7 @@ const Dropdown = ({
       isOpen={open}
       growContent={growContent}
       offset={offset}
+      showArrow={showArrow}
       classNames={classNames?.popover}
       focusTrapProps={focusTrapProps}
       onOpen={() => {

@@ -479,6 +479,7 @@ export type TooltipProps = {
 } & Pick<
   PopoverProps,
   | 'shouldFlip'
+  | 'showArrow'
   | 'shouldCloseOnBlur'
   | 'shouldCloseOnEsc'
   | 'placement'

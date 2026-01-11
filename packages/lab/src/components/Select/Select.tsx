@@ -70,6 +70,7 @@ function Select<T extends OptionItem>({
   popOnSelection = true,
   infiniteScrollProps,
   isLoading,
+  showArrow = false,
 }: SelectProps<T> & SelectCompositionProps<T>) {
   if (items && children && typeof children !== 'function') {
     throw new Error(
@@ -322,6 +323,7 @@ function Select<T extends OptionItem>({
           isOpen={open}
           growContent={growContent}
           offset={offset}
+          showArrow={showArrow}
           onOpen={() => {
             setIsOpen(true);
             if (onOpen) onOpen();

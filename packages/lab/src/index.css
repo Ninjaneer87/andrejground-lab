@@ -93,3 +93,78 @@
   --rd-text-color-select-base: black;
   --rd-bg-color-select-trigger-base: white;
 }
+
+/* Popover Arrow */
+.popover-arrow {
+  --arrow-size: 8px;
+}
+
+.popover-arrow::before {
+  content: '';
+  position: absolute;
+  width: var(--arrow-size);
+  height: var(--arrow-size);
+  background: inherit;
+  transform: rotate(45deg);
+}
+
+/* Arrow positions based on placement */
+/* Top placements - arrow points down */
+.popover-arrow[data-popover-placement^='top']::before {
+  bottom: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='top-start']::before {
+  left: 16px;
+}
+.popover-arrow[data-popover-placement='top-center']::before {
+  left: 50%;
+  margin-left: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='top-end']::before {
+  right: 16px;
+}
+
+/* Bottom placements - arrow points up */
+.popover-arrow[data-popover-placement^='bottom']::before {
+  top: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='bottom-start']::before {
+  left: 16px;
+}
+.popover-arrow[data-popover-placement='bottom-center']::before {
+  left: 50%;
+  margin-left: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='bottom-end']::before {
+  right: 16px;
+}
+
+/* Left placements - arrow points right */
+.popover-arrow[data-popover-placement^='left']::before {
+  right: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='left-start']::before {
+  top: 16px;
+}
+.popover-arrow[data-popover-placement='left-center']::before {
+  top: 50%;
+  margin-top: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='left-end']::before {
+  bottom: 16px;
+}
+
+/* Right placements - arrow points left */
+.popover-arrow[data-popover-placement^='right']::before {
+  left: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='right-start']::before {
+  top: 16px;
+}
+.popover-arrow[data-popover-placement='right-center']::before {
+  top: 50%;
+  margin-top: calc(var(--arrow-size) / -2);
+}
+.popover-arrow[data-popover-placement='right-end']::before {
+  bottom: 16px;
+}
