@@ -474,10 +474,10 @@ type TooltipClassNames = {
 
 export type TooltipProps = {
   children?: React.ReactNode;
+  content: React.ReactNode;
   classNames?: TooltipClassNames;
 } & Pick<
   PopoverProps,
-  | 'content'
   | 'shouldFlip'
   | 'shouldCloseOnBlur'
   | 'shouldCloseOnEsc'

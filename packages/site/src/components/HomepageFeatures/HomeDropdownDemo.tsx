@@ -15,6 +15,7 @@ import {
 import Icon from '@mdi/react';
 import SiteDropdown from '@site/src/components/lab/SiteDropdown/SiteDropdown';
 import SitePopover from '@site/src/components/lab/SitePopover/SitePopover';
+import SiteTooltip from '@site/src/components/lab/SiteTooltip/SiteTooltip';
 import React from 'react';
 
 function HomeDropdownDemo() {
@@ -23,9 +24,11 @@ function HomeDropdownDemo() {
       {() => (
         <SiteDropdown>
           <SiteDropdown.Trigger>
-            <button className="button button--secondary button--outline">
-              Actions <Icon path={mdiMenuDown} size={1} />
-            </button>
+            <SiteTooltip content="Open actions menu">
+              <button className="button button--secondary button--outline">
+                Actions <Icon path={mdiMenuDown} size={1} />
+              </button>
+            </SiteTooltip>
           </SiteDropdown.Trigger>
           <SiteDropdown.Menu>
             <SiteDropdown.Section title="Actions">

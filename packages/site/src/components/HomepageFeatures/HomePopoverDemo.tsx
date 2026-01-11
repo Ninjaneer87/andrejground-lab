@@ -10,7 +10,7 @@ function HomePopoverDemo() {
         return (
           <SitePopover>
             <SitePopover.Trigger>
-              <SiteTooltip content="Tooltip over the Popover Trigger">
+              <SiteTooltip content="This is Tooltip over the Popover Trigger">
                 <div className={styles.flex}>
                   <img
                     className="avatar__photo"
@@ -55,7 +55,7 @@ function HomePopoverDemo() {
                     </a>
                   </SitePopover.Trigger>
                   <SitePopover.Content>
-                    Let's connect on LinkedIn
+                    This is <code>openOnHover</code> Popover
                   </SitePopover.Content>
                 </SitePopover>
               </div>
