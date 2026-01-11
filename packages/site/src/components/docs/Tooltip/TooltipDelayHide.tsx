@@ -4,14 +4,14 @@ import React from 'react';
 
 const DELAYS = [0, 300, 500, 1000];
 
-function TooltipDelayContent() {
+function TooltipDelayHideContent() {
   return (
     <div className="flex-wrap">
       {DELAYS.map((delay) => (
         <SiteTooltip
           key={delay}
           content={`Delay: ${delay}ms`}
-          delayShow={delay}
+          delayHide={delay}
         >
           <button className="button button--secondary button--outline">
             {delay}ms delay
@@ -22,11 +22,11 @@ function TooltipDelayContent() {
   );
 }
 
-function TooltipDelay() {
+function TooltipDelayHide() {
   return (
-    <BrowserOnly fallback={<TooltipDelayContent />}>
-      {() => <TooltipDelayContent />}
+    <BrowserOnly fallback={<TooltipDelayHideContent />}>
+      {() => <TooltipDelayHideContent />}
     </BrowserOnly>
   );
 }
-export default TooltipDelay;
+export default TooltipDelayHide;

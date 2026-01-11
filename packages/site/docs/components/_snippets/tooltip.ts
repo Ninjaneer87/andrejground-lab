@@ -38,7 +38,7 @@ export default function App() {
 }
 `;
 
-export const tooltipDelayTsx = `import { Tooltip } from '@andrejground/lab';
+export const tooltipDelayShowTsx = `import { Tooltip } from '@andrejground/lab';
 
 const DELAYS = [0, 300, 500, 1000];
 
@@ -47,6 +47,23 @@ export default function App() {
     <>
       {DELAYS.map((delay) => (
         <Tooltip key={delay} content={\`Delay: \${delay}ms\`} delayShow={delay}>
+          <button>{delay}ms delay</button>
+        </Tooltip>
+      ))}
+    </>
+  );
+}
+`;
+
+export const tooltipDelayHideTsx = `import { Tooltip } from '@andrejground/lab';
+
+const DELAYS = [0, 300, 500, 1000];
+
+export default function App() {
+  return (
+    <>
+      {DELAYS.map((delay) => (
+        <Tooltip key={delay} content={\`Delay: \${delay}ms\`} delayHide={delay}>
           <button>{delay}ms delay</button>
         </Tooltip>
       ))}
