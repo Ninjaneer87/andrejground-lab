@@ -462,3 +462,34 @@ export type InfiniteScrollProps = {
   isLoading?: boolean;
   hasMore: boolean;
 };
+
+// !Tooltip types
+export type TooltipPlacement = PopoverPlacement;
+
+type TooltipClassNames = {
+  base?: string;
+  trigger?: string;
+  content?: string;
+};
+
+export type TooltipProps = {
+  children?: React.ReactNode;
+  classNames?: TooltipClassNames;
+} & Pick<
+  PopoverProps,
+  | 'content'
+  | 'shouldFlip'
+  | 'shouldCloseOnBlur'
+  | 'shouldCloseOnEsc'
+  | 'placement'
+  | 'offset'
+  | 'isDisabled'
+  | 'isOpen'
+  | 'onOpen'
+  | 'onClose'
+  | 'onBlur'
+  | 'onOpenChange'
+  | 'delayShow'
+  | 'delayHide'
+  | 'hoverableContent'
+>;

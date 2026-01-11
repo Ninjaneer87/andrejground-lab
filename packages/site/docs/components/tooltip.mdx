@@ -1,0 +1,76 @@
+import TooltipUsage from '@site/src/components/docs/Tooltip/TooltipUsage';
+import TooltipPlacements from '@site/src/components/docs/Tooltip/TooltipPlacements';
+import TooltipControlled from '@site/src/components/docs/Tooltip/TooltipControlled';
+import TooltipDelay from '@site/src/components/docs/Tooltip/TooltipDelay';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import Link from '@docusaurus/Link';
+import {
+  tooltipControlledTsx,
+  tooltipPlacementsTsx,
+  tooltipUsageTsx,
+  tooltipDelayTsx,
+} from '@site/docs/components/_snippets/tooltip';
+
+# Tooltip
+
+A Tooltip is a small, non-interactive overlay that displays brief informational text when hovering over or focusing on an element. It is built on top of the <Link to='/docs/components/popover'>Popover</Link> component.
+
+## Key Characteristics
+
+- **Hover-Triggered**: Automatically shows on hover with configurable delay.
+- **Non-Interactive**: Unlike Popover, tooltips are meant for displaying simple text hints, not interactive content.
+- **Accessible**: Works with keyboard focus and follows accessibility best practices.
+
+## Import
+
+```tsx
+import { Tooltip } from '@andrejground/lab';
+```
+
+## Usage
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <TooltipUsage />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{tooltipUsageTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Placement
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <TooltipPlacements />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{tooltipPlacementsTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Delay
+
+Control the delay before showing the tooltip with `delayShow` prop.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <TooltipDelay />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{tooltipDelayTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <TooltipControlled />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{tooltipControlledTsx}</CodeBlock>
+  </TabItem>
+</Tabs>

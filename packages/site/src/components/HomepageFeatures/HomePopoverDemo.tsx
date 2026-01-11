@@ -1,6 +1,7 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import SitePopover from '@site/src/components/lab/SitePopover/SitePopover';
 import styles from './HomePopoverDemo.module.scss';
+import SiteTooltip from '@site/src/components/lab/SiteTooltip/SiteTooltip';
 
 function HomePopoverDemo() {
   return (
@@ -9,19 +10,21 @@ function HomePopoverDemo() {
         return (
           <SitePopover>
             <SitePopover.Trigger>
-              <div className={styles.flex}>
-                <img
-                  className="avatar__photo"
-                  src="/img/andrej.webp"
-                  alt="Andrej Forgac"
-                />
-                <div className={styles.headerContent}>
-                  <div>Andrej Forgac</div>
-                  <small className={styles.secondaryText}>
-                    AndrejGround maintainer
-                  </small>
+              <SiteTooltip content="Tooltip over the Popover Trigger">
+                <div className={styles.flex}>
+                  <img
+                    className="avatar__photo"
+                    src="/img/andrej.webp"
+                    alt="Andrej Forgac"
+                  />
+                  <div className={styles.headerContent}>
+                    <div>Andrej Forgac</div>
+                    <small className={styles.secondaryText}>
+                      AndrejGround maintainer
+                    </small>
+                  </div>
                 </div>
-              </div>
+              </SiteTooltip>
             </SitePopover.Trigger>
 
             <SitePopover.Content>

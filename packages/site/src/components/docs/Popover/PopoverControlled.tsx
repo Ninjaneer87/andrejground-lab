@@ -6,7 +6,7 @@ function PopoverControlledContent() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <>
+    <div className="flex-wrap flex-wrap--column">
       <SitePopover
         isOpen={isOpen}
         onOpenChange={setIsOpen}
@@ -23,12 +23,10 @@ function PopoverControlledContent() {
         </SitePopover.Content>
       </SitePopover>
 
-      <br />
-
       <div>
         Open: <code>{`${isOpen}`}</code>
       </div>
-    </>
+    </div>
   );
 }
 
