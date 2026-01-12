@@ -23,7 +23,7 @@ function TooltipPlacementsContent() {
     <div className="placement-grid">
       {PLACEMENTS.map((placement) => (
         <SiteTooltip key={placement} content={placement} placement={placement}>
-          <button className="button button--secondary button--outline">
+          <button className="button button--fullwidth button--secondary button--outline">
             {placement}
           </button>
         </SiteTooltip>

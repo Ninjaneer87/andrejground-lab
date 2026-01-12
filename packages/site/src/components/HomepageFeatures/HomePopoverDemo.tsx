@@ -8,7 +8,7 @@ function HomePopoverDemo() {
     <BrowserOnly>
       {() => {
         return (
-          <SitePopover>
+          <SitePopover> 
             <SitePopover.Trigger>
               <SiteTooltip content="This is Tooltip over the Popover Trigger">
                 <div className={styles.flex}>

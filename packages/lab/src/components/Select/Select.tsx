@@ -18,7 +18,6 @@ import { cn } from '../../utils/common';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import SpinnerLoader from '../SpinnerLoader/SpinnerLoader';
-import styles from './Select.module.css';
 import SelectSearch from '@/components/Select/SelectSearch';
 
 function Select<T extends OptionItem>({
@@ -172,7 +171,6 @@ function Select<T extends OptionItem>({
   const requiredAsteriskClassName = cn('text-red-700 ml-1');
 
   const triggerBaseClassName = cn(
-    styles.triggerBase,
     'rounded-lg border text-gray-800 border-gray-200 px-2 py-1 min-h-8 grow flex items-center gap-2 relative',
   );
   const triggerPlaceholderClassName = cn(
@@ -310,7 +308,6 @@ function Select<T extends OptionItem>({
 
       <div className={cn(baseClassName, classNames?.base)} ref={baseRef}>
         <Popover
-          fullWidth
           shouldFlip={shouldFlip}
           shouldBlockScroll={shouldBlockScroll}
           shouldCloseOnScroll={shouldCloseOnScroll}

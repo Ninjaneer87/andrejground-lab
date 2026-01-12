@@ -66,7 +66,12 @@ html[data-theme='dark'] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
   gap: 0.5rem;
+
+  &--fullwidth {
+    width: 100%;
+  }
 }
 .card {
   backdrop-filter: blur(5px);

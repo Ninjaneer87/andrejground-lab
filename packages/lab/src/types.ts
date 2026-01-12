@@ -34,7 +34,6 @@ export type PopoverProps = {
   onBlur?: () => void;
   onOpenChange?: (isOpen: boolean) => void;
   isNested?: boolean;
-  fullWidth?: boolean;
   openOnHover?: boolean;
   focusTriggerOnClose?: boolean;
   delayShow?: number;
@@ -358,6 +357,7 @@ export type SelectProps<T extends OptionItem> = {
   multiple?: boolean;
   caret?: React.ReactNode;
   showCaret?: boolean;
+  fullWidth?: boolean;
   topContent?: React.ReactNode;
   bottomContent?: React.ReactNode;
   items?: T[];

@@ -66,7 +66,6 @@ const PopoverBase = forwardRef<
       onBlur,
       onOpenChange,
       openOnHover,
-      fullWidth = false,
       focusTriggerOnClose = true,
       delayShow = 0,
       delayHide = 0,
@@ -421,12 +420,8 @@ const PopoverBase = forwardRef<
       };
     }, [shouldCloseOnEsc, isExpanded, handleClose, popoverId]);
 
-    const baseClassName = cn('relative', fullWidth ? 'w-full' : 'w-fit');
-    const triggerClassName = cn(
-      'flex items-center gap-2',
-      !isDisabled ? 'cursor-pointer' : '',
-      'grow w-full',
-    );
+    const baseClassName = cn('contents');
+    const triggerClassName = cn(!isDisabled ? 'cursor-pointer' : '');
     const contentClassName = cn(
       'fixed z-1010',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',

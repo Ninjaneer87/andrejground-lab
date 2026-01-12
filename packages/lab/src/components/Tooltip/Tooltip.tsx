@@ -4,6 +4,7 @@ import { forwardRef, useState } from 'react';
 import { TooltipProps } from '../../types';
 import Popover from '../Popover/Popover';
 import { cn } from '../../utils/common';
+import { Slot } from '@/components/utility/Slot';
 
 const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   (
@@ -48,54 +49,54 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     );
 
     return (
-      <div className="contents" ref={ref} {...rest}>
-        <Popover
-          openOnHover
-          shouldFlip={shouldFlip}
-          shouldBlockScroll={false}
-          shouldCloseOnScroll={false}
-          shouldCloseOnBlur={shouldCloseOnBlur}
-          shouldCloseOnEsc={shouldCloseOnEsc}
-          backdrop="none"
-          focusTriggerOnClose={false}
-          placement={placement}
-          offset={offset}
-          isDisabled={isDisabled}
-          isOpen={open}
-          delayShow={delayShow}
-          delayHide={delayHide}
-          showArrow={showArrow}
-          hoverableContent={hoverableContent}
-          classNames={{
-            ...classNames,
-            content: contentClassName,
-          }}
-          focusTrapProps={{
-            autoFocus: false,
-            trapFocus: false,
-          }}
-          onOpen={() => {
-            setIsOpen(true);
-            if (onOpen) onOpen();
-          }}
-          onClose={() => {
-            setIsOpen(false);
-            if (onClose) onClose();
-          }}
-          onBlur={() => {
-            if (onBlur) onBlur();
-          }}
-          onOpenChange={(isOpen) => {
-            setIsOpen(isOpen);
-            if (onOpenChange) onOpenChange(isOpen);
-          }}
-        >
-          <Popover.Trigger>
-            <div className="contents">{children}</div>
-          </Popover.Trigger>
-          <Popover.Content>{content}</Popover.Content>
-        </Popover>
-      </div>
+      <Popover
+        openOnHover
+        shouldFlip={shouldFlip}
+        shouldBlockScroll={false}
+        shouldCloseOnScroll={false}
+        shouldCloseOnBlur={shouldCloseOnBlur}
+        shouldCloseOnEsc={shouldCloseOnEsc}
+        backdrop="none"
+        focusTriggerOnClose={false}
+        placement={placement}
+        offset={offset}
+        isDisabled={isDisabled}
+        isOpen={open}
+        delayShow={delayShow}
+        delayHide={delayHide}
+        showArrow={showArrow}
+        hoverableContent={hoverableContent}
+        classNames={{
+          ...classNames,
+          content: contentClassName,
+        }}
+        focusTrapProps={{
+          autoFocus: false,
+          trapFocus: false,
+        }}
+        onOpen={() => {
+          setIsOpen(true);
+          if (onOpen) onOpen();
+        }}
+        onClose={() => {
+          setIsOpen(false);
+          if (onClose) onClose();
+        }}
+        onBlur={() => {
+          if (onBlur) onBlur();
+        }}
+        onOpenChange={(isOpen) => {
+          setIsOpen(isOpen);
+          if (onOpenChange) onOpenChange(isOpen);
+        }}
+      >
+        <Popover.Trigger>
+          <Slot ref={ref} data-tooltip {...rest}>
+            {children}
+          </Slot>
+        </Popover.Trigger>
+        <Popover.Content>{content}</Popover.Content>
+      </Popover>
     );
   },
 );

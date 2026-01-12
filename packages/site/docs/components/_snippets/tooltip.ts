@@ -83,8 +83,7 @@ export default function App() {
       <Tooltip
         content="Controlled tooltip"
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onOpen={() => setIsOpen(true)}
+        onOpenChange={setIsOpen}
       >
         <button>Hover me</button>
       </Tooltip>

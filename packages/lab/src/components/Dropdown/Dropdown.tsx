@@ -32,7 +32,6 @@ const Dropdown = ({
   onBlur,
   onOpenChange,
   isNested = false,
-  fullWidth = isNested,
   placement = isNested ? 'right-start' : 'bottom-center',
   showCaret = isNested,
   openOnHover = isNested,
@@ -106,7 +105,6 @@ const Dropdown = ({
       isNested={isNested}
       delayHide={isNested || openOnHover ? 300 : 0}
       delayShow={isNested || openOnHover ? 100 : 0}
-      fullWidth={fullWidth}
       shouldFlip={shouldFlip}
       shouldBlockScroll={shouldBlockScroll}
       shouldCloseOnScroll={shouldCloseOnScroll}

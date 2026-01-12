@@ -25,9 +25,9 @@ function PopoverPlacementsContent() {
   return (
     <div className="placement-grid">
       {PLACEMENTS.map((placement) => (
-        <SitePopover key={placement} placement={placement} fullWidth>
+        <SitePopover key={placement} placement={placement}>
           <SitePopover.Trigger>
-            <button className="button button--secondary button--block button--outline">
+            <button className="button button--fullwidth button--secondary button--outline">
               {placement}
             </button>
           </SitePopover.Trigger>
