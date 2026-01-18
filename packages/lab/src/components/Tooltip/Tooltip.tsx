@@ -1,32 +1,37 @@
 'use client';
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import { TooltipProps } from '../../types';
 import Popover from '../Popover/Popover';
 import { cn } from '../../utils/common';
 import { Slot } from '@/components/utility/Slot';
+import { composeRefs } from '@/utils/compose-refs';
 
-const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
+const Tooltip = forwardRef<HTMLElement, TooltipProps>(
   (
     {
       children,
       content,
       shouldFlip = true,
-      shouldCloseOnBlur = true,
+      shouldCloseOnClickOutside = true,
       shouldCloseOnEsc = true,
       isDisabled,
       isOpen: controlledIsOpen,
       onOpen,
       onClose,
-      onBlur,
+      onTriggerFocus,
+      onTriggerBlur,
+      onClickOutside,
       onOpenChange,
       placement = 'top-center',
       offset = 8,
       showArrow = true,
-      delayShow = 100,
+      delayShow = 0,
       hoverableContent = false,
       delayHide = hoverableContent ? 200 : 0,
       classNames,
+      triggerWrapper = false,
+      fullWidthTriggerWrapper = false,
       ...rest
     },
     ref,
@@ -43,6 +48,21 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       throw new Error('Tooltip component requires a content prop');
     }
 
+    const wrapperRef = useRef<HTMLElement>(null);
+
+    const handleWrapperKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' && wrapperRef.current && !isDisabled) {
+        const child = wrapperRef.current.firstElementChild as HTMLElement | null;
+        child?.click();
+      }
+    };
+
+    const triggerWrapperClassName = cn(
+      'inline-block',
+      fullWidthTriggerWrapper ? 'w-full' : 'w-fit',
+      classNames?.triggerWrapper,
+    );
+
     const contentClassName = cn(
       'px-2 py-1 text-sm bg-gray-900 text-white rounded shadow-md',
       classNames?.content,
@@ -54,8 +74,10 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         shouldFlip={shouldFlip}
         shouldBlockScroll={false}
         shouldCloseOnScroll={false}
-        shouldCloseOnBlur={shouldCloseOnBlur}
+        shouldCloseOnClickOutside={shouldCloseOnClickOutside}
         shouldCloseOnEsc={shouldCloseOnEsc}
+        shouldOpenOnTriggerFocus
+        shouldCloseOnTriggerBlur
         backdrop="none"
         focusTriggerOnClose={false}
         placement={placement}
@@ -70,6 +92,8 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           ...classNames,
           content: contentClassName,
         }}
+        onTriggerFocus={onTriggerFocus}
+        onTriggerBlur={onTriggerBlur}
         focusTrapProps={{
           autoFocus: false,
           trapFocus: false,
@@ -82,8 +106,9 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           setIsOpen(false);
           if (onClose) onClose();
         }}
-        onBlur={() => {
-          if (onBlur) onBlur();
+        onClickOutside={() => {
+          setIsOpen(false);
+          if (onClickOutside) onClickOutside();
         }}
         onOpenChange={(isOpen) => {
           setIsOpen(isOpen);
@@ -91,9 +116,21 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         }}
       >
         <Popover.Trigger>
-          <Slot ref={ref} data-tooltip {...rest}>
-            {children}
-          </Slot>
+          {triggerWrapper ? (
+            <span
+              ref={composeRefs(ref, wrapperRef)}
+              data-tooltip-trigger
+              className={triggerWrapperClassName}
+              onKeyDown={handleWrapperKeyDown}
+              {...rest}
+            >
+              <Slot tabIndex={!isDisabled ? -1 : undefined}>{children}</Slot>
+            </span>
+          ) : (
+            <Slot ref={ref} data-tooltip-trigger {...rest}>
+              {children}
+            </Slot>
+          )}
         </Popover.Trigger>
         <Popover.Content>{content}</Popover.Content>
       </Popover>

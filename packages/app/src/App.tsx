@@ -495,7 +495,7 @@ function App() {
           shouldBlockScroll={false}
           shouldCloseOnScroll={false}
           // shouldFlip={false}
-          shouldCloseOnBlur
+          shouldCloseOnClickOutside
           openOnHover
           delayHide={300}
           delayShow={300}
@@ -523,7 +523,7 @@ function App() {
                 shouldBlockScroll={false}
                 shouldCloseOnScroll={false}
                 // shouldFlip={false}
-                shouldCloseOnBlur
+                shouldCloseOnClickOutside
                 openOnHover
                 delayHide={300}
                 delayShow={300}
@@ -560,7 +560,7 @@ function App() {
             shouldBlockScroll={false}
             shouldCloseOnScroll={false}
             shouldFlip={false}
-            shouldCloseOnBlur
+            shouldCloseOnClickOutside
             openOnHover
             delayHide={300}
             delayShow={300}
@@ -597,7 +597,7 @@ function App() {
             shouldBlockScroll={false}
             shouldCloseOnScroll={false}
             shouldFlip={false}
-            shouldCloseOnBlur
+            shouldCloseOnClickOutside
             openOnHover
             delayHide={300}
             delayShow={300}
@@ -634,7 +634,7 @@ function App() {
             shouldBlockScroll={false}
             shouldCloseOnScroll={false}
             shouldFlip={false}
-            shouldCloseOnBlur
+            shouldCloseOnClickOutside
             openOnHover
             delayHide={300}
             delayShow={300}

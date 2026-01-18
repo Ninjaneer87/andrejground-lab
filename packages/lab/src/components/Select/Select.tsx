@@ -27,14 +27,16 @@ function Select<T extends OptionItem>({
   shouldFlip = true,
   shouldBlockScroll = false,
   shouldCloseOnScroll = false,
-  shouldCloseOnBlur = true,
+  shouldCloseOnClickOutside = true,
   shouldCloseOnEsc = true,
   backdrop,
   isDisabled,
   isOpen: controlledIsOpen,
   onOpen,
   onClose,
-  onBlur,
+  onClickOutside,
+  onTriggerFocus,
+  onTriggerBlur,
   onOpenChange,
   fullWidth = false,
   // showCaret,
@@ -311,7 +313,7 @@ function Select<T extends OptionItem>({
           shouldFlip={shouldFlip}
           shouldBlockScroll={shouldBlockScroll}
           shouldCloseOnScroll={shouldCloseOnScroll}
-          shouldCloseOnBlur={shouldCloseOnBlur}
+          shouldCloseOnClickOutside={shouldCloseOnClickOutside}
           shouldCloseOnEsc={shouldCloseOnEsc}
           backdrop={backdrop}
           focusTriggerOnClose
@@ -321,6 +323,8 @@ function Select<T extends OptionItem>({
           growContent={growContent}
           offset={offset}
           showArrow={showArrow}
+          onTriggerFocus={onTriggerFocus}
+          onTriggerBlur={onTriggerBlur}
           onOpen={() => {
             setIsOpen(true);
             if (onOpen) onOpen();
@@ -329,8 +333,8 @@ function Select<T extends OptionItem>({
             setIsOpen(false);
             if (onClose) onClose(selected);
           }}
-          onBlur={() => {
-            if (onBlur) onBlur();
+          onClickOutside={() => {
+            if (onClickOutside) onClickOutside();
           }}
           onOpenChange={(isOpen) => {
             setIsOpen(isOpen);

@@ -21,7 +21,7 @@ const Dropdown = ({
   shouldFlip = true,
   shouldBlockScroll = true,
   shouldCloseOnScroll = !shouldBlockScroll,
-  shouldCloseOnBlur = true,
+  shouldCloseOnClickOutside = true,
   shouldCloseOnEsc = true,
   shouldCloseOnSelection = true,
   backdrop,
@@ -29,7 +29,9 @@ const Dropdown = ({
   isOpen: controlledIsOpen,
   onOpen,
   onClose,
-  onBlur,
+  onClickOutside,
+  onTriggerFocus,
+  onTriggerBlur,
   onOpenChange,
   isNested = false,
   placement = isNested ? 'right-start' : 'bottom-center',
@@ -96,7 +98,7 @@ const Dropdown = ({
   }
 
   const triggerCaretContent = showCaret
-    ? caret ?? (isNested ? defaultChildCaret : defaultRootCaret)
+    ? (caret ?? (isNested ? defaultChildCaret : defaultRootCaret))
     : null;
 
   const dropdownJSX = (
@@ -108,7 +110,7 @@ const Dropdown = ({
       shouldFlip={shouldFlip}
       shouldBlockScroll={shouldBlockScroll}
       shouldCloseOnScroll={shouldCloseOnScroll}
-      shouldCloseOnBlur={shouldCloseOnBlur}
+      shouldCloseOnClickOutside={shouldCloseOnClickOutside}
       shouldCloseOnEsc={shouldCloseOnEsc}
       backdrop={backdrop}
       focusTriggerOnClose
@@ -120,6 +122,8 @@ const Dropdown = ({
       showArrow={showArrow}
       classNames={classNames?.popover}
       focusTrapProps={focusTrapProps}
+      onTriggerFocus={onTriggerFocus}
+      onTriggerBlur={onTriggerBlur}
       onOpen={() => {
         setIsOpen(true);
         if (onOpen) onOpen();
@@ -128,8 +132,8 @@ const Dropdown = ({
         setIsOpen(false);
         if (onClose) onClose();
       }}
-      onBlur={() => {
-        if (onBlur) onBlur();
+      onClickOutside={() => {
+        if (onClickOutside) onClickOutside();
       }}
       onOpenChange={(isOpen) => {
         setIsOpen(isOpen);

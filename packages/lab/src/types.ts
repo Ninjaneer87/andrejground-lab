@@ -20,9 +20,11 @@ export type PopoverProps = {
   content?: React.ReactNode;
   shouldFlip?: boolean;
   shouldBlockScroll?: boolean;
-  shouldCloseOnBlur?: boolean;
+  shouldCloseOnClickOutside?: boolean;
   shouldCloseOnEsc?: boolean;
   shouldCloseOnScroll?: boolean;
+  shouldOpenOnTriggerFocus?: boolean;
+  shouldCloseOnTriggerBlur?: boolean;
   backdrop?: Backdrop;
   placement?: PopoverPlacement;
   offset?: number;
@@ -31,7 +33,9 @@ export type PopoverProps = {
   showArrow?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
-  onBlur?: () => void;
+  onClickOutside?: () => void;
+  onTriggerFocus?: () => void;
+  onTriggerBlur?: () => void;
   onOpenChange?: (isOpen: boolean) => void;
   isNested?: boolean;
   openOnHover?: boolean;
@@ -466,9 +470,9 @@ export type InfiniteScrollProps = {
 // !Tooltip types
 export type TooltipPlacement = PopoverPlacement;
 
-type TooltipClassNames = {
+export type TooltipClassNames = {
   base?: string;
-  trigger?: string;
+  triggerWrapper?: string;
   content?: string;
 };
 
@@ -476,11 +480,13 @@ export type TooltipProps = {
   children?: React.ReactNode;
   content: React.ReactNode;
   classNames?: TooltipClassNames;
+  triggerWrapper?: boolean;
+  fullWidthTriggerWrapper?: boolean;
 } & Pick<
   PopoverProps,
   | 'shouldFlip'
   | 'showArrow'
-  | 'shouldCloseOnBlur'
+  | 'shouldCloseOnClickOutside'
   | 'shouldCloseOnEsc'
   | 'placement'
   | 'offset'
@@ -488,9 +494,11 @@ export type TooltipProps = {
   | 'isOpen'
   | 'onOpen'
   | 'onClose'
-  | 'onBlur'
+  | 'onClickOutside'
   | 'onOpenChange'
   | 'delayShow'
   | 'delayHide'
   | 'hoverableContent'
+  | 'onTriggerFocus'
+  | 'onTriggerBlur'
 >;
