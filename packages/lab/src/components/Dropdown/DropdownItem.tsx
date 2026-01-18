@@ -1,6 +1,6 @@
 'use client';
 
-import { ElementType, forwardRef } from 'react';
+import { ElementType, forwardRef, ForwardedRef } from 'react';
 import { useDropdownContext } from '../../context/DropdownContext';
 import { useDropdownMenuContext } from '../../context/DropdownMenuContext';
 import { DropdownItemProps } from '../../types';
@@ -8,8 +8,17 @@ import { usePopoverRootContext } from '../../context/PopoverRootContext';
 import { cn } from '../../utils/common';
 import styles from './DropdownItem.module.scss';
 
-const DropdownItem = forwardRef<HTMLElement, DropdownItemProps<ElementType>>(
-  (props, ref) => {
+type DropdownItemComponent = {
+  <T extends ElementType = 'div'>(
+    props: DropdownItemProps<T> & { ref?: ForwardedRef<HTMLElement> },
+  ): React.ReactNode;
+  displayName?: string;
+};
+
+const DropdownItemInner = forwardRef<
+  HTMLElement,
+  DropdownItemProps<ElementType>
+>((props, ref) => {
     const {
       children,
       onClick,
@@ -174,6 +183,8 @@ const DropdownItem = forwardRef<HTMLElement, DropdownItemProps<ElementType>>(
   },
 );
 
-DropdownItem.displayName = 'DropdownItem';
+DropdownItemInner.displayName = 'DropdownItem';
+
+const DropdownItem = DropdownItemInner as DropdownItemComponent;
 
 export default DropdownItem;

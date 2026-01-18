@@ -193,7 +193,9 @@ export type DropdownComposition = {
   /**
    * DropdownItem is a clickable element that triggers an action.
    */
-  Item?: React.FC<DropdownItemProps>;
+  Item?: <T extends ElementType = 'div'>(
+    props: DropdownItemProps<T>,
+  ) => React.ReactNode;
   /**
    * DropdownTrigger is a clickable element that toggles the dropdown.
    */
