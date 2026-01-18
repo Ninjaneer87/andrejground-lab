@@ -462,7 +462,7 @@ const PopoverBase = forwardRef<
     const baseClassName = cn('contents');
     const triggerClassName = cn(!isDisabled ? 'cursor-pointer' : '');
     const contentClassName = cn(
-      'fixed z-1010',
+      'fixed z-1010 popover-content',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
       'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
       showArrow && 'popover-arrow',

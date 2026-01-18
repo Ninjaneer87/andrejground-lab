@@ -168,3 +168,48 @@
 .popover-arrow[data-popover-placement='right-end']::before {
   bottom: 16px;
 }
+
+/* Popover Content Transform Origin */
+/* Top placements - origin at bottom */
+.popover-content[data-popover-placement='top-start'] {
+  transform-origin: bottom left;
+}
+.popover-content[data-popover-placement='top-center'] {
+  transform-origin: bottom center;
+}
+.popover-content[data-popover-placement='top-end'] {
+  transform-origin: bottom right;
+}
+
+/* Bottom placements - origin at top */
+.popover-content[data-popover-placement='bottom-start'] {
+  transform-origin: top left;
+}
+.popover-content[data-popover-placement='bottom-center'] {
+  transform-origin: top center;
+}
+.popover-content[data-popover-placement='bottom-end'] {
+  transform-origin: top right;
+}
+
+/* Left placements - origin at right */
+.popover-content[data-popover-placement='left-start'] {
+  transform-origin: top right;
+}
+.popover-content[data-popover-placement='left-center'] {
+  transform-origin: center right;
+}
+.popover-content[data-popover-placement='left-end'] {
+  transform-origin: bottom right;
+}
+
+/* Right placements - origin at left */
+.popover-content[data-popover-placement='right-start'] {
+  transform-origin: top left;
+}
+.popover-content[data-popover-placement='right-center'] {
+  transform-origin: center left;
+}
+.popover-content[data-popover-placement='right-end'] {
+  transform-origin: bottom left;
+}
