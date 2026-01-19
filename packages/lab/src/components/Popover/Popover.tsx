@@ -507,7 +507,9 @@ const PopoverBase = forwardRef<
           >
             <Slot
               onClick={(e: React.MouseEvent) => {
-                e?.stopPropagation();
+                if (!openOnHover) {
+                  e?.stopPropagation();
+                }
                 handleToggle();
               }}
               data-popover-trigger
