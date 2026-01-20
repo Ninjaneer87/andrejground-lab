@@ -22,8 +22,18 @@ function TooltipPlacementsContent() {
   return (
     <div className="placement-grid">
       {PLACEMENTS.map((placement) => (
-        <SiteTooltip key={placement} content={placement} placement={placement}>
-          <button className="button button--fullwidth button--secondary button--outline">
+        <SiteTooltip
+          key={placement}
+          content={placement}
+          placement={placement}
+          // triggerWrapper
+          // isDisabled
+          // fullWidthTriggerWrapper
+        >
+          <button
+            // disabled
+            className="button button--fullwidth button--secondary button--outline"
+          >
             {placement}
           </button>
         </SiteTooltip>

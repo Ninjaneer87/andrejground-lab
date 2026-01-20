@@ -72,6 +72,7 @@ function Select<T extends OptionItem>({
   infiniteScrollProps,
   isLoading,
   showArrow = false,
+  ...rest
 }: SelectProps<T> & SelectCompositionProps<T>) {
   if (items && children && typeof children !== 'function') {
     throw new Error(
@@ -187,7 +188,7 @@ function Select<T extends OptionItem>({
   const listboxClassName = cn(
     'list-none pl-0 mb-0 max-h-[250px] overflow-y-auto relative  scroll-pt-12',
   );
-  const helperWrapperClassName = cn('text-xs mt-1');
+  const helperWrapperClassName = cn('text-[0.75em] mt-1');
   const descriptionClassName = cn('opacity-60');
   const errorMessageClassName = cn('text-red-700');
 
@@ -346,15 +347,17 @@ function Select<T extends OptionItem>({
           }}
           focusTrapProps={focusTrapProps}
         >
-          <Popover.Trigger>
+          <Popover.Trigger data-select-trigger {...rest}>
             {trigger ? (
               trigger
             ) : (
               <div
+                data-select-trigger-base
                 className={cn(triggerBaseClassName, classNames?.trigger?.base)}
               >
                 {showPlaceholder && (
                   <div
+                    data-select-trigger-placeholder
                     className={cn(
                       triggerPlaceholderClassName,
                       classNames?.trigger?.placeholder,
@@ -366,6 +369,7 @@ function Select<T extends OptionItem>({
 
                 {showValue && (
                   <div
+                    data-select-trigger-value-text
                     className={cn(
                       triggerValueTextClassName,
                       classNames?.trigger?.valueText,
@@ -377,6 +381,7 @@ function Select<T extends OptionItem>({
                       <>
                         {selected.map((item) => (
                           <button
+                            data-select-trigger-value-chip
                             className={cn(
                               triggerValueChipClassName,
                               classNames?.trigger?.valueChip,
@@ -417,6 +422,7 @@ function Select<T extends OptionItem>({
                   <SpinnerLoader />
                 ) : (
                   <div
+                    data-select-trigger-selector-icon
                     className={cn(
                       triggerSelectorIconClassName,
                       classNames?.trigger?.selectorIcon,
@@ -429,9 +435,10 @@ function Select<T extends OptionItem>({
             )}
           </Popover.Trigger>
 
-          <Popover.Content>
+          <Popover.Content data-select-content>
             <div style={{ width: baseWidth }}>
               <div
+                data-select-content-wrapper
                 className={cn(
                   contentWrapperClassName,
                   classNames?.contentWrapper,
@@ -445,6 +452,7 @@ function Select<T extends OptionItem>({
               >
                 {topContent && topContent}
                 <ul
+                  data-select-listbox
                   ref={scrollerRef}
                   className={cn(listboxClassName, classNames?.listbox)}
                 >
@@ -492,10 +500,12 @@ function Select<T extends OptionItem>({
 
         {showHelperSection && (
           <div
+            data-select-helper-wrapper
             className={cn(helperWrapperClassName, classNames?.helperWrapper)}
           >
             {description && (
               <div
+                data-select-description
                 className={cn(descriptionClassName, classNames?.description)}
               >
                 {description}
@@ -504,6 +514,7 @@ function Select<T extends OptionItem>({
 
             {errorMessage && (
               <div
+                data-select-error-message
                 className={cn(errorMessageClassName, classNames?.errorMessage)}
               >
                 {errorMessage}

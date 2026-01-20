@@ -34,6 +34,7 @@ function DropdownFooter({
 
   return (
     <footer
+      data-dropdown-footer
       className={cn(
         baseClassNames,
         contextClassNames?.footer?.base,

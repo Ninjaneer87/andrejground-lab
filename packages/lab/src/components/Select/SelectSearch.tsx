@@ -97,6 +97,7 @@ function SelectSearch({
 
   return (
     <input
+      data-select-search={popoverId}
       onClick={onClick}
       onKeyDown={onKeydown}
       onChange={onChange}
@@ -105,7 +106,6 @@ function SelectSearch({
       value={searchValue}
       ref={searchRef}
       className={cn(baseClassName, className)}
-      data-select-search={popoverId}
       placeholder={selected.length > 0 ? '' : placeholder}
     />
   );

@@ -26,6 +26,7 @@ function DropdownDivider({ classNames }: DropdownDividerProps) {
 
   return (
     <div
+      data-dropdown-divider
       className={cn(
         dividerBaseClassName,
         contextClassNames?.divider?.base,

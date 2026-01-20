@@ -52,7 +52,7 @@ function DropdownSection({
   );
 
   const titleClassName = cn(
-    'bg-gray-100 p-1 mb-2 text-sm font-semibold text-gray-400',
+    'bg-gray-100 p-1 mb-2 text-[0.875em] font-semibold text-gray-400',
     isStickyTitle ? 'sticky top-0 z-10 rounded-sm' : '',
   );
 

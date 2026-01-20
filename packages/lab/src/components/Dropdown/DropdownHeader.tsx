@@ -34,6 +34,7 @@ function DropdownHeader({
 
   return (
     <header
+      data-dropdown-header
       className={cn(
         baseClassName,
         contextClassNames?.header?.base,

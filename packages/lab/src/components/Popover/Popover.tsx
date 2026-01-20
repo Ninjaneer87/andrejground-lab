@@ -73,7 +73,7 @@ const PopoverBase = forwardRef<
       shouldCloseOnScroll = !shouldBlockScroll,
       shouldCloseOnClickOutside = true,
       shouldCloseOnEsc = true,
-      shouldOpenOnTriggerFocus = false,
+      openOnFocus = false,
       shouldCloseOnTriggerBlur = false,
       classNames,
       focusTrapProps = {
@@ -268,13 +268,13 @@ const PopoverBase = forwardRef<
         if (!e.target.matches(':focus-visible')) return;
         if (isDisabled) return;
 
-        if (shouldOpenOnTriggerFocus) {
+        if (openOnFocus) {
           handleOpen();
         }
 
         onTriggerFocusRef.current?.();
       },
-      [isDisabled, shouldOpenOnTriggerFocus, handleOpen, onTriggerFocusRef],
+      [isDisabled, openOnFocus, handleOpen, onTriggerFocusRef],
     );
 
     const onTriggerBlurHandler = useCallback(() => {
@@ -462,7 +462,7 @@ const PopoverBase = forwardRef<
     const baseClassName = cn('contents');
     const triggerClassName = cn(!isDisabled ? 'cursor-pointer' : '');
     const contentClassName = cn(
-      'fixed z-1010 popover-content',
+      'fixed z-1010 popover-content border border-gray-100',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
       'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
       showArrow && 'popover-arrow',
@@ -512,6 +512,7 @@ const PopoverBase = forwardRef<
                 }
                 handleToggle();
               }}
+              aria-describedby={popoverId}
               data-popover-trigger
               data-popover-trigger-root-id={rootPopoverId ?? popoverId}
               data-popover-trigger-current-id={popoverId}
@@ -533,6 +534,7 @@ const PopoverBase = forwardRef<
             {(isMounted || isExpanded) && (
               <ClientPortal>
                 <div
+                  id={popoverId}
                   data-popover-content
                   data-popover-content-root-id={rootPopoverId ?? popoverId}
                   data-popover-content-current-id={popoverId}

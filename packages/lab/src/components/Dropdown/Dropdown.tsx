@@ -13,6 +13,7 @@ import { DropdownComposition, DropdownProps } from '../../types';
 import Popover from '../Popover/Popover';
 import { defaultChildCaret, defaultRootCaret } from '../../utils/elements';
 import { Slot } from '@/components/utility/Slot';
+import { cn } from '@/utils/common';
 
 const Dropdown = ({
   caret,
@@ -101,6 +102,12 @@ const Dropdown = ({
     ? (caret ?? (isNested ? defaultChildCaret : defaultRootCaret))
     : null;
 
+  const popoverContentClassName = 'text-[0.875rem]';
+  const popoverClassNames = {
+    ...classNames?.popover,
+    content: cn(popoverContentClassName, classNames?.popover?.content),
+  };
+
   const dropdownJSX = (
     <Popover
       openOnHover={openOnHover}
@@ -120,7 +127,7 @@ const Dropdown = ({
       growContent={growContent}
       offset={offset}
       showArrow={showArrow}
-      classNames={classNames?.popover}
+      classNames={popoverClassNames}
       focusTrapProps={focusTrapProps}
       onTriggerFocus={onTriggerFocus}
       onTriggerBlur={onTriggerBlur}
@@ -140,7 +147,7 @@ const Dropdown = ({
         if (onOpenChange) onOpenChange(isOpen);
       }}
     >
-      <Popover.Trigger>
+      <Popover.Trigger data-dropdown-trigger>
         {isNested ? (
           <Slot
             shouldCloseOnSelection={false}
@@ -155,7 +162,7 @@ const Dropdown = ({
         )}
       </Popover.Trigger>
 
-      <Popover.Content>{dropdownMenu}</Popover.Content>
+      <Popover.Content data-dropdown-content>{dropdownMenu}</Popover.Content>
     </Popover>
   );
 

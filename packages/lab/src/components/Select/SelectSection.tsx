@@ -35,17 +35,19 @@ function SelectSection({
   const { sectionClassNames } = selectContext;
   const baseClassName = cn('bg-inherit');
   const titleClassName = cn(
-    'bg-gray-100 p-1 text-sm font-semibold mb-2',
+    'bg-gray-100 p-1 text-[0.875em] font-semibold mb-2',
     isStickyTitle ? 'sticky top-0 z-10 rounded-sm' : '',
   );
   const listClassName = 'pl-0 mb-0 list-none';
 
   return (
     <li
+      data-select-section
       className={cn(baseClassName, sectionClassNames?.base, classNames?.base)}
     >
       {title && (
         <div
+          data-select-section-title
           className={cn(
             titleClassName,
             sectionClassNames?.title,
@@ -56,7 +58,9 @@ function SelectSection({
         </div>
       )}
 
-      <ul className={listClassName}>{children}</ul>
+      <ul data-select-section-list className={listClassName}>
+        {children}
+      </ul>
 
       {showDivider && <SelectDivider />}
     </li>

@@ -23,7 +23,7 @@ export type PopoverProps = {
   shouldCloseOnClickOutside?: boolean;
   shouldCloseOnEsc?: boolean;
   shouldCloseOnScroll?: boolean;
-  shouldOpenOnTriggerFocus?: boolean;
+  openOnFocus?: boolean;
   shouldCloseOnTriggerBlur?: boolean;
   backdrop?: Backdrop;
   placement?: PopoverPlacement;
@@ -503,4 +503,5 @@ export type TooltipProps = {
   | 'hoverableContent'
   | 'onTriggerFocus'
   | 'onTriggerBlur'
+  | 'openOnFocus'
 >;

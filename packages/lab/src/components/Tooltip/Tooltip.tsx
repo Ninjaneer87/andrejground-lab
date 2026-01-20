@@ -5,7 +5,6 @@ import { TooltipProps } from '../../types';
 import Popover from '../Popover/Popover';
 import { cn } from '../../utils/common';
 import { Slot } from '@/components/utility/Slot';
-import { composeRefs } from '@/utils/compose-refs';
 
 const Tooltip = forwardRef<HTMLElement, TooltipProps>(
   (
@@ -32,6 +31,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       classNames,
       triggerWrapper = false,
       fullWidthTriggerWrapper = false,
+      openOnFocus = true,
       ...rest
     },
     ref,
@@ -52,7 +52,8 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
 
     const handleWrapperKeyDown = (e: React.KeyboardEvent) => {
       if (e.key === 'Enter' && wrapperRef.current && !isDisabled) {
-        const child = wrapperRef.current.firstElementChild as HTMLElement | null;
+        const child = wrapperRef.current
+          .firstElementChild as HTMLElement | null;
         child?.click();
       }
     };
@@ -64,19 +65,19 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
     );
 
     const contentClassName = cn(
-      'px-2 py-1 text-sm bg-gray-900 text-white rounded shadow-md',
+      'px-2 py-1 text-[0.875rem] bg-gray-900 text-white rounded shadow-md',
       classNames?.content,
     );
 
     return (
       <Popover
         openOnHover
+        openOnFocus={openOnFocus}
         shouldFlip={shouldFlip}
         shouldBlockScroll={false}
         shouldCloseOnScroll={false}
         shouldCloseOnClickOutside={shouldCloseOnClickOutside}
         shouldCloseOnEsc={shouldCloseOnEsc}
-        shouldOpenOnTriggerFocus
         shouldCloseOnTriggerBlur
         backdrop="none"
         focusTriggerOnClose={false}
@@ -115,24 +116,20 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
           if (onOpenChange) onOpenChange(isOpen);
         }}
       >
-        <Popover.Trigger>
+        <Popover.Trigger data-tooltip-trigger {...rest} ref={ref}>
           {triggerWrapper ? (
             <span
-              ref={composeRefs(ref, wrapperRef)}
-              data-tooltip-trigger
+              ref={wrapperRef}
               className={triggerWrapperClassName}
               onKeyDown={handleWrapperKeyDown}
-              {...rest}
             >
               <Slot tabIndex={!isDisabled ? -1 : undefined}>{children}</Slot>
             </span>
           ) : (
-            <Slot ref={ref} data-tooltip-trigger {...rest}>
-              {children}
-            </Slot>
+            children
           )}
         </Popover.Trigger>
-        <Popover.Content>{content}</Popover.Content>
+        <Popover.Content data-tooltip-content>{content}</Popover.Content>
       </Popover>
     );
   },

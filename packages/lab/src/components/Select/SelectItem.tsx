@@ -123,7 +123,7 @@ function SelectItem<T extends OptionItem>({
   const baseClassName = cn(
     styles.item,
     disabled && showDisabledStyles ? 'opacity-60 pointer-events-none' : '',
-    'p-2 focus-visible:bg-gray-200 focus-within:bg-gray-200 rounded-lg transition-all w-full flex cursor-pointer items-center gap-2',
+    'p-2 focus-visible:bg-gray-100 focus-within:bg-gray-100 rounded-lg transition-all w-full flex cursor-pointer items-center gap-2',
   );
   const contentWrapperClassName = cn(
     'flex grow shrink-0 basis-36 justify-between items-center',
@@ -134,7 +134,7 @@ function SelectItem<T extends OptionItem>({
     truncate?.itemText ? 'line-clamp-1 break-all grow' : '',
   );
   const descriptionContentClassName = cn(
-    'text-xs opacity-60',
+    'text-[0.75em] opacity-60',
     truncate?.itemDescription ? 'line-clamp-1 break-all grow' : '',
   );
   const endContentClassName = cn('ml-auto shrink-0 inline-flex');
@@ -169,8 +169,9 @@ function SelectItem<T extends OptionItem>({
   }
 
   return (
-    <li {...itemProps}>
+    <li {...itemProps} data-select-item>
       <span
+        data-select-item-content-wrapper
         className={cn(
           contentWrapperClassName,
           itemClassNames?.contentWrapper,
@@ -179,6 +180,7 @@ function SelectItem<T extends OptionItem>({
       >
         {startContent && (
           <span
+            data-select-item-start-content
             className={cn(
               startContentClassName,
               itemClassNames?.startContent,
@@ -190,6 +192,7 @@ function SelectItem<T extends OptionItem>({
         )}
 
         <span
+          data-select-item-main-content
           className={cn(
             mainContentClassName,
             itemClassNames?.mainContent,
@@ -197,6 +200,7 @@ function SelectItem<T extends OptionItem>({
           )}
         >
           <div
+            data-select-item-text-content
             title={`${text}`}
             className={cn(
               textContentClassName,
@@ -209,6 +213,7 @@ function SelectItem<T extends OptionItem>({
 
           {description && (
             <div
+              data-select-item-description-content
               className={cn(
                 descriptionContentClassName,
                 itemClassNames?.descriptionContent,
@@ -222,6 +227,7 @@ function SelectItem<T extends OptionItem>({
 
         {endContent && (
           <span
+            data-select-item-end-content
             className={cn(
               endContentClassName,
               itemClassNames?.endContent,
@@ -234,6 +240,7 @@ function SelectItem<T extends OptionItem>({
       </span>
 
       <span
+        data-select-item-selected-icon
         className={cn(
           selectedIconClassName,
           itemClassNames?.selectedIcon,
