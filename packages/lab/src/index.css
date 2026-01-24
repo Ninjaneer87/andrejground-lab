@@ -213,3 +213,17 @@
 .popover-content[data-popover-placement='right-end'] {
   transform-origin: bottom left;
 }
+
+/* Popover Sizes */
+.popover-size-free {
+  max-width: 100vw;
+}
+.popover-size-small {
+  max-width: min(280px, 100vw);
+}
+.popover-size-medium {
+  max-width: min(560px, 100vw);
+}
+.popover-size-large {
+  max-width: min(840px, 100vw);
+}

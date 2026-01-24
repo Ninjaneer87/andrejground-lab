@@ -32,6 +32,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       triggerWrapper = false,
       fullWidthTriggerWrapper = false,
       openOnFocus = true,
+      size = 'small',
       ...rest
     },
     ref,
@@ -71,6 +72,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
 
     return (
       <Popover
+        size={size}
         openOnHover
         openOnFocus={openOnFocus}
         shouldFlip={shouldFlip}

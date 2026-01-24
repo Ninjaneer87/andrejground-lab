@@ -126,7 +126,7 @@ function SelectItem<T extends OptionItem>({
     'p-2 focus-visible:bg-gray-100 focus-within:bg-gray-100 rounded-lg transition-all w-full flex cursor-pointer items-center gap-2',
   );
   const contentWrapperClassName = cn(
-    'flex grow shrink-0 basis-36 justify-between items-center',
+    'flex grow shrink-0 justify-between items-center',
   );
   const startContentClassName = cn('shrink-0 inline-flex');
   const mainContentClassName = cn('shrink-0 grow inline-block');

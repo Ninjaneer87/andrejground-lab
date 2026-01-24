@@ -72,6 +72,7 @@ function Select<T extends OptionItem>({
   infiniteScrollProps,
   isLoading,
   showArrow = false,
+  size = 'trigger',
   ...rest
 }: SelectProps<T> & SelectCompositionProps<T>) {
   if (items && children && typeof children !== 'function') {
@@ -104,7 +105,6 @@ function Select<T extends OptionItem>({
   const [selected, setSelected] = useState<T[]>([]);
   const [hasMountedDefaultValue, setHasMountedDefaultValue] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const baseRef = useRef<HTMLDivElement | null>(null);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const open = controlledIsOpen ?? isOpen;
@@ -195,10 +195,6 @@ function Select<T extends OptionItem>({
   const showPlaceholder = !selected.length && !search;
 
   const showValue = !!selected.length || search;
-
-  const baseWidth = baseRef.current
-    ? window.getComputedStyle(baseRef.current).width
-    : 'initial';
 
   const filteredItems = useMemo(() => {
     if (!items) return items;
@@ -309,7 +305,7 @@ function Select<T extends OptionItem>({
         </div>
       )}
 
-      <div className={cn(baseClassName, classNames?.base)} ref={baseRef}>
+      <div className={cn(baseClassName, classNames?.base)}>
         <Popover
           shouldFlip={shouldFlip}
           shouldBlockScroll={shouldBlockScroll}
@@ -324,6 +320,7 @@ function Select<T extends OptionItem>({
           growContent={growContent}
           offset={offset}
           showArrow={showArrow}
+          size={size}
           onTriggerFocus={onTriggerFocus}
           onTriggerBlur={onTriggerBlur}
           onOpen={() => {
@@ -436,64 +433,62 @@ function Select<T extends OptionItem>({
           </Popover.Trigger>
 
           <Popover.Content data-select-content>
-            <div style={{ width: baseWidth }}>
-              <div
-                data-select-content-wrapper
-                className={cn(
-                  contentWrapperClassName,
-                  classNames?.contentWrapper,
-                )}
-                ref={(node) => {
-                  containerRef.current = node;
-                  mutationContainerRef.current = node;
-                }}
-                onKeyDown={onKeyDown}
-                tabIndex={0}
+            <div
+              data-select-content-wrapper
+              className={cn(
+                contentWrapperClassName,
+                classNames?.contentWrapper,
+              )}
+              ref={(node) => {
+                containerRef.current = node;
+                mutationContainerRef.current = node;
+              }}
+              onKeyDown={onKeyDown}
+              tabIndex={0}
+            >
+              {topContent && topContent}
+              <ul
+                data-select-listbox
+                ref={scrollerRef}
+                className={cn(listboxClassName, classNames?.listbox)}
               >
-                {topContent && topContent}
-                <ul
-                  data-select-listbox
-                  ref={scrollerRef}
-                  className={cn(listboxClassName, classNames?.listbox)}
-                >
-                  {typeof children !== 'function' && children}
-                  {typeof children === 'function' &&
-                    filteredItems &&
-                    filteredItems.map((item) => {
-                      const renderedItem = children({
-                        ...item,
-                        isSelected: selected.some(
-                          (sel) => sel.value === item.value,
-                        ),
-                      });
-                      if (
-                        !React.isValidElement(renderedItem) ||
-                        renderedItem.type !== SelectItem
-                      ) {
-                        throw new Error(
-                          `"Select" children function only accepts "SelectItem" as a root returned element`,
-                        );
-                      }
+                {typeof children !== 'function' && children}
+                {typeof children === 'function' &&
+                  filteredItems &&
+                  filteredItems.map((item) => {
+                    const renderedItem = children({
+                      ...item,
+                      isSelected: selected.some(
+                        (sel) => sel.value === item.value,
+                      ),
+                    });
+                    if (
+                      !React.isValidElement(renderedItem) ||
+                      renderedItem.type !== SelectItem
+                    ) {
+                      throw new Error(
+                        `"Select" children function only accepts "SelectItem" as a root returned element`,
+                      );
+                    }
 
-                      return renderedItem;
-                    })}
+                    return renderedItem;
+                  })}
 
-                  {!children &&
-                    filteredItems &&
-                    filteredItems.map((item) => (
-                      <SelectItem
-                        key={item.value}
-                        {...item}
-                        shouldCloseOnSelection={shouldCloseOnSelection}
-                      >
-                        {item.textContent ?? item.text}
-                      </SelectItem>
-                    ))}
+                {!children &&
+                  filteredItems &&
+                  filteredItems.map((item) => (
+                    <SelectItem
+                      key={item.value}
+                      {...item}
+                      shouldCloseOnSelection={shouldCloseOnSelection}
+                    >
+                      {item.textContent ?? item.text}
+                    </SelectItem>
+                  ))}
 
-                  {infiniteScrollProps?.hasMore && <li ref={loaderRef} />}
-                </ul>
-                {bottomContent && bottomContent}
-              </div>
+                {infiniteScrollProps?.hasMore && <li ref={loaderRef} />}
+              </ul>
+              {bottomContent && bottomContent}
             </div>
           </Popover.Content>
         </Popover>

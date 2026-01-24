@@ -6,6 +6,7 @@ export type PopoverAlign = 'start' | 'end' | 'center';
 export type PopoverPlacement = `${PopoverPosition}-${PopoverAlign}`;
 
 export type Backdrop = 'none' | 'transparent' | 'opaque' | 'blur';
+export type PopoverSize = 'free' | 'small' | 'medium' | 'large' | 'trigger';
 
 type PopoverClassNames = {
   base?: string;
@@ -18,6 +19,7 @@ export type PopoverProps = {
   children?: React.ReactNode;
   trigger?: React.ReactNode;
   content?: React.ReactNode;
+  size?: PopoverSize;
   shouldFlip?: boolean;
   shouldBlockScroll?: boolean;
   shouldCloseOnClickOutside?: boolean;
@@ -504,4 +506,5 @@ export type TooltipProps = {
   | 'onTriggerFocus'
   | 'onTriggerBlur'
   | 'openOnFocus'
+  | 'size'
 >;

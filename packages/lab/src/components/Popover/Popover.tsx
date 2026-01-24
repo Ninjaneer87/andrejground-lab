@@ -16,6 +16,7 @@ import {
   PopoverComposition,
   PopoverPlacement,
   PopoverProps,
+  PopoverSize,
 } from '../../types';
 import { useDelayUnmount } from '../../hooks/useDelayUnmount';
 import PopoverContent from './PopoverContent';
@@ -68,6 +69,7 @@ const PopoverBase = forwardRef<
       delayHide = 0,
       hoverableContent = true,
       growContent = false,
+      size,
       shouldFlip = true,
       shouldBlockScroll = true,
       shouldCloseOnScroll = !shouldBlockScroll,
@@ -176,6 +178,10 @@ const PopoverBase = forwardRef<
         return;
 
       const triggerRect = popoverTriggerRef.current.getBoundingClientRect();
+
+      if (size === 'trigger') {
+        popoverContentRef.current.style.width = `${triggerRect.width}px`;
+      }
       const popoverRect = popoverContentRef.current.getBoundingClientRect();
 
       if (growContent) {
@@ -198,7 +204,7 @@ const PopoverBase = forwardRef<
       fitPlacementRef.current = fitPlacement;
 
       setPopoverContentCoords(coords);
-    }, [placement, offset, shouldFlip, growContent, isExpanded]);
+    }, [placement, offset, shouldFlip, growContent, isExpanded, size]);
 
     // Handle onClose
     const handleClose = useCallback(
@@ -459,6 +465,14 @@ const PopoverBase = forwardRef<
       };
     }, [shouldCloseOnEsc, isExpanded, handleClose, popoverId]);
 
+    const sizeClassMap: Record<PopoverSize, string> = {
+      free: 'popover-size-free',
+      small: 'popover-size-small',
+      medium: 'popover-size-medium',
+      large: 'popover-size-large',
+      trigger: '',
+    };
+
     const baseClassName = cn('contents');
     const triggerClassName = cn(!isDisabled ? 'cursor-pointer' : '');
     const contentClassName = cn(
@@ -466,6 +480,7 @@ const PopoverBase = forwardRef<
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
       'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
       showArrow && 'popover-arrow',
+      size && sizeClassMap[size],
     );
     const backdropClassName = cn(
       'fixed z-1000 inset-0',
