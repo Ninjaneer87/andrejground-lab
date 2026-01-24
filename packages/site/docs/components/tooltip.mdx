@@ -3,6 +3,7 @@ import TooltipPlacements from '@site/src/components/docs/Tooltip/TooltipPlacemen
 import TooltipControlled from '@site/src/components/docs/Tooltip/TooltipControlled';
 import TooltipDelayShow from '@site/src/components/docs/Tooltip/TooltipDelayShow';
 import TooltipDelayHide from '@site/src/components/docs/Tooltip/TooltipDelayHide';
+import TooltipHoverableContent from '@site/src/components/docs/Tooltip/TooltipHoverableContent';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
@@ -13,6 +14,7 @@ import {
   tooltipUsageTsx,
   tooltipDelayShowTsx,
   tooltipDelayHideTsx,
+  tooltipHoverableContentTsx,
 } from '@site/docs/components/_snippets/tooltip';
 
 # Tooltip
@@ -22,7 +24,7 @@ A Tooltip is a small, non-interactive overlay that displays brief informational 
 ## Key Characteristics
 
 - **Hover-Triggered**: Automatically shows on hover with configurable delay.
-- **Non-Interactive**: Unlike Popover, tooltips are meant for displaying simple text hints, not interactive content.
+- **Non-Interactive**: Unlike Popover, tooltips are meant for displaying simple text hints, not interactive content. Still it's possible to interact with the tooltip content if/when needed via `hoverableContent` prop.
 - **Accessible**: Works with keyboard focus and follows accessibility best practices.
 
 ## Import
@@ -76,6 +78,19 @@ Control the delay before hiding the tooltip with `delayHide` prop.
   </TabItem>
   <TabItem value="code" label="Code">
     <CodeBlock language="tsx">{tooltipDelayHideTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Hoverable Content
+
+Use the `hoverableContent` prop to keep the tooltip visible when the user hovers over the tooltip content itself.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <TooltipHoverableContent />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{tooltipHoverableContentTsx}</CodeBlock>
   </TabItem>
 </Tabs>
 

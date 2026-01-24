@@ -97,3 +97,21 @@ export default function App() {
   );
 }
 `;
+
+export const tooltipHoverableContentTsx = `import { Tooltip } from '@andrejground/lab';
+
+export default function App() {
+  return (
+    <Tooltip
+      content={
+        <span>
+          Hover over me! I stay visible while you interact with this content.
+        </span>
+      }
+      hoverableContent
+    >
+      <button>Hover me</button>
+    </Tooltip>
+  );
+}
+`;

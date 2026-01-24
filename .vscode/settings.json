@@ -14,5 +14,6 @@
   "tailwindCSS.experimental.classRegex": [
     ["cn\\(([^)]*)\\)", "(?:'([^']*)'|\"([^\"]*)\"|`([^`]*)`)"]
   ],
-  "editor.wordWrap": "wordWrapColumn"
+  "editor.wordWrap": "wordWrapColumn",
+  "snyk.advanced.autoSelectOrganization": true
 }
