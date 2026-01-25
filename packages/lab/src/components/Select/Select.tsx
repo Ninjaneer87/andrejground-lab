@@ -73,6 +73,8 @@ function Select<T extends OptionItem>({
   isLoading,
   showArrow = false,
   size = 'trigger',
+  triggerWrapper,
+  fullWidthTriggerWrapper,
   ...rest
 }: SelectProps<T> & SelectCompositionProps<T>) {
   if (items && children && typeof children !== 'function') {
@@ -111,7 +113,9 @@ function Select<T extends OptionItem>({
   const loading = !!isLoading || !!infiniteScrollProps?.isLoading;
 
   const focusSearch = useCallback(() => {
-    searchRef.current?.focus();
+    requestAnimationFrame(() => {
+      searchRef.current?.focus();
+    });
   }, []);
 
   const [loaderRef, scrollerRef] = useInfiniteScroll<never, HTMLUListElement>({
@@ -343,6 +347,8 @@ function Select<T extends OptionItem>({
             content: cn(popoverContentClassName, classNames?.popover?.content),
           }}
           focusTrapProps={focusTrapProps}
+          triggerWrapper={triggerWrapper}
+          fullWidthTriggerWrapper={fullWidthTriggerWrapper}
         >
           <Popover.Trigger data-select-trigger {...rest}>
             {trigger ? (

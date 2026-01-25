@@ -11,6 +11,10 @@ export type PopoverSize = 'free' | 'small' | 'medium' | 'large' | 'trigger';
 type PopoverClassNames = {
   base?: string;
   trigger?: string;
+  /**
+   * className for the trigger wrapper element (when triggerWrapper is `true`)
+   */
+  triggerWrapper?: string;
   backdrop?: string;
   content?: string;
 };
@@ -51,6 +55,15 @@ export type PopoverProps = {
     trapFocus?: boolean;
     autoFocus?: boolean;
   };
+  /**
+   * When true, wraps the trigger in a span element instead of using Slot.
+   * Useful when you don't have control over the trigger component to provide a ref.
+   */
+  triggerWrapper?: boolean;
+  /**
+   * When true, the trigger wrapper will take full width.
+   */
+  fullWidthTriggerWrapper?: boolean;
 };
 
 export type PopoverTriggerProps = {
@@ -322,7 +335,7 @@ export type SelectClassNames = {
    */
   listbox?: string;
   /**
-   * The popover content slot. Use this to modify the popover content styles.
+   * The popover slot. Use this to modify the popover styles.
    */
   popover?: PopoverClassNames;
   /**

@@ -47,6 +47,8 @@ const Dropdown = ({
     trapFocus: true,
   },
   classNames,
+  triggerWrapper,
+  fullWidthTriggerWrapper,
 }: DropdownProps & DropdownComposition) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -129,6 +131,8 @@ const Dropdown = ({
       showArrow={showArrow}
       classNames={popoverClassNames}
       focusTrapProps={focusTrapProps}
+      triggerWrapper={triggerWrapper}
+      fullWidthTriggerWrapper={fullWidthTriggerWrapper}
       onTriggerFocus={onTriggerFocus}
       onTriggerBlur={onTriggerBlur}
       onOpen={() => {

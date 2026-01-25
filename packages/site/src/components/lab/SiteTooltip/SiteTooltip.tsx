@@ -9,6 +9,7 @@ function SiteTooltip(props: Props) {
     <Tooltip
       {...props}
       classNames={{
+        ...props.classNames,
         content: styles.tooltipContent,
       }}
     />

@@ -82,6 +82,8 @@ const PopoverBase = forwardRef<
         autoFocus: true,
         trapFocus: true,
       },
+      triggerWrapper = false,
+      fullWidthTriggerWrapper = false,
       ...rest
     },
     ref,
@@ -475,6 +477,11 @@ const PopoverBase = forwardRef<
 
     const baseClassName = cn('contents');
     const triggerClassName = cn(!isDisabled ? 'cursor-pointer' : '');
+    const triggerWrapperClassName = cn(
+      'inline-block',
+      fullWidthTriggerWrapper ? 'w-full' : 'w-fit',
+      classNames?.triggerWrapper,
+    );
     const contentClassName = cn(
       'fixed z-1010 popover-content border border-gray-100',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
@@ -488,6 +495,29 @@ const PopoverBase = forwardRef<
       backdrop === 'blur' ? 'backdrop-blur-xs' : '',
       isRootExpanded ? 'fade-in' : 'fade-out',
     );
+
+    const commonTriggerProps = {
+      onClick: (e: React.MouseEvent) => {
+        if (!openOnHover) {
+          e?.stopPropagation();
+        }
+        handleToggle();
+      },
+      'aria-describedby': popoverId,
+      'data-popover-trigger': true,
+      'data-popover-trigger-root-id': rootPopoverId ?? popoverId,
+      'data-popover-trigger-current-id': popoverId,
+      onKeyDown: onTriggerKeyDown,
+      onFocus: onTriggerFocusHandler,
+      onBlur: onTriggerBlurHandler,
+      tabIndex: isDisabled ? -1 : 0,
+      ref: popoverTriggerRef,
+      ...(openOnHover &&
+        !hoverableContent && {
+          onMouseEnter: handleMouseEnter,
+          onMouseLeave: handleMouseLeave,
+        }),
+    };
 
     const popoverJSX = (
       <PopoverContext.Provider
@@ -520,31 +550,26 @@ const PopoverBase = forwardRef<
                 onMouseLeave: handleMouseLeave,
               })}
           >
-            <Slot
-              onClick={(e: React.MouseEvent) => {
-                if (!openOnHover) {
-                  e?.stopPropagation();
-                }
-                handleToggle();
-              }}
-              aria-describedby={popoverId}
-              data-popover-trigger
-              data-popover-trigger-root-id={rootPopoverId ?? popoverId}
-              data-popover-trigger-current-id={popoverId}
-              onKeyDown={onTriggerKeyDown}
-              onFocus={onTriggerFocusHandler}
-              onBlur={onTriggerBlurHandler}
-              tabIndex={isDisabled ? -1 : 0}
-              className={cn(triggerClassName, classNames?.trigger)}
-              ref={popoverTriggerRef}
-              {...(openOnHover &&
-                !hoverableContent && {
-                  onMouseEnter: handleMouseEnter,
-                  onMouseLeave: handleMouseLeave,
-                })}
-            >
-              {popoverTrigger}
-            </Slot>
+            {triggerWrapper ? (
+              <span
+                {...commonTriggerProps}
+                data-popover-trigger-wrapper
+                className={cn(
+                  triggerClassName,
+                  triggerWrapperClassName,
+                  classNames?.trigger,
+                )}
+              >
+                {popoverTrigger}
+              </span>
+            ) : (
+              <Slot
+                {...commonTriggerProps}
+                className={cn(triggerClassName, classNames?.trigger)}
+              >
+                {popoverTrigger}
+              </Slot>
+            )}
 
             {(isMounted || isExpanded) && (
               <ClientPortal>
