@@ -113,7 +113,9 @@ const PopoverBase = forwardRef<
     const [popoverContentCoords, setPopoverContentCoords] = useState<Coords>(
       {},
     );
-    const [portalContainer, setPortalContainer] = useState<Element | null>(null);
+    const [portalContainer, setPortalContainer] = useState<Element | null>(
+      null,
+    );
     const open = controlledIsOpen ?? isOpen;
     const isExpanded = open || isHoverOpen;
 
@@ -200,7 +202,13 @@ const PopoverBase = forwardRef<
       }
 
       const fitPlacement = shouldFlip
-        ? buildPlacement(placement, offset, triggerRect, popoverRect, portalContainer)
+        ? buildPlacement(
+            placement,
+            offset,
+            triggerRect,
+            popoverRect,
+            portalContainer,
+          )
         : placement;
       const coords = createPositionFromPlacement(
         fitPlacement,
@@ -213,7 +221,15 @@ const PopoverBase = forwardRef<
       fitPlacementRef.current = fitPlacement;
 
       setPopoverContentCoords(coords);
-    }, [placement, offset, shouldFlip, growContent, isExpanded, size, portalContainer]);
+    }, [
+      placement,
+      offset,
+      shouldFlip,
+      growContent,
+      isExpanded,
+      size,
+      portalContainer,
+    ]);
 
     // Handle onClose
     const handleClose = useCallback(
@@ -429,9 +445,15 @@ const PopoverBase = forwardRef<
       }
     }, [isExpanded, setContentCoords]);
 
+    // useEffect(() => {
+    //   if (!isMounted) {
+    //     setPortalContainer(null);
+    //     return;
+    //   }
+    // }, [isMounted]);
+
     useEffect(() => {
       if (!isExpanded) {
-        setPortalContainer(null);
         return;
       }
 
