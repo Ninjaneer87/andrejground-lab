@@ -188,26 +188,32 @@ const PopoverBase = forwardRef<
       const popoverRect = popoverContentRef.current.getBoundingClientRect();
 
       if (growContent) {
-        const coords = growContentPosition(placement, offset, triggerRect);
+        const coords = growContentPosition(
+          placement,
+          offset,
+          triggerRect,
+          portalContainer,
+        );
         setPopoverContentCoords(coords);
 
         return;
       }
 
       const fitPlacement = shouldFlip
-        ? buildPlacement(placement, offset, triggerRect, popoverRect)
+        ? buildPlacement(placement, offset, triggerRect, popoverRect, portalContainer)
         : placement;
       const coords = createPositionFromPlacement(
         fitPlacement,
         offset,
         triggerRect,
         popoverContentRef.current,
+        portalContainer,
       );
 
       fitPlacementRef.current = fitPlacement;
 
       setPopoverContentCoords(coords);
-    }, [placement, offset, shouldFlip, growContent, isExpanded, size]);
+    }, [placement, offset, shouldFlip, growContent, isExpanded, size, portalContainer]);
 
     // Handle onClose
     const handleClose = useCallback(
@@ -493,7 +499,9 @@ const PopoverBase = forwardRef<
       classNames?.triggerWrapper,
     );
     const contentClassName = cn(
-      'fixed z-1010 popover-content border border-gray-100',
+      portalContainer
+        ? 'absolute z-1010 popover-content border border-gray-100'
+        : 'fixed z-1010 popover-content border border-gray-100',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
       'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
       showArrow && 'popover-arrow',

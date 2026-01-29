@@ -14,38 +14,92 @@ export type Coords = {
   right?: CSSProperties['width'];
 };
 
+type ViewportMetrics = {
+  width: number;
+  height: number;
+  left: number;
+  top: number;
+};
+
+type RectMetrics = {
+  top: number;
+  left: number;
+  bottom: number;
+  right: number;
+  width: number;
+  height: number;
+};
+
+function getViewportMetrics(viewportElement?: Element | null): ViewportMetrics {
+  if (!viewportElement) {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      left: 0,
+      top: 0,
+    };
+  }
+
+  const rect = viewportElement.getBoundingClientRect();
+
+  return {
+    width: rect.width,
+    height: rect.height,
+    left: rect.left,
+    top: rect.top,
+  };
+}
+
+function toViewportRelativeRect(
+  rect: DOMRect,
+  viewport: ViewportMetrics,
+): RectMetrics {
+  return {
+    top: rect.top - viewport.top,
+    bottom: rect.bottom - viewport.top,
+    left: rect.left - viewport.left,
+    right: rect.right - viewport.left,
+    width: rect.width,
+    height: rect.height,
+  };
+}
+
 export function growContentPosition(
   placement: PopoverPlacement,
   offset: number,
   triggerRect: DOMRect,
+  viewportElement?: Element | null,
 ): Coords {
   const [position] = placement.split('-') as [PopoverPosition, PopoverAlign];
+
+  const viewport = getViewportMetrics(viewportElement);
+  const trigger = toViewportRelativeRect(triggerRect, viewport);
 
   let top, left, bottom, right: CSSProperties['width'];
 
   //! Position
   // Top
   if (position === 'top') {
-    bottom = window.innerHeight - triggerRect.top + offset;
+    bottom = viewport.height - trigger.top + offset;
     left = 0;
     right = 0;
   }
   // Bottom
   if (position === 'bottom') {
-    top = triggerRect.bottom + offset;
+    top = trigger.bottom + offset;
     left = 0;
     right = 0;
   }
   // Left
   if (position === 'left') {
-    right = window.innerWidth - triggerRect.left + offset;
+    right = viewport.width - trigger.left + offset;
     top = 0;
     bottom = 0;
     left = 0;
   }
   // Right
   if (position === 'right') {
-    left = triggerRect.right + offset;
+    left = trigger.right + offset;
     top = 0;
     bottom = 0;
     right = 0;
@@ -64,63 +118,67 @@ export function createPositionFromPlacement(
   offset: number,
   triggerRect: DOMRect,
   popoverElement: HTMLDivElement | undefined,
+  viewportElement?: Element | null,
 ): Coords {
   const [position, align] = placement.split('-') as [
     PopoverPosition,
     PopoverAlign,
   ];
 
+  const viewport = getViewportMetrics(viewportElement);
+  const trigger = toViewportRelativeRect(triggerRect, viewport);
+
   let top, left, bottom, right: CSSProperties['width'];
 
   //! Position
   // Top
   if (position === 'top') {
-    bottom = window.innerHeight - triggerRect.top + offset;
+    bottom = viewport.height - trigger.top + offset;
   }
   // Bottom
   if (position === 'bottom') {
-    top = triggerRect.bottom + offset;
+    top = trigger.bottom + offset;
   }
   // Left
   if (position === 'left') {
-    right = window.innerWidth - triggerRect.left + offset;
+    right = viewport.width - trigger.left + offset;
   }
   // Right
   if (position === 'right') {
-    left = triggerRect.right + offset;
+    left = trigger.right + offset;
   }
 
   //! Align
   // Start
   if (align === 'start') {
     if (position === 'top' || position === 'bottom') {
-      left = triggerRect.left;
+      left = trigger.left;
     }
     if (position === 'left' || position === 'right') {
-      top = triggerRect.top;
+      top = trigger.top;
     }
   }
   // End
   if (align === 'end') {
     if (position === 'top' || position === 'bottom') {
-      right = window.innerWidth - triggerRect.right;
+      right = viewport.width - trigger.right;
     }
     if (position === 'left' || position === 'right') {
-      bottom = window.innerHeight - triggerRect.bottom;
+      bottom = viewport.height - trigger.bottom;
     }
   }
   // Center
   if (align === 'center') {
     if (position === 'top' || position === 'bottom') {
       left =
-        triggerRect.right -
-        triggerRect.width / 2 -
+        trigger.right -
+        trigger.width / 2 -
         (popoverElement?.clientWidth ?? 1) / 2;
     }
     if (position === 'left' || position === 'right') {
       top =
-        triggerRect.bottom -
-        triggerRect.height / 2 -
+        trigger.bottom -
+        trigger.height / 2 -
         (popoverElement?.clientHeight ?? 1) / 2;
     }
   }
@@ -138,10 +196,14 @@ export function buildPlacement(
   offset: number,
   triggerRect: DOMRect,
   popoverRect: DOMRect | undefined,
+  viewportElement?: Element | null,
 ): PopoverPlacement {
   if (!popoverRect) {
     return placement;
   }
+
+  const viewport = getViewportMetrics(viewportElement);
+  const trigger = toViewportRelativeRect(triggerRect, viewport);
 
   const [position, align] = placement.split('-') as [
     PopoverPosition,
@@ -151,12 +213,12 @@ export function buildPlacement(
   //! POSITION FITS CHECK
   let fitPosition = position;
 
-  const fitsTop = triggerRect.top - popoverRect.height >= offset;
+  const fitsTop = trigger.top - popoverRect.height >= offset;
   const fitsBottom =
-    window.innerHeight - triggerRect.bottom - popoverRect.height >= offset;
-  const fitsLeft = triggerRect.left - popoverRect.width >= offset;
+    viewport.height - trigger.bottom - popoverRect.height >= offset;
+  const fitsLeft = trigger.left - popoverRect.width >= offset;
   const fitsRight =
-    window.innerWidth - triggerRect.right - popoverRect.width >= offset;
+    viewport.width - trigger.right - popoverRect.width >= offset;
 
   // Fits top check
   if (position === 'top') {
@@ -209,14 +271,14 @@ export function buildPlacement(
   if (fitAlign === 'start') {
     if (position === 'top' || position === 'bottom') {
       const fits =
-        window.innerWidth - triggerRect.left - popoverRect.width >= 0;
+        viewport.width - trigger.left - popoverRect.width >= 0;
       if (!fits) {
         fitAlign = 'center';
       }
     }
     if (position === 'left' || position === 'right') {
       const fits =
-        window.innerHeight - triggerRect.top - popoverRect.height >= 0;
+        viewport.height - trigger.top - popoverRect.height >= 0;
       if (!fits) {
         fitAlign = 'center';
       }
@@ -226,13 +288,13 @@ export function buildPlacement(
   // Fits end check
   if (fitAlign === 'end') {
     if (position === 'top' || position === 'bottom') {
-      const fits = triggerRect.right - popoverRect.width >= 0;
+      const fits = trigger.right - popoverRect.width >= 0;
       if (!fits) {
         fitAlign = 'center';
       }
     }
     if (position === 'left' || position === 'right') {
-      const fits = triggerRect.bottom - popoverRect.height >= 0;
+      const fits = trigger.bottom - popoverRect.height >= 0;
       if (!fits) {
         fitAlign = 'center';
       }
@@ -243,13 +305,13 @@ export function buildPlacement(
   if (fitAlign === 'center') {
     if (position === 'top' || position === 'bottom') {
       const overflowsOnStart =
-        triggerRect.right - triggerRect.width / 2 < popoverRect.width / 2;
+        trigger.right - trigger.width / 2 < popoverRect.width / 2;
       if (overflowsOnStart) {
         fitAlign = 'start';
       }
 
       const overflowsOnEnd =
-        window.innerWidth - triggerRect.left - triggerRect.width / 2 <
+        viewport.width - trigger.left - trigger.width / 2 <
         popoverRect.width / 2;
       if (overflowsOnEnd) {
         fitAlign = 'end';
@@ -258,13 +320,13 @@ export function buildPlacement(
 
     if (position === 'left' || position === 'right') {
       const overflowsOnStart =
-        triggerRect.bottom - triggerRect.height / 2 < popoverRect.height / 2;
+        trigger.bottom - trigger.height / 2 < popoverRect.height / 2;
       if (overflowsOnStart) {
         fitAlign = 'start';
       }
 
       const overflowsOnEnd =
-        window.innerHeight - triggerRect.top - triggerRect.height / 2 <
+        viewport.height - trigger.top - trigger.height / 2 <
         popoverRect.height / 2;
       if (overflowsOnEnd) {
         fitAlign = 'end';
