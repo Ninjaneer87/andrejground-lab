@@ -15,5 +15,5 @@
     ["cn\\(([^)]*)\\)", "(?:'([^']*)'|\"([^\"]*)\"|`([^`]*)`)"]
   ],
   "editor.wordWrap": "wordWrapColumn",
-  "snyk.advanced.autoSelectOrganization": true
+  "snyk.advanced.autoSelectOrganization": false
 }
