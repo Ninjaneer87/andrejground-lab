@@ -572,28 +572,28 @@ const PopoverBase = forwardRef<
             )}
 
             {(isMounted || isExpanded) && (
-              <ClientPortal>
-                <div
-                  id={popoverId}
-                  data-popover-content
-                  data-popover-content-root-id={rootPopoverId ?? popoverId}
-                  data-popover-content-current-id={popoverId}
-                  data-popover-placement={fitPlacementRef.current}
-                  className={cn(contentClassName, classNames?.content)}
-                  style={popoverContentCoords}
-                  onClick={(e) => e.stopPropagation()}
-                  ref={(node) => {
-                    if (!node) return;
+              // <ClientPortal>
+              <div
+                id={popoverId}
+                data-popover-content
+                data-popover-content-root-id={rootPopoverId ?? popoverId}
+                data-popover-content-current-id={popoverId}
+                data-popover-placement={fitPlacementRef.current}
+                className={cn(contentClassName, classNames?.content)}
+                style={popoverContentCoords}
+                onClick={(e) => e.stopPropagation()}
+                ref={(node) => {
+                  if (!node) return;
 
-                    popoverContentRef.current = node;
-                    focusContainerRef.current = node;
-                  }}
-                >
-                  <PopoverFocusTrapper ref={firstFocusableItemRef} />
-                  {popoverContent}
-                  <PopoverFocusTrapper ref={lastFocusableItemRef} />
-                </div>
-              </ClientPortal>
+                  popoverContentRef.current = node;
+                  focusContainerRef.current = node;
+                }}
+              >
+                <PopoverFocusTrapper ref={firstFocusableItemRef} />
+                {popoverContent}
+                <PopoverFocusTrapper ref={lastFocusableItemRef} />
+              </div>
+              // </ClientPortal>
             )}
           </div>
         </>
