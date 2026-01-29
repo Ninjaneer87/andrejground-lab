@@ -113,6 +113,7 @@ const PopoverBase = forwardRef<
     const [popoverContentCoords, setPopoverContentCoords] = useState<Coords>(
       {},
     );
+    const [portalContainer, setPortalContainer] = useState<Element | null>(null);
     const open = controlledIsOpen ?? isOpen;
     const isExpanded = open || isHoverOpen;
 
@@ -423,6 +424,15 @@ const PopoverBase = forwardRef<
     }, [isExpanded, setContentCoords]);
 
     useEffect(() => {
+      if (!isExpanded) {
+        setPortalContainer(null);
+        return;
+      }
+
+      setPortalContainer(popoverTriggerRef.current?.closest('dialog') ?? null);
+    }, [isExpanded]);
+
+    useEffect(() => {
       if (!isExpanded) return;
 
       function handleScroll() {
@@ -525,7 +535,7 @@ const PopoverBase = forwardRef<
       >
         <>
           {isMounted && !!backdrop && backdrop !== 'none' && (
-            <ClientPortal>
+            <ClientPortal container={portalContainer}>
               <div
                 className={cn(backdropClassName, classNames?.backdrop)}
                 onClick={(e) => {
@@ -572,28 +582,28 @@ const PopoverBase = forwardRef<
             )}
 
             {(isMounted || isExpanded) && (
-              // <ClientPortal>
-              <div
-                id={popoverId}
-                data-popover-content
-                data-popover-content-root-id={rootPopoverId ?? popoverId}
-                data-popover-content-current-id={popoverId}
-                data-popover-placement={fitPlacementRef.current}
-                className={cn(contentClassName, classNames?.content)}
-                style={popoverContentCoords}
-                onClick={(e) => e.stopPropagation()}
-                ref={(node) => {
-                  if (!node) return;
+              <ClientPortal container={portalContainer}>
+                <div
+                  id={popoverId}
+                  data-popover-content
+                  data-popover-content-root-id={rootPopoverId ?? popoverId}
+                  data-popover-content-current-id={popoverId}
+                  data-popover-placement={fitPlacementRef.current}
+                  className={cn(contentClassName, classNames?.content)}
+                  style={popoverContentCoords}
+                  onClick={(e) => e.stopPropagation()}
+                  ref={(node) => {
+                    if (!node) return;
 
-                  popoverContentRef.current = node;
-                  focusContainerRef.current = node;
-                }}
-              >
-                <PopoverFocusTrapper ref={firstFocusableItemRef} />
-                {popoverContent}
-                <PopoverFocusTrapper ref={lastFocusableItemRef} />
-              </div>
-              // </ClientPortal>
+                    popoverContentRef.current = node;
+                    focusContainerRef.current = node;
+                  }}
+                >
+                  <PopoverFocusTrapper ref={firstFocusableItemRef} />
+                  {popoverContent}
+                  <PopoverFocusTrapper ref={lastFocusableItemRef} />
+                </div>
+              </ClientPortal>
             )}
           </div>
         </>

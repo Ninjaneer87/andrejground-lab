@@ -3,16 +3,22 @@
 import { type PropsWithChildren, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function ClientPortal({ children }: PropsWithChildren) {
-  const [container] = useState(() => document.createElement('div'));
+type ClientPortalProps = PropsWithChildren<{
+  container?: Element | null;
+}>;
+
+export default function ClientPortal({ children, container }: ClientPortalProps) {
+  const [portalNode] = useState(() => document.createElement('div'));
 
   useEffect(() => {
-    document.body.appendChild(container);
+    const target = container ?? document.body;
+
+    target.appendChild(portalNode);
 
     return () => {
-      document.body.removeChild(container);
+      target.removeChild(portalNode);
     };
-  }, [container]);
+  }, [container, portalNode]);
 
-  return createPortal(children, container);
+  return createPortal(children, portalNode);
 }
