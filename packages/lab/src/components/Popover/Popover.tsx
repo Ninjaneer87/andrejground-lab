@@ -67,7 +67,7 @@ const PopoverBase = forwardRef<
       focusTriggerOnClose = true,
       delayShow = 0,
       delayHide = 0,
-      hoverableContent,
+      hoverableContent = true,
       growContent = false,
       size,
       shouldFlip = true,

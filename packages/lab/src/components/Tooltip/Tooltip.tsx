@@ -25,7 +25,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       offset = 8,
       showArrow = true,
       delayShow = 0,
-      hoverableContent,
+      hoverableContent = false,
       delayHide = hoverableContent ? 200 : 0,
       classNames,
       triggerWrapper,
