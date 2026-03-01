@@ -95,7 +95,7 @@ function HomeSelectDemoContent() {
         multiple
         label="Multi-select autocomplete & infinite scroll"
         search
-        // popOnSelection={false}
+        popOnSelection
         onSearchChange={debouncedSearch}
         placeholder="Select pokemons"
         onClose={() => console.log('onClose')}

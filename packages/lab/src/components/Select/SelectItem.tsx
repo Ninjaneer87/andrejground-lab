@@ -67,27 +67,27 @@ function SelectItem<T extends OptionItem>({
   function handleSelection() {
     if (disabled) return;
 
+    const selectedValues = selected.map((item) => item.value);
+    const isSelected = selectedValues.includes(value);
+    const isNewSelection = !isSelected;
+
+    let newSelectedOptions = [...selected];
+
+    if (isSelected) {
+      newSelectedOptions = newSelectedOptions.filter(
+        (item) => item.value !== value,
+      );
+    }
+
+    if (isNewSelection) {
+      if (multiple) {
+        newSelectedOptions = [...newSelectedOptions, optionItem];
+      } else {
+        newSelectedOptions = [optionItem];
+      }
+    }
+
     if (onSelectionChange) {
-      const selectedValues = selected.map((item) => item.value);
-      const isSelected = selectedValues.includes(value);
-      const isNewSelection = !isSelected;
-
-      let newSelectedOptions = [...selected];
-
-      if (isSelected) {
-        newSelectedOptions = newSelectedOptions.filter(
-          (item) => item.value !== value,
-        );
-      }
-
-      if (isNewSelection) {
-        if (multiple) {
-          newSelectedOptions = [...newSelectedOptions, optionItem];
-        } else {
-          newSelectedOptions = [optionItem];
-        }
-      }
-
       onSelectionChange({
         selectedOption: optionItem,
         selectedOptions: newSelectedOptions,
@@ -104,7 +104,7 @@ function SelectItem<T extends OptionItem>({
       focusSearch();
     }
 
-    if (!multiple && shouldCloseOnSelection) {
+    if (!multiple && shouldCloseOnSelection && isNewSelection) {
       handleCloseRoot();
     }
   }

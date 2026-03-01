@@ -32,15 +32,30 @@ function SelectSearch({
     setSearchValue,
     searchValue,
     onSearchChange,
+    multiple,
   } = selectContext;
 
+  const singleSelectedOptionText = selected[0]?.text ?? '';
+
   useEffect(() => {
+    if (!multiple) {
+      setSearchValue(singleSelectedOptionText);
+    }
+
+    return () => {
+      if (!multiple) setSearchValue(singleSelectedOptionText);
+    };
+  }, [multiple, selected, singleSelectedOptionText, setSearchValue, isOpen]);
+
+  useEffect(() => {
+    if (!multiple) return;
+
     if (!isOpen || !searchRef.current) return () => setSearchValue('');
 
     searchRef.current.focus();
 
     return () => setSearchValue('');
-  }, [isOpen, setSearchValue, searchRef]);
+  }, [isOpen, setSearchValue, searchRef, multiple]);
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -67,7 +82,7 @@ function SelectSearch({
     }
 
     if (e.key === 'Backspace') {
-      if (!e.currentTarget.value && selected.length > 0) {
+      if (!e.currentTarget.value && selected.length > 0 && multiple) {
         e.preventDefault();
         e.stopPropagation();
 

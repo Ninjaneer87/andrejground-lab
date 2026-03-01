@@ -68,7 +68,7 @@ function Select<T extends OptionItem>({
   errorMessage,
   renderValue,
   noResultsMessage,
-  popOnSelection = true,
+  popOnSelection,
   infiniteScrollProps,
   isLoading,
   showArrow = false,
@@ -183,14 +183,15 @@ function Select<T extends OptionItem>({
   const triggerPlaceholderClassName = cn(
     'text-[1em] leading-[1.2em] grow flex items-center text-gray-500',
   );
-  const triggerValueTextClassName = 'flex items-center grow flex-wrap gap-1';
+  const triggerValueTextClassName =
+    'flex items-center grow flex-wrap gap-1 leading-0';
   const triggerValueChipClassName = 'inline-flex items-center truncate';
   const triggerSelectorIconClassName = cn('ml-auto inline-flex items-center');
 
   const contentWrapperClassName =
     'relative outline-none! border-none! p-2 grow';
   const listboxClassName = cn(
-    'list-none pl-0 mb-0 max-h-[250px] overflow-y-auto relative  scroll-pt-12',
+    'list-none pl-0 m-0 max-h-[250px] overflow-y-auto relative  scroll-pt-12',
   );
   const helperWrapperClassName = cn('text-[0.75em] mt-1');
   const descriptionClassName = cn('opacity-60');
@@ -382,41 +383,57 @@ function Select<T extends OptionItem>({
                       renderValue(selected)
                     ) : (
                       <>
-                        {selected.map((item) => (
-                          <button
-                            data-select-trigger-value-chip
-                            className={cn(
-                              triggerValueChipClassName,
-                              classNames?.trigger?.valueChip,
+                        {multiple ? (
+                          <>
+                            {selected.map((item) => (
+                              <button
+                                data-select-trigger-value-chip
+                                className={cn(
+                                  triggerValueChipClassName,
+                                  classNames?.trigger?.valueChip,
+                                )}
+                                key={item.value}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+
+                                    handleRemoveSelected(item.value);
+                                  }
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  e.preventDefault();
+
+                                  handleRemoveSelected(item.value);
+                                }}
+                              >
+                                {item.textContent ?? item.text} &times;
+                              </button>
+                            ))}
+
+                            {search && (
+                              <SelectSearch
+                                searchRef={searchRef}
+                                placeholder={placeholder}
+                                className={classNames?.trigger?.searchInput}
+                              />
                             )}
-                            key={item.value}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter') {
-                                e.stopPropagation();
-                                e.preventDefault();
-
-                                handleRemoveSelected(item.value);
-                              }
-                            }}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              e.preventDefault();
-
-                              handleRemoveSelected(item.value);
-                            }}
-                          >
-                            {item.textContent ?? item.text} &times;
-                          </button>
-                        ))}
+                          </>
+                        ) : (
+                          <>
+                            {search ? (
+                              <SelectSearch
+                                searchRef={searchRef}
+                                placeholder={placeholder}
+                                className={classNames?.trigger?.searchInput}
+                              />
+                            ) : (
+                              (selected[0]?.textContent ?? selected[0]?.text)
+                            )}
+                          </>
+                        )}
                       </>
-                    )}
-
-                    {search && (
-                      <SelectSearch
-                        searchRef={searchRef}
-                        placeholder={placeholder}
-                        className={classNames?.trigger?.searchInput}
-                      />
                     )}
                   </div>
                 )}

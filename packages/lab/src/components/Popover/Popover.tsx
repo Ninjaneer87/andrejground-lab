@@ -521,9 +521,7 @@ const PopoverBase = forwardRef<
       classNames?.triggerWrapper,
     );
     const contentClassName = cn(
-      portalContainer
-        ? 'absolute z-1010 popover-content border border-gray-100'
-        : 'fixed z-1010 popover-content border border-gray-100',
+       'fixed z-1010 popover-content border border-gray-100',
       isRootExpanded || (isExpanded && !isNested) ? 'scale-in' : 'scale-out',
       'transition-opacity p-2 bg-white text-gray-800 rounded-lg shadow-md',
       showArrow && 'popover-arrow',
