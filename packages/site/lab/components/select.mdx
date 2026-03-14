@@ -1,1 +1,167 @@
+import SelectUsage from '@site/src/components/lab/Select/SelectUsage';
+import SelectSections from '@site/src/components/lab/Select/SelectSections';
+import SelectControlled from '@site/src/components/lab/Select/SelectControlled';
+import SelectMultiple from '@site/src/components/lab/Select/SelectMultiple';
+import SelectSearchable from '@site/src/components/lab/Select/SelectSearchable';
+import SelectMultipleSearchable from '@site/src/components/lab/Select/SelectMultipleSearchable';
+import SelectAsyncInfiniteScroll from '@site/src/components/lab/Select/SelectAsyncInfiniteScroll';
+import SelectTruncateOff from '@site/src/components/lab/Select/SelectTruncateOff';
+import SelectTruncateOn from '@site/src/components/lab/Select/SelectTruncateOn';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import Link from '@docusaurus/Link';
+import {
+  selectUsageTsx,
+  selectSectionsTsx,
+  selectControlledTsx,
+  selectMultipleTsx,
+  selectSearchableTsx,
+  selectMultipleSearchableTsx,
+  selectAsyncInfiniteScrollTsx,
+  selectTruncateOffTsx,
+  selectTruncateOnTsx,
+} from '@site/lab/components/_snippets/select';
+
 # Select
+
+A Select is a form control that lets users pick one or more options from a dropdown list. It is built on top of the <Link to='/lab/components/popover'>Popover</Link> component and supports sections, search filtering, multi-select, and keyboard navigation out of the box.
+
+## Key Characteristics
+
+- **Flexible Data**: Provide options via the `items` prop or compose them declaratively with `Select.Section` and `Select.Item`.
+- **Multi-Select**: Toggle `multiple` to allow selecting more than one option, with chip-based value display.
+- **Searchable**: Enable the `search` prop to let users filter options by typing.
+- **Accessible**: Full keyboard navigation and focus management built in.
+
+## Import
+
+There are 4 select-related components:
+
+- `Select`: The main select component.
+- `SelectItem`: An individual option.
+- `SelectSection`: A group of options with an optional title.
+- `SelectDivider`: A visual separator between sections.
+
+```tsx
+import { Select, SelectItem, SelectSection, SelectDivider } from '@andrejground/lab';
+```
+
+Compound pattern is also supported:
+
+- `Select.Item`
+- `Select.Section`
+- `Select.Divider`
+
+## Usage
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectUsage />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectUsageTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Sections
+
+Use `Select.Section` and `Select.Item` to group options with titles and descriptions.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectSections />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectSectionsTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Multiple
+
+Enable `multiple` to allow selecting more than one option. Selected values appear as removable chips.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectMultiple />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectMultipleTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Searchable
+
+Enable `search` to let users filter options by typing in the trigger input.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectSearchable />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectSearchableTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Multi-Select with Search
+
+Combine `multiple`, `search`, and `popOnSelection` for an autocomplete-style multi-select. Selected options are removed from the dropdown list.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectMultipleSearchable />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectMultipleSearchableTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Truncation Off
+
+With all `truncate` options set to `false`, long option text, descriptions, and selected value chips wrap naturally into multiple lines.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectTruncateOff />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectTruncateOffTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Truncation On
+
+With all `truncate` options set to `true`, long text is clipped to a single line with an ellipsis — for item text, item descriptions, value chips, and the selected value display.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectTruncateOn />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectTruncateOnTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Async & Infinite Scroll
+
+Use `infiniteScrollProps` to load more options as the user scrolls. Combine with `search`, `onSearchChange`, and `debounceCallback` for a full async autocomplete experience.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectAsyncInfiniteScroll />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectAsyncInfiniteScrollTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectControlled />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectControlledTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
