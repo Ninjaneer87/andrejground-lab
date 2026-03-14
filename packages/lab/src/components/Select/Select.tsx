@@ -7,7 +7,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { OptionItem, SelectCompositionProps, SelectProps } from '../../types';
+import {
+  OptionItem,
+  SelectCompositionProps,
+  SelectProps,
+  SelectTruncate,
+} from '../../types';
 import SelectDivider from './SelectDivider';
 import SelectItem from './SelectItem';
 import SelectSection from './SelectSection';
@@ -20,6 +25,13 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import SpinnerLoader from '../SpinnerLoader/SpinnerLoader';
 import SelectSearch from '@/components/Select/SelectSearch';
 
+const DEFAULT_TRUNCATE: SelectTruncate = {
+  itemText: false,
+  valueChipText: true,
+  itemDescription: false,
+  sectionTitle: true,
+  valueText: true,
+};
 function Select<T extends OptionItem>({
   // caret,
   children,
@@ -56,7 +68,7 @@ function Select<T extends OptionItem>({
   isRequired,
   openOnLabelClick,
   shouldCloseOnSelection,
-  truncate,
+  truncate: truncateOverride,
   autoFocus = 'menu',
   focusTrapProps = {
     autoFocus: autoFocus === 'none',
@@ -69,6 +81,9 @@ function Select<T extends OptionItem>({
   renderValue,
   noResultsMessage,
   popOnSelection,
+  isAddNewOption,
+  onAddNewOption,
+  addNewLabel = 'Add',
   infiniteScrollProps,
   isLoading,
   showArrow = false,
@@ -102,11 +117,17 @@ function Select<T extends OptionItem>({
     });
   }
 
+  const truncate: SelectTruncate = {
+    ...DEFAULT_TRUNCATE,
+    ...truncateOverride,
+  };
+
   const { item: itemClassNames, section: sectionClassNames } = classNames || {};
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<T[]>([]);
   const [hasMountedDefaultValue, setHasMountedDefaultValue] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [internalItems, setInternalItems] = useState<T[]>(items ?? []);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const open = controlledIsOpen ?? isOpen;
@@ -156,6 +177,53 @@ function Select<T extends OptionItem>({
     setHasMountedDefaultValue(true);
   }, [defaultValue, hasMountedDefaultValue]);
 
+  useEffect(() => {
+    setInternalItems((prev) => {
+      if (!items) return prev;
+
+      const newItems = [...prev, ...items];
+      const uniqueByValueItems = [
+        ...new Set(newItems.map((item) => item.value)),
+      ];
+      const uniqueItems = uniqueByValueItems
+        .map((value) => newItems.find((item) => item.value === value))
+        .filter((item): item is T => item !== undefined);
+      return uniqueItems;
+    });
+  }, [items]);
+
+  function handleAddNewOption(currentSearchValue: string) {
+    if (!currentSearchValue.trim() || !isAddNewOption) return;
+
+    const newOption = {
+      value: currentSearchValue,
+      text: currentSearchValue,
+    } as T;
+
+    if (onAddNewOption) {
+      onAddNewOption(newOption);
+    }
+
+    if (!value) {
+      setInternalItems((prev) => (prev ? [newOption, ...prev] : [newOption]));
+    }
+
+    const newSelected = multiple ? [...selected, newOption] : [newOption];
+
+    setSelected(newSelected);
+
+    if (onSelectionChange) {
+      onSelectionChange({
+        selectedOption: newOption,
+        selectedOptions: newSelected,
+      });
+    }
+
+    setSearchValue('');
+    if (onSearchChange) onSearchChange('');
+    focusSearch();
+  }
+
   function handleRemoveSelected(selectedValue: string | number) {
     if (isDisabled) return;
 
@@ -183,9 +251,14 @@ function Select<T extends OptionItem>({
   const triggerPlaceholderClassName = cn(
     'text-[1em] leading-[1.2em] grow flex items-center text-gray-500',
   );
-  const triggerValueTextClassName =
-    'flex items-center grow flex-wrap gap-1 leading-0';
-  const triggerValueChipClassName = 'inline-flex items-center truncate';
+  const triggerValueTextClassName = cn(
+    'flex items-center grow flex-wrap gap-1 leading-none max-w-full wrap-break-word',
+    !multiple && truncate?.valueText ? 'line-clamp-1 break-all' : '',
+  );
+  const triggerValueChipClassName = cn('inline-flex items-center max-w-full');
+  const triggerValueChipTextClassName = cn(
+    truncate?.valueChipText ? 'line-clamp-1 break-all' : '',
+  );
   const triggerSelectorIconClassName = cn('ml-auto inline-flex items-center');
 
   const contentWrapperClassName =
@@ -200,18 +273,17 @@ function Select<T extends OptionItem>({
   const showPlaceholder = !selected.length && !search;
 
   const showValue = !!selected.length || search;
+  const trimmedSearchValue = searchValue.trim();
 
   const filteredItems = useMemo(() => {
-    if (!items) return items;
-
-    let newItems = [...items];
+    let newItems = [...internalItems];
 
     if (search) {
       if (typeof search === 'function') {
-        newItems = search(items);
+        newItems = search(internalItems);
       } else {
-        newItems = items.filter((item) =>
-          item.text.toLowerCase().includes(searchValue.toLowerCase()),
+        newItems = internalItems.filter((item) =>
+          item.text.toLowerCase().includes(trimmedSearchValue.toLowerCase()),
         );
       }
     }
@@ -223,13 +295,25 @@ function Select<T extends OptionItem>({
     }
 
     return newItems;
-  }, [items, search, searchValue, popOnSelection, selected]);
+  }, [internalItems, search, trimmedSearchValue, popOnSelection, selected]);
+
+  const showAddNewOption =
+    !!items &&
+    isAddNewOption &&
+    trimmedSearchValue &&
+    selected.every(
+      (item) => trimmedSearchValue && item.text !== trimmedSearchValue,
+    ) &&
+    internalItems?.every(
+      (item) => trimmedSearchValue && item.text !== trimmedSearchValue,
+    );
 
   const showNoFilteredResults =
+    !showAddNewOption &&
     filteredItems &&
     !filteredItems.length &&
     (!!searchValue.length ||
-      (popOnSelection && selected.length === items?.length));
+      (popOnSelection && selected.length === internalItems?.length));
 
   if (showNoFilteredResults) {
     filteredItems.push({
@@ -242,48 +326,26 @@ function Select<T extends OptionItem>({
 
   const showHelperSection = !!errorMessage || !!description;
 
-  const contextValue: SelectContextType<T> = useMemo(
-    () => ({
-      multiple,
-      onSelectionChange,
-      setSelected,
-      selected,
-      renderOption,
-      truncate,
-      itemClassNames,
-      sectionClassNames,
-      items,
-      searchValue,
-      setSearchValue,
-      focusItem,
-      search,
-      onSearchChange,
-      focusSearch: search ? focusSearch : undefined,
-      popOnSelection,
-      currentOptions: filteredItems,
-      lastFocusedIndex,
-    }),
-    [
-      multiple,
-      onSelectionChange,
-      setSelected,
-      selected,
-      renderOption,
-      truncate,
-      itemClassNames,
-      sectionClassNames,
-      items,
-      searchValue,
-      setSearchValue,
-      focusItem,
-      search,
-      onSearchChange,
-      focusSearch,
-      popOnSelection,
-      filteredItems,
-      lastFocusedIndex,
-    ],
-  );
+  const contextValue: SelectContextType<T> = {
+    multiple,
+    onSelectionChange,
+    setSelected,
+    selected,
+    renderOption,
+    truncate,
+    itemClassNames,
+    sectionClassNames,
+    items: internalItems,
+    searchValue,
+    setSearchValue,
+    focusItem,
+    search,
+    onSearchChange,
+    focusSearch: search ? focusSearch : undefined,
+    popOnSelection,
+    currentOptions: filteredItems,
+    lastFocusedIndex,
+  };
 
   return (
     <SelectContext.Provider value={contextValue}>
@@ -408,7 +470,16 @@ function Select<T extends OptionItem>({
                                   handleRemoveSelected(item.value);
                                 }}
                               >
-                                {item.textContent ?? item.text} &times;
+                                <span
+                                  data-select-trigger-value-chip-text
+                                  className={cn(
+                                    triggerValueChipTextClassName,
+                                    classNames?.trigger?.valueChipText,
+                                  )}
+                                >
+                                  {item.textContent ?? item.text}
+                                </span>
+                                <span className="shrink-0">&nbsp;&times;</span>
                               </button>
                             ))}
 
@@ -475,6 +546,17 @@ function Select<T extends OptionItem>({
                 ref={scrollerRef}
                 className={cn(listboxClassName, classNames?.listbox)}
               >
+                {showAddNewOption && (
+                  <SelectItem
+                    onAddNewOption={() => handleAddNewOption(searchValue)}
+                    value={searchValue}
+                    text={searchValue}
+                    shouldCloseOnSelection={false}
+                  >
+                    {addNewLabel} <b>&ldquo;{searchValue}&rdquo;</b>;
+                  </SelectItem>
+                )}
+
                 {typeof children !== 'function' && children}
                 {typeof children === 'function' &&
                   filteredItems &&

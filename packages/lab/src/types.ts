@@ -222,11 +222,7 @@ export type DropdownComposition = {
   Divider?: React.FC<DropdownDividerProps>;
 };
 
-export type SelectTruncate = {
-  /**
-   * Show selected value(s) in one line only
-   */
-  value?: boolean;
+export type SelectItemTruncate = {
   /**
    * Truncate item text content
    */
@@ -235,11 +231,26 @@ export type SelectTruncate = {
    * Truncate item description
    */
   itemDescription?: boolean;
+};
+
+export type SelectSectionTruncate = {
   /**
    * Truncate section title
    */
   sectionTitle?: boolean;
 };
+
+export type SelectTruncate = {
+  /**
+   * Truncate the selected value text
+   */
+  valueText?: boolean;
+  /**
+   * Truncate the selected value chip text
+   */
+  valueChipText?: boolean;
+} & SelectItemTruncate &
+  SelectSectionTruncate;
 
 // !Select types
 
@@ -308,6 +319,7 @@ export type SelectClassNames = {
      */
     valueText?: string;
     valueChip?: string;
+    valueChipText?: string;
     searchInput?: string;
     /**
      * The selector icon of the select. This is the icon that rotates when the select is open (data-open).
@@ -409,6 +421,20 @@ export type SelectProps<T extends OptionItem> = {
    */
   popOnSelection?: boolean;
   /**
+   * Shows "Add <value>" option when search is enabled and no results are found.
+   */
+  isAddNewOption?: boolean;
+  /**
+   * Callback fired when a new option is added via the "Add <value>" action.
+   * For controlled Select, handle adding the option yourself.
+   * For uncontrolled Select, the option is prepended to the list automatically.
+   */
+  onAddNewOption?: (newOption: T) => void;
+  /**
+   * Custom label prefix for the "Add new" option. Defaults to "Add".
+   */
+  addNewLabel?: string;
+  /**
    * Allows to set custom class names for the Select slots.
    */
   classNames?: SelectClassNames;
@@ -434,6 +460,11 @@ export type SelectItemProps<T extends OptionItem> = {
   endContent?: React.ReactNode;
   classNames?: SelectItemClassNames;
   ref?: React.RefObject<HTMLLIElement | null>;
+  onAddNewOption?: (newOption: T) => void;
+  /**
+   * Override global truncate settings for this item
+   */
+  truncate?: SelectItemTruncate;
 } & T;
 
 export type SelectTriggerProps = {
@@ -446,6 +477,10 @@ export type SelectSectionProps = {
   isStickyTitle?: boolean;
   showDivider?: boolean;
   classNames?: SelectSectionClassNames;
+  /**
+   * Override global truncate settings for this section
+   */
+  truncate?: SelectSectionTruncate;
 };
 
 export type SelectCompositionProps<T extends OptionItem> = {

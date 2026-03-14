@@ -20,6 +20,8 @@ function SelectItem<T extends OptionItem>({
   description,
   classNames,
   ref,
+  onAddNewOption,
+  truncate: localTruncate,
   ...rest
 }: SelectItemProps<T>) {
   const selectContext = useSelectContext<T>();
@@ -39,7 +41,7 @@ function SelectItem<T extends OptionItem>({
     selected,
     setSelected,
     renderOption,
-    truncate,
+    truncate: globalTruncate,
     itemClassNames,
     focusItem,
     focusSearch,
@@ -65,6 +67,11 @@ function SelectItem<T extends OptionItem>({
   const selectItemRef = useRef<HTMLLIElement | null>(null);
 
   function handleSelection() {
+    if (onAddNewOption) {
+      onAddNewOption(optionItem);
+      return;
+    }
+
     if (disabled) return;
 
     const selectedValues = selected.map((item) => item.value);
@@ -126,16 +133,19 @@ function SelectItem<T extends OptionItem>({
     'p-2 focus-visible:bg-gray-100 focus-within:bg-gray-100 rounded-lg transition-all w-full flex cursor-pointer items-center gap-2',
   );
   const contentWrapperClassName = cn(
-    'flex grow shrink-0 justify-between items-center',
+    'flex grow min-w-0 justify-between items-center w-full',
   );
   const startContentClassName = cn('shrink-0 inline-flex');
-  const mainContentClassName = cn('shrink-0 grow inline-block');
+  const mainContentClassName = cn('min-w-0 grow block');
+  const truncateItemText = localTruncate?.itemText ?? globalTruncate?.itemText;
+  const truncateItemDescription = localTruncate?.itemDescription ?? globalTruncate?.itemDescription;
+
   const textContentClassName = cn(
-    truncate?.itemText ? 'line-clamp-1 break-all grow' : '',
+    truncateItemText ? 'line-clamp-1 break-all grow' : '',
   );
   const descriptionContentClassName = cn(
     'text-[0.75em] opacity-60',
-    truncate?.itemDescription ? 'line-clamp-1 break-all grow' : '',
+    truncateItemDescription ? 'line-clamp-1 break-all grow' : '',
   );
   const endContentClassName = cn('ml-auto shrink-0 inline-flex');
   const selectedIconClassName = cn(

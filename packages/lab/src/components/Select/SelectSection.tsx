@@ -13,6 +13,7 @@ function SelectSection({
   isStickyTitle = true,
   showDivider = true,
   classNames,
+  truncate: localTruncate,
 }: SelectSectionProps) {
   const selectContext = useSelectContext();
 
@@ -32,11 +33,14 @@ function SelectSection({
       }
     });
   }
-  const { sectionClassNames } = selectContext;
+  const { sectionClassNames, truncate: globalTruncate } = selectContext;
+  const truncateSectionTitle = localTruncate?.sectionTitle ?? globalTruncate?.sectionTitle;
+
   const baseClassName = cn('bg-inherit');
   const titleClassName = cn(
     'bg-gray-100 p-1 text-[0.875em] font-semibold mb-2',
     isStickyTitle ? 'sticky top-0 z-10 rounded-sm' : '',
+    truncateSectionTitle ? 'line-clamp-1 break-all' : '',
   );
   const listClassName = 'pl-0 mb-0 list-none';
 
