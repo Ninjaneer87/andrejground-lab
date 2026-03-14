@@ -91,6 +91,19 @@ const SELECT_ITEMS: { section: string; items: OptionItem[] }[] = [
   },
 ];
 
+const PRESELECTED_POKEMONS = [
+  {
+    value: 'https://pokeapi.co/api/v2/pokemon/1/',
+    text: 'bulbasaur',
+    description: 'A grass-type Pokémon',
+  },
+  {
+    value: 'https://pokeapi.co/api/v2/pokemon/4/',
+    text: 'charmander',
+    description: 'A fire-type Pokémon',
+  },
+];
+
 function HomeSelectDemoContent() {
   const { items, isLoading, onLoadMore, hasMore } = usePokemonList({
     fetchDelay: 300,
@@ -106,7 +119,7 @@ function HomeSelectDemoContent() {
       <SiteSelect
         openOnLabelClick
         items={items}
-        onSelectionChange={() => {}}
+        defaultValue={PRESELECTED_POKEMONS}
         truncate={{
           itemText: true,
           valueChipText: true,

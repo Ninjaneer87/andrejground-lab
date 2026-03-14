@@ -252,12 +252,13 @@ function Select<T extends OptionItem>({
     'text-[1em] leading-[1.2em] grow flex items-center text-gray-500',
   );
   const triggerValueTextClassName = cn(
-    'flex items-center grow flex-wrap gap-1 leading-none max-w-full wrap-break-word',
+    'flex items-center grow flex-wrap gap-1 leading-none max-w-full min-w-0 wrap-anywhere',
     !multiple && truncate?.valueText ? 'line-clamp-1 break-all' : '',
   );
   const triggerValueChipClassName = cn('inline-flex items-center max-w-full');
   const triggerValueChipTextClassName = cn(
-    truncate?.valueChipText ? 'line-clamp-1 break-all' : '',
+    'text-start',
+    truncate?.valueChipText ? 'line-clamp-1 break-all' : 'min-w-0 wrap-anywhere',
   );
   const triggerSelectorIconClassName = cn('ml-auto inline-flex items-center');
 

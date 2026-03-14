@@ -11,7 +11,7 @@ import { FocusItemProps } from '@/hooks/useKeyboardNavigation';
 
 export type SelectContextType<T extends OptionItem = OptionItem> = {
   multiple: boolean;
-  onSelectionChange: OnSelectionChange<T>;
+  onSelectionChange?: OnSelectionChange<T>;
   setSelected: Dispatch<SetStateAction<T[]>>;
   selected: T[];
   renderOption?: RenderOption<T>;

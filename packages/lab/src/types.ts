@@ -386,7 +386,7 @@ export type RenderOption<T extends OptionItem> = ({
 }) => React.ReactNode;
 
 export type SelectProps<T extends OptionItem> = {
-  onSelectionChange: OnSelectionChange<T>;
+  onSelectionChange?: OnSelectionChange<T>;
   multiple?: boolean;
   caret?: React.ReactNode;
   showCaret?: boolean;

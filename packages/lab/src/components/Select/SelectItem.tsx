@@ -94,13 +94,13 @@ function SelectItem<T extends OptionItem>({
       }
     }
 
+    setSelected(newSelectedOptions);
+
     if (onSelectionChange) {
       onSelectionChange({
         selectedOption: optionItem,
         selectedOptions: newSelectedOptions,
       });
-
-      setSelected(newSelectedOptions);
     }
 
     if (!search) {
@@ -138,7 +138,8 @@ function SelectItem<T extends OptionItem>({
   const startContentClassName = cn('shrink-0 inline-flex');
   const mainContentClassName = cn('min-w-0 grow block');
   const truncateItemText = localTruncate?.itemText ?? globalTruncate?.itemText;
-  const truncateItemDescription = localTruncate?.itemDescription ?? globalTruncate?.itemDescription;
+  const truncateItemDescription =
+    localTruncate?.itemDescription ?? globalTruncate?.itemDescription;
 
   const textContentClassName = cn(
     truncateItemText ? 'line-clamp-1 break-all grow' : '',
