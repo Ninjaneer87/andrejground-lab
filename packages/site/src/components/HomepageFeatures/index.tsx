@@ -27,7 +27,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Components',
     svgImage: <ByosComponentsSvg />,
-    to: '/docs/category/components',
+    to: '/lab/category/components',
     description: (
       <>
         Bring the components into your own design system. Customize each slot of
@@ -38,7 +38,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Hooks',
     svgImage: <UseAnythingSvg />,
-    to: '/docs/category/hooks',
+    to: '/lab/category/hooks',
     description: (
       <>
         Constelation of all sorts of react hooks. Have your reusable pieces of
@@ -118,7 +118,7 @@ export default function HomepageFeatures(): ReactNode {
           <div className="row">
             <div className="col col--6 padding--md">
               <Heading as={'h3'}>
-                <Link to="/docs/components/select">Select</Link>
+                <Link to="/lab/components/select">Select</Link>
               </Heading>
               <p>
                 Powerful select component with built-in support for some of the
@@ -134,7 +134,7 @@ export default function HomepageFeatures(): ReactNode {
 
             <div className="col col--6 padding--md">
               <Heading as="h3">
-                <Link to="/docs/components/dropdown">Dropdown</Link>
+                <Link to="/lab/components/dropdown">Dropdown</Link>
               </Heading>
               <p>
                 Highly customizable dropdown with features like infinite-scroll,
@@ -148,7 +148,7 @@ export default function HomepageFeatures(): ReactNode {
 
             <div className="col col--6 padding--md">
               <Heading as="h3">
-                <Link to="/docs/components/popover">Popover</Link>
+                <Link to="/lab/components/popover">Popover</Link>
               </Heading>
               <p>
                 Mighty popover, the underlying component for Select and
@@ -162,7 +162,7 @@ export default function HomepageFeatures(): ReactNode {
 
             <div className="col col--6 padding--md">
               <Heading as="h3">
-                <Link to="/docs/components/resizable">Resizable</Link>
+                <Link to="/lab/components/resizable">Resizable</Link>
               </Heading>
               <p>
                 Resize horizontally any section or an element. Useful for side
@@ -187,7 +187,7 @@ export default function HomepageFeatures(): ReactNode {
 
           <p className={styles.featureSectionDescription}>
             AndrejGround Lab is available as an{' '}
-            <Link to="docs/getting-started/installation">NPM package</Link>. Set
+            <Link to="lab/getting-started/installation">NPM package</Link>. Set
             it up in these two steps:
           </p>
 

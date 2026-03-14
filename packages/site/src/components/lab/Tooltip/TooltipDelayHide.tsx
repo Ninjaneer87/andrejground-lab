@@ -1,17 +1,17 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import SiteTooltip from '@site/src/components/lab/SiteTooltip/SiteTooltip';
+import SiteTooltip from '@site/src/components/site-lab/SiteTooltip/SiteTooltip';
 import React from 'react';
 
 const DELAYS = [0, 300, 500, 1000];
 
-function TooltipDelayShowContent() {
+function TooltipDelayHideContent() {
   return (
     <div className="flex-wrap">
       {DELAYS.map((delay) => (
         <SiteTooltip
           key={delay}
           content={`Delay: ${delay}ms`}
-          delayShow={delay}
+          delayHide={delay}
         >
           <button className="button button--secondary button--outline">
             {delay}ms delay
@@ -22,11 +22,11 @@ function TooltipDelayShowContent() {
   );
 }
 
-function TooltipDelayShow() {
+function TooltipDelayHide() {
   return (
-    <BrowserOnly fallback={<TooltipDelayShowContent />}>
-      {() => <TooltipDelayShowContent />}
+    <BrowserOnly fallback={<TooltipDelayHideContent />}>
+      {() => <TooltipDelayHideContent />}
     </BrowserOnly>
   );
 }
-export default TooltipDelayShow;
+export default TooltipDelayHide;

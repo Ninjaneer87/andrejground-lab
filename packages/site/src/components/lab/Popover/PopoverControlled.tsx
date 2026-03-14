@@ -1,5 +1,5 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import SitePopover from '@site/src/components/lab/SitePopover/SitePopover';
+import SitePopover from '@site/src/components/site-lab/SitePopover/SitePopover';
 import React from 'react';
 
 function PopoverControlledContent() {

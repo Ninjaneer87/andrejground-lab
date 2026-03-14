@@ -49,6 +49,8 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: 'lab',
+          routeBasePath: 'lab',
           sidebarPath: './sidebars.ts',
           sidebarCollapsed: false,
           // sidebarCollapsible: false,
@@ -106,8 +108,8 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Docs',
-          href: '/docs/getting-started/introduction',
+          label: 'Lab',
+          href: '/lab/getting-started/introduction',
         },
         { to: '/blog', label: 'Blog', position: 'left' as const },
         {
@@ -121,19 +123,19 @@ const config: Config = {
       // style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Lab',
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/getting-started/introduction',
+              to: '/lab/getting-started/introduction',
             },
             {
               label: 'Components',
-              to: '/docs/category/components',
+              to: '/lab/category/components',
             },
             {
               label: 'Hooks',
-              to: '/docs/category/hooks',
+              to: '/lab/category/hooks',
             },
           ],
         },

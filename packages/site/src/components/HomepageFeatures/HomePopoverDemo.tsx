@@ -1,7 +1,7 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import SitePopover from '@site/src/components/lab/SitePopover/SitePopover';
+import SitePopover from '@site/src/components/site-lab/SitePopover/SitePopover';
 import styles from './HomePopoverDemo.module.scss';
-import SiteTooltip from '@site/src/components/lab/SiteTooltip/SiteTooltip';
+import SiteTooltip from '@site/src/components/site-lab/SiteTooltip/SiteTooltip';
 
 function HomePopoverDemo() {
   return (

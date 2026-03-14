@@ -1,5 +1,5 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import SiteTooltip from '@site/src/components/lab/SiteTooltip/SiteTooltip';
+import SiteTooltip from '@site/src/components/site-lab/SiteTooltip/SiteTooltip';
 import React, { useState } from 'react';
 
 function TooltipControlledContent() {

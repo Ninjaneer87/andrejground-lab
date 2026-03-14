@@ -44,7 +44,7 @@ function HomepageHeader() {
             <div className={styles.buttons}>
               <Link
                 className="button button--primary button--lg"
-                to="/docs/getting-started/introduction"
+                to="/lab/getting-started/introduction"
               >
                 Get started <Icon path={mdiArrowRightThin} size={1} />
               </Link>

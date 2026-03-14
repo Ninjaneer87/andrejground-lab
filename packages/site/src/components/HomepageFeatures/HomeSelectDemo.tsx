@@ -1,6 +1,6 @@
 import { debounceCallback, OptionItem } from '@andrejground/lab';
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import SiteSelect from '@site/src/components/lab/SiteSelect/SiteSelect';
+import SiteSelect from '@site/src/components/site-lab/SiteSelect/SiteSelect';
 import { usePokemonList } from '@site/src/hooks/usePokemonList';
 
 const SELECT_ITEMS: { section: string; items: OptionItem[] }[] = [

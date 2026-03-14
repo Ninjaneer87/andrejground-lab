@@ -1,6 +1,6 @@
 import { Backdrop } from '@andrejground/lab';
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import SitePopover from '@site/src/components/lab/SitePopover/SitePopover';
+import SitePopover from '@site/src/components/site-lab/SitePopover/SitePopover';
 import React from 'react';
 
 const BACKDROPS: Backdrop[] = ['none', 'transparent', 'opaque', 'blur'];
