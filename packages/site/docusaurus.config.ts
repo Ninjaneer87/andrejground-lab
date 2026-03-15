@@ -29,8 +29,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'andrejground', // Usually your repo name.
+  organizationName: 'Ninjaneer87', // Usually your GitHub org/user name.
+  projectName: 'andrejground-lab', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -85,8 +85,19 @@ const config: Config = {
         hideable: true,
       },
     },
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/AG-meta.webp',
+    metadata: [
+      { name: 'description', content: 'Lightweight, accessible React toolkit for any design system' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:title', content: 'AndrejGround' },
+      { property: 'og:description', content: 'Lightweight, accessible React toolkit for any design system' },
+      { property: 'og:url', content: 'https://andrejground.com' },
+      { property: 'og:site_name', content: 'AndrejGround' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'AndrejGround' },
+      { name: 'twitter:description', content: 'Lightweight, accessible React toolkit for any design system' },
+      { name: 'twitter:creator', content: '@andrejground' },
+    ],
     colorMode: {
       defaultMode: 'dark',
       respectPrefersColorScheme: true,
