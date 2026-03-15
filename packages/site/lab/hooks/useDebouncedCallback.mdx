@@ -1,0 +1,60 @@
+# useDebouncedCallback
+
+Debounces a callback function. The callback will only execute after the specified delay has passed since the last invocation. Also exposes a `progress` and `isInProgress` state for building progress indicators (e.g. search loading bars).
+
+## Import
+
+```tsx
+import { useDebouncedCallback } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useDebouncedCallback } from '@andrejground/lab';
+
+export default function App() {
+  const [query, setQuery] = React.useState('');
+
+  const { callback: debouncedSearch, isInProgress } = useDebouncedCallback(
+    (value: string) => {
+      console.log('Searching for:', value);
+    },
+    500,
+  );
+
+  return (
+    <div>
+      <input
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          debouncedSearch(e.target.value);
+        }}
+        placeholder="Type to search..."
+      />
+      {isInProgress && <span>Searching...</span>}
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+const { callback, progress, isInProgress } = useDebouncedCallback(fn, delay);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `fn` | `(...args) => any` | The callback to debounce |
+| `delay` | `number` | Delay in milliseconds |
+
+### Returns
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `callback` | `(...args) => void` | The debounced version of `fn` |
+| `progress` | `number` | `0` or `100` - useful for progress bar animations |
+| `isInProgress` | `boolean` | `true` while waiting for the debounce to fire |

@@ -1,0 +1,58 @@
+# useFocusTrap
+
+Traps keyboard focus within a container element by cycling Tab navigation between the first and last focusable items. Optionally auto-focuses the first element when activated. Used internally by the `Popover` component.
+
+## Import
+
+```tsx
+import { useFocusTrap } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useFocusTrap } from '@andrejground/lab';
+
+export default function App() {
+  const [isActive, setIsActive] = React.useState(false);
+  const { focusContainerRef, firstFocusableItemRef, lastFocusableItemRef } =
+    useFocusTrap(isActive);
+
+  return (
+    <div>
+      <button onClick={() => setIsActive(true)}>Open dialog</button>
+
+      {isActive && (
+        <div ref={focusContainerRef}>
+          <input ref={firstFocusableItemRef} placeholder="First field" />
+          <input placeholder="Middle field" />
+          <button ref={lastFocusableItemRef} onClick={() => setIsActive(false)}>
+            Close
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+const { focusContainerRef, firstFocusableItemRef, lastFocusableItemRef } =
+  useFocusTrap(isActive, shouldAutoFocus);
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `isActive` | `boolean` | - | Whether the focus trap is active |
+| `shouldAutoFocus` | `boolean` | `true` | Auto-focus the first focusable element on activation |
+
+### Returns
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `focusContainerRef` | `RefObject<HTMLDivElement>` | Ref for the trap container |
+| `firstFocusableItemRef` | `RefObject<HTMLDivElement>` | Ref for the first focusable element |
+| `lastFocusableItemRef` | `RefObject<HTMLDivElement>` | Ref for the last focusable element |

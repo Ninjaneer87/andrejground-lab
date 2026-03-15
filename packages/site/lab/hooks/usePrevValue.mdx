@@ -1,1 +1,45 @@
 # usePrevValue
+
+Tracks the previous value of a state or prop. Returns `undefined` on the first render, then the value from the previous render cycle. Used internally by the `Popover` component.
+
+## Import
+
+```tsx
+import { usePrevValue } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { usePrevValue } from '@andrejground/lab';
+
+export default function App() {
+  const [count, setCount] = React.useState(0);
+  const prevCount = usePrevValue(count);
+
+  return (
+    <div>
+      <button onClick={() => setCount((c) => c + 1)}>Increment</button>
+      <p>Current: {count}</p>
+      <p>Previous: {prevCount ?? 'N/A'}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+const previousValue = usePrevValue(value);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `T` | The value to track |
+
+### Returns
+
+| Type | Description |
+|------|-------------|
+| `T \| undefined` | The value from the previous render, or `undefined` on the first render |

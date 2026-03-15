@@ -1,0 +1,36 @@
+# useWindowResize
+
+Runs a callback whenever the browser window is resized. The callback ref is kept stable so the event listener is only attached once. Used internally by the `Popover` component for repositioning.
+
+## Import
+
+```tsx
+import { useWindowResize } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useWindowResize } from '@andrejground/lab';
+
+export default function App() {
+  const [width, setWidth] = React.useState(window.innerWidth);
+
+  useWindowResize(() => {
+    setWidth(window.innerWidth);
+  });
+
+  return <p>Window width: {width}px</p>;
+}
+```
+
+## API
+
+```tsx
+useWindowResize(callback);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `callback` | `(e?: UIEvent) => void` | Called on every `resize` event |

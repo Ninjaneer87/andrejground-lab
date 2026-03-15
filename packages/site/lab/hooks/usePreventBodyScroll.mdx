@@ -1,0 +1,47 @@
+# usePreventBodyScroll
+
+Prevents the document body from scrolling while active by setting `overflow-y: hidden`. Restores the original overflow value on cleanup. Used internally by the `Popover` component for modal-like overlays.
+
+## Import
+
+```tsx
+import { usePreventBodyScroll } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { usePreventBodyScroll } from '@andrejground/lab';
+
+export default function App() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  usePreventBodyScroll(isModalOpen);
+
+  return (
+    <div>
+      <button onClick={() => setIsModalOpen(true)}>Open modal</button>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Body scroll is disabled while this modal is open.</p>
+            <button onClick={() => setIsModalOpen(false)}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+usePreventBodyScroll(shouldPrevent);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `shouldPrevent` | `boolean` | Whether to prevent body scrolling |

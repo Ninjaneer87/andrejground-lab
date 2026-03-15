@@ -1,0 +1,63 @@
+# useMutationObserver
+
+Observes DOM mutations (child additions/removals) within a container using `MutationObserver`. The callback fires whenever the subtree changes. 
+
+Used internally by the keyboard navigation system to recalculate focusable items when DOM changes (e.g., when items are added or removed from a list).
+
+## Import
+
+```tsx
+import { useMutationObserver } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useMutationObserver } from '@andrejground/lab';
+
+export default function App() {
+  const [count, setCount] = React.useState(0);
+  const [items, setItems] = React.useState(['Item 1']);
+
+  const { mutationContainerRef } = useMutationObserver<HTMLUListElement>({
+    isActive: true,
+    onMutation: (mutations) => {
+      setCount((c) => c + 1);
+      console.log('DOM changed:', mutations);
+    },
+  });
+
+  return (
+    <div>
+      <button onClick={() => setItems((prev) => [...prev, `Item ${prev.length + 1}`])}>
+        Add item
+      </button>
+      <p>Mutations detected: {count}</p>
+
+      <ul ref={mutationContainerRef}>
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+const { mutationContainerRef } = useMutationObserver({ onMutation, isActive });
+```
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `onMutation` | `(list?: MutationRecord[]) => void` | - | Callback fired on DOM mutations |
+| `isActive` | `boolean` | - | Whether the observer is active |
+
+### Returns
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `mutationContainerRef` | `RefObject<T>` | Ref to attach to the observed container |

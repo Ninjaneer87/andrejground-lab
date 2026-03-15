@@ -1,0 +1,57 @@
+# useDelayUnmount
+
+Delays the unmounting of a component by a specified duration, allowing exit animations to complete before the element is removed from the DOM. Used internally by the `Popover` component.
+
+## Import
+
+```tsx
+import { useDelayUnmount } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useDelayUnmount } from '@andrejground/lab';
+
+export default function App() {
+  const [isMounted, setIsMounted] = React.useState(false);
+  const shouldRender = useDelayUnmount(isMounted, 300);
+
+  return (
+    <div>
+      <button onClick={() => setIsMounted((v) => !v)}>
+        {isMounted ? 'Hide' : 'Show'}
+      </button>
+
+      {shouldRender && (
+        <div
+          style={{
+            opacity: isMounted ? 1 : 0,
+            transition: 'opacity 300ms',
+          }}
+        >
+          Animated content
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+const shouldRender = useDelayUnmount(isMounted, delayTime);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `isMounted` | `boolean` | Whether the component should be mounted |
+| `delayTime` | `number` | Time in ms to wait before unmounting |
+
+### Returns
+
+| Type | Description |
+|------|-------------|
+| `boolean` | `true` while the component should remain in the DOM (including during the exit delay) |

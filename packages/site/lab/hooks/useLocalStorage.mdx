@@ -1,0 +1,68 @@
+# useLocalStorage
+
+A `useState`-like hook that persists state to `localStorage`. The value is automatically serialized/deserialized as JSON. Falls back to the initial value if the storage key is missing or parsing fails.
+
+## Import
+
+```tsx
+import { useLocalStorage } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import { useLocalStorage } from '@andrejground/lab';
+
+export default function App() {
+  const [theme, setTheme] = useLocalStorage('app-theme', 'light');
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle theme
+      </button>
+    </div>
+  );
+}
+```
+
+### Functional updates
+
+The setter supports functional updates just like `useState`:
+
+```tsx
+const [count, setCount] = useLocalStorage('counter', 0);
+
+setCount((prev) => prev + 1);
+```
+
+### Reading the latest value
+
+The third returned value is a `getValue` getter that reads directly from `localStorage`, useful when you need the freshest value outside of React's render cycle:
+
+```tsx
+const [value, setValue, getValue] = useLocalStorage('key', 'default');
+
+// getValue() reads directly from localStorage
+console.log(getValue());
+```
+
+## API
+
+```tsx
+const [value, setValue, getValue] = useLocalStorage(key, initialValue);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `key` | `string` | The localStorage key |
+| `initialValue` | `T` | Fallback value if the key does not exist |
+
+### Returns
+
+| Index | Type | Description |
+|-------|------|-------------|
+| `[0]` | `T` | The current stored value |
+| `[1]` | `(value: T \| (prev: T) => T) => void` | Setter (supports functional updates) |
+| `[2]` | `() => T` | Getter that reads directly from localStorage |

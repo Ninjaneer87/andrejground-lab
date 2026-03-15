@@ -1,0 +1,48 @@
+# useResizeObserver
+
+Observes an element's size changes using the `ResizeObserver` API. The callback fires whenever the observed element's dimensions change. Used internally by the `Popover` component for dynamic repositioning.
+
+## Import
+
+```tsx
+import { useResizeObserver } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useResizeObserver } from '@andrejground/lab';
+
+export default function App() {
+  const [el, setEl] = React.useState<HTMLDivElement | null>(null);
+  const [size, setSize] = React.useState({ width: 0, height: 0 });
+
+  useResizeObserver({
+    element: el,
+    onResize: (entries) => {
+      if (!entries?.[0]) return;
+      const { width, height } = entries[0].contentRect;
+      setSize({ width: Math.round(width), height: Math.round(height) });
+    },
+  });
+
+  return (
+    <div ref={setEl} style={{ resize: 'both', overflow: 'auto', padding: 16, border: '1px solid gray' }}>
+      <p>Resize me!</p>
+      <p>{size.width} x {size.height}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+useResizeObserver({ element, onResize });
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `element` | `Element \| null` | The element to observe |
+| `onResize` | `(entries?: ResizeObserverEntry[]) => void` | Callback fired on resize |

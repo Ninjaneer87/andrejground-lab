@@ -1,0 +1,52 @@
+# useDebouncedValue
+
+Debounces a reactive value. The returned value only updates after the specified delay has passed since the last change. Also exposes `progress` and `isInProgress` for building loading indicators.
+
+## Import
+
+```tsx
+import { useDebouncedValue } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { useDebouncedValue } from '@andrejground/lab';
+
+export default function App() {
+  const [query, setQuery] = React.useState('');
+  const { value: debouncedQuery, isInProgress } = useDebouncedValue(query, 500);
+
+  return (
+    <div>
+      <input
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Type to search..."
+      />
+      {isInProgress && <span>Waiting...</span>}
+      <p>Debounced value: {debouncedQuery}</p>
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+const { value, progress, isInProgress } = useDebouncedValue(value, delay);
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `T` | The value to debounce |
+| `delay` | `number` | Delay in milliseconds |
+
+### Returns
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `value` | `T` | The debounced value |
+| `progress` | `number` | `0` or `100` - useful for progress bar animations |
+| `isInProgress` | `boolean` | `true` while waiting for the value to settle |

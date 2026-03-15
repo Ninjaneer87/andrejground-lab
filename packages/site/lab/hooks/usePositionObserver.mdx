@@ -1,0 +1,52 @@
+# usePositionObserver
+
+Continuously monitors an element's viewport position (`top`/`left`) using `requestAnimationFrame` and fires a callback when the position changes. Useful for detecting movement caused by DOM changes outside of the element's subtree. 
+
+Used internally by the `Popover` component to reposition expandable content when the trigger element moves or resizes (e.g., when `Select` trigger contains selected items that can shift its position).
+
+## Import
+
+```tsx
+import { usePositionObserver } from '@andrejground/lab';
+```
+
+## Usage
+
+```tsx
+import React from 'react';
+import { usePositionObserver } from '@andrejground/lab';
+
+export default function App() {
+  const [el, setEl] = React.useState<HTMLDivElement | null>(null);
+  const [moved, setMoved] = React.useState(0);
+
+  usePositionObserver({
+    element: el,
+    isActive: true,
+    callback: () => {
+      setMoved((c) => c + 1);
+    },
+  });
+
+  return (
+    <div>
+      <p>Position changes detected: {moved}</p>
+      <div ref={setEl} style={{ padding: 16, border: '1px solid gray' }}>
+        Observed element
+      </div>
+    </div>
+  );
+}
+```
+
+## API
+
+```tsx
+usePositionObserver({ element, callback, isActive });
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `element` | `HTMLElement \| null` | The element to observe |
+| `callback` | `() => void` | Called when the element's position changes |
+| `isActive` | `boolean` | Whether the observer is running |
