@@ -1,1 +1,136 @@
+import DropdownUsage from '@site/src/components/lab/Dropdown/DropdownUsage';
+import DropdownSections from '@site/src/components/lab/Dropdown/DropdownSections';
+import DropdownControlled from '@site/src/components/lab/Dropdown/DropdownControlled';
+import DropdownNested from '@site/src/components/lab/Dropdown/DropdownNested';
+import DropdownDisabledItems from '@site/src/components/lab/Dropdown/DropdownDisabledItems';
+import DropdownPolymorphic from '@site/src/components/lab/Dropdown/DropdownPolymorphic';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import Link from '@docusaurus/Link';
+import {
+  dropdownUsageTsx,
+  dropdownSectionsTsx,
+  dropdownControlledTsx,
+  dropdownNestedTsx,
+  dropdownDisabledItemsTsx,
+  dropdownPolymorphicTsx,
+} from '@site/lab/components/_snippets/dropdown';
+
 # Dropdown
+
+A Dropdown is an interactive overlay menu anchored to a trigger element. It is built on top of the <Link to='/lab/components/popover'>Popover</Link> component and is designed for action menus, navigation lists, and nested submenus.
+
+## Key Characteristics
+
+- **Composable**: Build menus declaratively using `Dropdown.Menu`, `Dropdown.Section`, `Dropdown.Item`, `Dropdown.Divider`, `Dropdown.Header`, and `Dropdown.Footer`.
+- **Nestable**: Create nested submenus with `isNested` - opens on hover with a caret indicator.
+- **Polymorphic Items**: Render items as any element (`div`, `a`, `Link`, etc.) using the `as` prop.
+- **Accessible**: Full keyboard navigation, focus management, and proper ARIA attributes built in.
+
+## Import
+
+There are 7 dropdown-related components:
+
+- `Dropdown`: The main dropdown component.
+- `DropdownTrigger`: The element that toggles the dropdown.
+- `DropdownMenu`: The container for dropdown content.
+- `DropdownItem`: A clickable menu item.
+- `DropdownSection`: A group of items with an optional title.
+- `DropdownDivider`: A visual separator between sections.
+- `DropdownHeader` / `DropdownFooter`: Non-clickable top/bottom slots.
+
+```tsx
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  DropdownSection,
+  DropdownDivider,
+} from '@andrejground/lab';
+```
+
+Compound pattern is also supported:
+
+- `Dropdown.Trigger`
+- `Dropdown.Menu`
+- `Dropdown.Item`
+- `Dropdown.Section`
+- `Dropdown.Divider`
+- `Dropdown.Header`
+- `Dropdown.Footer`
+
+## Usage
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <DropdownUsage />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{dropdownUsageTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Sections
+
+Use `Dropdown.Section` to group items with titles, and `Dropdown.Divider` to visually separate groups.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <DropdownSections />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{dropdownSectionsTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Nested
+
+Use `isNested` to create submenus. Nested dropdowns open on hover and display a caret indicator automatically.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <DropdownNested />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{dropdownNestedTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Disabled Items
+
+Use the `disabled` prop on `Dropdown.Item` to prevent interaction.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <DropdownDisabledItems />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{dropdownDisabledItemsTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Polymorphic Items
+
+Use the `as` prop to render items as different elements - links, anchors, or any other component.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <DropdownPolymorphic />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{dropdownPolymorphicTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <DropdownControlled />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{dropdownControlledTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
