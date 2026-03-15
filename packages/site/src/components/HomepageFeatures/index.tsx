@@ -42,7 +42,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Constelation of all sorts of react hooks. Have your reusable pieces of
-        logic ready to use across any of your projects.{' '}
+        logic ready to use across any of your projects.
       </>
     ),
   },

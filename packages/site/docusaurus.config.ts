@@ -100,11 +100,10 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          type: 'doc',
+          docId: 'getting-started/introduction',
           position: 'left',
           label: 'Lab',
-          href: '/lab/getting-started/introduction',
         },
         { to: '/blog', label: 'Blog', position: 'left' as const },
         {

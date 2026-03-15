@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Components"
+    "description": "Bring the components into your own design system. Customize each slot of each component to fit your needs."
   }
 }
