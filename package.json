@@ -5,7 +5,6 @@
     "packages/*"
   ],
   "scripts": {
-    "app": "npm run dev --workspace=app",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel --color | grep --line-buffered '\\S'",
     "build:lab": "npm run build --workspace=@andrejground/lab",
