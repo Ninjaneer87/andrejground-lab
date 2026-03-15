@@ -2,8 +2,6 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const isProd = process.env.NODE_ENV === 'production';
-
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -58,9 +56,6 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           // editUrl:
           //   'https://github.com/Ninjaneer87/andrejground-lab/tree/main/packages/create-docusaurus/templates/shared/',
-          exclude: isProd
-            ? ['**/tutorial-basics/**', '**/tutorial-extras/**']
-            : [],
         },
         blog: {
           showReadingTime: true,
