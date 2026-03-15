@@ -1,0 +1,20 @@
+.resizable {
+  padding: 1rem;
+  border: 1px dashed var(--ifm-color-primary-bg);
+
+  &Right {
+    border-right: 1px dashed var(--ifm-color-primary);
+  }
+
+  &Left {
+    border-left: 1px dashed var(--ifm-color-primary);
+    margin-left: auto;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 100%;
+}

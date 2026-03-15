@@ -1,1 +1,66 @@
+import ResizableUsage from '@site/src/components/lab/Resizable/ResizableUsage';
+import ResizableLeftSide from '@site/src/components/lab/Resizable/ResizableLeftSide';
+import ResizableOnResize from '@site/src/components/lab/Resizable/ResizableOnResize';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import {
+  resizableUsageTsx,
+  resizableLeftSideTsx,
+  resizableOnResizeTsx,
+} from '@site/lab/components/_snippets/resizable';
+
 # Resizable
+
+A Resizable component that allows users to resize an element's width by dragging a handle on either the left or right side. The width is persisted to local storage via the `name` prop.
+
+## Key Characteristics
+
+- **Drag to resize**: Resize by dragging a handle on the `left` or `right` side.
+- **Persisted width**: The resized width is saved to local storage using the `name` prop, so it survives page reloads.
+- **Configurable bounds**: Set `minWidth`, `maxWidth`, and `initialWidth` to constrain the resize range.
+- **Polymorphic**: Render as `div`, `aside`, `nav`, `section`, or other semantic HTML tags via the `as` prop.
+- **Callback**: Use the `onResize` callback to react to width changes in real time.
+
+## Import
+
+```tsx
+import { Resizable } from '@andrejground/lab';
+```
+
+## Usage
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <ResizableUsage />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{resizableUsageTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Left Side
+
+Set `resizableSide="left"` to place the drag handle on the left edge.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <ResizableLeftSide />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{resizableLeftSideTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## onResize Callback
+
+Use the `onResize` callback to track the current width in real time.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <ResizableOnResize />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{resizableOnResizeTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
