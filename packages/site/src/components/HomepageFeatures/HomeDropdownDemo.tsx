@@ -149,7 +149,7 @@ function HomeDropdownDemo() {
             <SiteDropdown.Section title="Help">
               <SiteDropdown.Item
                 as={Link}
-                to="/blog"
+                to="/lab/components/dropdown"
                 startContent={<Icon path={mdiHelpCircleOutline} size={1} />}
                 description="Read more about the Dropdown"
               >
