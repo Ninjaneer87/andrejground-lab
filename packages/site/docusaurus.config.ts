@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'AndrejGround',
-  tagline: 'Lightweight, accessible React toolkit for any design system',
+  tagline: 'Tips, tricks and how-to\'s on frontend development and beyond',
   favicon: 'img/favicon.ico',
   plugins: [
     // require.resolve('./src/plugins/watch-lab'),
@@ -59,6 +59,8 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          blogSidebarTitle: 'Latest',
+          // blogSidebarCount: 0,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -87,15 +89,24 @@ const config: Config = {
     },
     image: 'img/AG-meta.webp',
     metadata: [
-      { name: 'description', content: 'Lightweight, accessible React toolkit for any design system' },
+      {
+        name: 'description',
+        content: 'Tips, tricks and how-to\'s on frontend development and beyond',
+      },
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: 'AndrejGround' },
-      { property: 'og:description', content: 'Lightweight, accessible React toolkit for any design system' },
+      {
+        property: 'og:description',
+        content: 'Tips, tricks and how-to\'s on frontend development and beyond',
+      },
       { property: 'og:url', content: 'https://andrejground.com' },
       { property: 'og:site_name', content: 'AndrejGround' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'AndrejGround' },
-      { name: 'twitter:description', content: 'Lightweight, accessible React toolkit for any design system' },
+      {
+        name: 'twitter:description',
+        content: 'Tips, tricks and how-to\'s on frontend development and beyond',
+      },
       { name: 'twitter:creator', content: '@andrejground' },
     ],
     colorMode: {

@@ -85,9 +85,9 @@ export default function HomepageFeatures(): ReactNode {
       <div className="container">
         <section className={styles.featureSection}>
           <Heading as="h2" className={styles.featureSectionHeading}>
-            Take a{' '}
+            Look inside the{' '}
             <span className={styles['featureSectionHeading--primary']}>
-              look inside
+              lab
             </span>
           </Heading>
 
@@ -105,9 +105,9 @@ export default function HomepageFeatures(): ReactNode {
 
         <section className={styles.featureSection}>
           <Heading as="h2" className={styles.featureSectionHeading}>
-            Fresh from the{' '}
+            Meet some{' '}
             <span className={styles['featureSectionHeading--primary']}>
-              lab
+              components
             </span>
           </Heading>
 

@@ -6,8 +6,76 @@ tags: [andrejground]
 draft: false
 ---
 
-This is the story about AndrejGround evolution.
+The story about AndrejGround evolution.
 
 {/* truncate */}
 
 What started as a personal portfolio page, has now become a framework for sharing and documenting my work, thoughts and experiences.
+
+## AndrejGround v1
+
+6 years ago (in March 2020), after creating [one of my first pet projects](https://ninjaneer87.github.io/coinland/), I wanted to have a place where, first of all, I could proudly share the things I built and also provide a way for people to see my work.
+
+So I created the very first version of AndrejGround. It was just a simple HTML/CSS/JS with a custom webpack setup (that I'd just watched a tutorial about).
+
+I managed to make it look as flashy as possible, with all the bells and whistles that I was able to attach to it at the time. It felt so good to have my own corner of the internet.
+
+There it was - [AndrejGround](https://ninjaneer87.github.io/andrejground/)! It's still live (with a broken thing or two).
+
+:::warning
+The [repo](https://github.com/ninjaneer87/andrejground) is still there, though not maintained anymore due to dozens of security vulnerabilities in all those outdated dependencies. (Please do not attempt to run it locally 🙏)
+:::
+
+## AndrejGround v2
+
+A year later (in March 2021), after becoming more and more comfortable with React, I decided to go for a challenge and build a new version of AndrejGround with more features and a better structure. 
+
+I created it as a React single page application, only to realize that it was not the best approach for a portfolio website since it was invisible to search engines due to the way client-side rendering works.
+
+Next.js was just gaining in popularity, and since it was solving all the client-side rendering problems, it was the obvious choice for the immediate next iteration. 
+
+So [AndrejGround v2](https://andrejground.netlify.app/) came into existence! 
+
+:::note
+This link is showing the React SPA version, and there is no online-snapshot of the first Next.js version, because it evolved into AndrejGround v2 facelift along the way.
+:::
+
+(The projects from portfolio section were stored in MongoDB cloud database, and have been changed in the meantime, so this page is not working properly) 
+
+This is also when I decided to get a real domain `https://andrejground.com`.
+
+## AndrejGround v2 (facelift)
+
+A year later (in March 2022), with TypeScript becoming more and more popular, I decided to give AndrejGround v2 a facelift and migrate the codebase to TypeScript.
+
+Now I had the full-pack: home, about, portfolio, blog and contact pages.
+
+This is when I had a first scratch of an idea of having a playground for the things I'm building (UI page). The idea was to showcase my UI components and allow people to play with them. Those were some of my first steps into abstractions and component design.
+
+This version was a bit more minimalistic, with less bells and whistles, with an accent on clean and polished UI and UX, but content quality and quantity was still missing.
+
+Either way, [AndrejGround v2 (facelift)](https://andrejground-next.vercel.app/) was there!
+
+## AndrejGround v3 (blog)
+
+Fast forward two years (2024), all this portfolio/project focused content was nice, but it was giving away junior developer vibes. What I needed is a way of showing my technical writing skills and thought processes rather than just a flashy UI.
+
+Although I had a blog section in AndrejGround v2, it was not really built in a scalable and sustainable way. The content was HTML-based, with no way of easily adding new posts.
+
+This is where I discovered Astro.js and decided to give it a try. It seemed as a perfect fit for what I needed.
+
+I customised the hell out of the Astro's builtin blog features, adding my own styling, layout, and functionalities to enhance the blog experience. Some things like search/filtering, syntax highlighting, custom table of contents, likes/views count and social sharing were added on top of the basic blog features.
+
+Even with all these features in place, the content was still lacking, and there was no consistency in the way I was writing and publishing articles. This is still something to be worked on. (The content was nearly useless to be honest.)
+
+Either way, now I had a working [AndrejGround blog](https://blog.andrejground.com/), and yet I was still not managing to come up with consistent content. In the meantime, I was trying to fit in a concept of **lab**, where I could showcase my experiments and abstractions, but Astro.js was not the best fit for that.
+
+## AndrejGround v4 (lab + blog)
+
+Fast forward to late 2025, early 2026, I realised that I needed a way of having docs-like page, with all the details and examples of the experiments I was doing. This was possible with Astro's MDX support, but it required a lot of manual work to create and maintain the pages.
+
+The perfect fit for this next step was `Docusaurus`. It has built-in support for MDX, and a lot of features out of the box, like search, docs, blog, and a very convenient way of organizing content.
+
+I added some of my own UI/UX magic to give it a unique look and feel, and now everything is set up for the content in a scalable and practical way.
+
+This is the first blog post published on this new platform, let's see how it goes and what lies ahead!

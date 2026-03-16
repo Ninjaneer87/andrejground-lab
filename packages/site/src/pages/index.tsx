@@ -46,7 +46,7 @@ function HomepageHeader() {
                 className="button button--primary button--lg"
                 to="/lab/getting-started/introduction"
               >
-                Get started <Icon path={mdiArrowRightThin} size={1} />
+                Go to Lab <Icon path={mdiArrowRightThin} size={1} />
               </Link>
               <Link className="button button--secondary button--lg" to="/blog">
                 What's new <Icon path={mdiArrowRightThin} size={1} />
