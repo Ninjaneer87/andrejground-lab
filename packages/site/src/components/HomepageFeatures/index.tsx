@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.scss';
+import FeatureSection from '@site/src/components/FeatureSection';
 import ByosComponentsSvg from '@site/src/components/HomepageFeatures/ByosComponentsSvg';
 import UseAnythingSvg from '@site/src/components/HomepageFeatures/UseAnythingSvg';
 import BlogSvg from '@site/src/components/HomepageFeatures/BlogSvg';
@@ -11,7 +12,7 @@ import HomeSelectDemo from '@site/src/components/HomepageFeatures/HomeSelectDemo
 import HomeDropdownDemo from '@site/src/components/HomepageFeatures/HomeDropdownDemo';
 import HomePopoverDemo from '@site/src/components/HomepageFeatures/HomePopoverDemo';
 import HomeResizableDemo from '@site/src/components/HomepageFeatures/HomeResizableDemo';
-import WaveSvg from '@site/src/components/HomepageFeatures/WaveSvg';
+import WaveSvg from '@site/src/components/shared/WaveSvg';
 import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -83,38 +84,23 @@ export default function HomepageFeatures(): ReactNode {
       <WaveSvg />
 
       <div className="container">
-        <section className={styles.featureSection}>
-          <Heading as="h2" className={styles.featureSectionHeading}>
-            Look inside the{' '}
-            <span className={styles['featureSectionHeading--primary']}>
-              lab
-            </span>
-          </Heading>
-
-          <p className={styles.featureSectionDescription}>
-            Explore the hooks, components, utilities, tips and tricks you need
-            or didn't know you need.
-          </p>
-
+        <FeatureSection
+          title="Look"
+          accent="inside"
+          description="Explore the hooks, components, utilities, tips and tricks you need or didn't know you need."
+        >
           <div className={styles.featuresRow}>
             {FeatureList.map((props, idx) => (
               <Feature key={idx} {...props} />
             ))}
           </div>
-        </section>
+        </FeatureSection>
 
-        <section className={styles.featureSection}>
-          <Heading as="h2" className={styles.featureSectionHeading}>
-            Meet some{' '}
-            <span className={styles['featureSectionHeading--primary']}>
-              components
-            </span>
-          </Heading>
-
-          <p className={styles.featureSectionDescription}>
-            See some of the latest experiments and ideas in action.
-          </p>
-
+        <FeatureSection
+          title="Fresh from"
+          accent="the lab"
+          description="See some of the latest experiments and ideas in action."
+        >
           <div className="row">
             <div className="col col--6 padding--md">
               <Heading as={'h3'}>
@@ -174,23 +160,19 @@ export default function HomepageFeatures(): ReactNode {
               </div>
             </div>
           </div>
-        </section>
+        </FeatureSection>
 
-        <section className={styles.featureSection}>
-          <Heading as="h2" className={styles.featureSectionHeading}>
-            Use the lab in{' '}
-            <span className={styles['featureSectionHeading--primary']}>
-              your project
-            </span>{' '}
-            now
-          </Heading>
-
-          <p className={styles.featureSectionDescription}>
-            AndrejGround Lab is available as an{' '}
-            <Link to="lab/getting-started/installation">NPM package</Link>. Set
-            it up in these two steps:
-          </p>
-
+        <FeatureSection
+          title="Use the lab in"
+          accent="your project"
+          description={
+            <>
+              AndrejGround Lab is available as an{' '}
+              <Link to="lab/getting-started/installation">NPM package</Link>. Set
+              it up in these two steps:
+            </>
+          }
+        >
           <div className="row">
             <div className="col col--6 padding--md">
               <Heading as="h3">1. Install the package</Heading>
@@ -226,7 +208,7 @@ import '@andrejground/lab/style.css';`}
             </div>
           </div>
           <p>Happy coding! 🫡</p>
-        </section>
+        </FeatureSection>
       </div>
     </section>
   );

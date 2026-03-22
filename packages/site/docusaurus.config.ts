@@ -143,6 +143,7 @@ const config: Config = {
           ],
         },
         { to: '/blog', label: 'Blog', position: 'left' as const },
+        { to: '/about', label: 'About', position: 'left' as const },
         {
           type: 'html',
           position: 'right',
@@ -168,6 +169,10 @@ const config: Config = {
             {
               label: 'Blog',
               to: '/blog',
+            },
+            {
+              label: 'About',
+              to: '/about',
             },
             {
               html: '<hr style="margin: 8px 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-300);">',
@@ -218,6 +223,13 @@ const config: Config = {
         {
           title: 'Andrej',
           items: [
+            {
+              label: 'About',
+              to: '/about',
+            },
+            {
+              html: '<hr style="margin: 8px 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-300);">',
+            },
             {
               label: 'contact@andrejground.com',
               href: 'mailto:contact@andrejground.com',

@@ -1,0 +1,114 @@
+.timeline {
+  --timeline-dot-size: 32px;
+  --timeline-line-width: 1px;
+  --timeline-dot-border-width: 1px;
+  --timeline-gap: 0px;
+  --timeline-pulse-color: currentColor;
+  --timeline-pulse-size: 16px;
+  --timeline-inactive-opacity: 0.5;
+  --timeline-dot-align-height: 1.5em;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--timeline-gap);
+}
+
+.timeline[data-variant='simple'] {
+  --timeline-dot-size: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+.dotColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--timeline-dot-size);
+}
+
+.dotAlignWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--timeline-dot-align-height);
+}
+
+.dot {
+  width: var(--timeline-dot-size);
+  height: var(--timeline-dot-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.dotDefault {
+  border: calc(var(--timeline-dot-size) * 0.1) solid currentColor;
+  background: transparent;
+}
+
+.dotDashed {
+  border-style: dashed;
+}
+
+.dotDefaultInner {
+  width: calc(var(--timeline-dot-size) * 0.3);
+  height: calc(var(--timeline-dot-size) * 0.3);
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.dotSimple {
+  background: currentColor;
+}
+
+.line {
+  flex: 1;
+  width: var(--timeline-line-width);
+  background: currentColor;
+  min-height: 16px;
+}
+
+.lineDashed {
+  background: repeating-linear-gradient(
+    to bottom,
+    currentColor 0,
+    currentColor 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.inactive {
+  opacity: var(--timeline-inactive-opacity);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.pulse {
+  animation: timelinePulse 2s ease-out infinite;
+}
+
+@keyframes timelinePulse {
+  0%{
+    box-shadow: 0 0 0 0 var(--timeline-pulse-color);
+  }
+
+  50% {
+    box-shadow: 0 0 0 var(--timeline-pulse-size) transparent;
+  }
+}

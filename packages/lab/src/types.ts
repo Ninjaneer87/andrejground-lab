@@ -556,3 +556,53 @@ export type TooltipProps = {
   | 'openOnFocus'
   | 'size'
 >;
+
+// !Timeline types
+export type TimelineVariant = 'default' | 'simple';
+
+export type TimelineItemClassNames = {
+  item?: string;
+  dotColumn?: string;
+  dotAlignWrapper?: string;
+  dot?: string;
+  dotDefaultInner?: string;
+  line?: string;
+  content?: string;
+};
+
+export type TimelineItem = {
+  name: string;
+  content: React.ReactNode;
+  isActive?: boolean;
+  dotContent?: React.ReactNode;
+  classNames?: TimelineItemClassNames;
+};
+
+export type TimelineClassNames = {
+  base?: string;
+  item?: string;
+  dotColumn?: string;
+  dotAlignWrapper?: string;
+  dot?: string;
+  dotDefaultInner?: string;
+  line?: string;
+  content?: string;
+};
+
+export type RenderDotContext = {
+  item: TimelineItem;
+  index: number;
+  isActive: boolean;
+  isPast: boolean;
+  isFuture: boolean;
+};
+
+export type TimelineProps = {
+  items: TimelineItem[];
+  variant?: TimelineVariant;
+  showPulseOnActiveStep?: boolean;
+  activeDotContent?: React.ReactNode;
+  dotContent?: React.ReactNode;
+  renderDot?: (ctx: RenderDotContext) => React.ReactNode;
+  classNames?: TimelineClassNames;
+};

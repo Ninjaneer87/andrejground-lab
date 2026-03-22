@@ -1,0 +1,25 @@
+.section {
+  padding: 4rem 0;
+  min-height: 70vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heading {
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  max-width: clamp(400px, 50vw, 800px);
+  margin-bottom: 2rem;
+}
+
+.headingAccent {
+  color: var(--ifm-color-primary);
+}
+
+.description {
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  max-width: clamp(400px, 50vw, 800px);
+  margin-bottom: 2rem;
+}

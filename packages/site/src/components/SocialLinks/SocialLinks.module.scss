@@ -1,0 +1,40 @@
+.wrapper {
+  margin-top: 1rem;
+}
+
+.heading {
+  // font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: inherit;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: var(--ifm-color-primary);
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+}
