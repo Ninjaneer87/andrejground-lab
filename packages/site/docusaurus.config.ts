@@ -159,6 +159,26 @@ const config: Config = {
       // style: 'dark',
       links: [
         {
+          title: 'AndrejGround',
+          items: [
+            {
+              label: 'Lab',
+              to: '/lab/getting-started/introduction',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
+            {
+              html: '<hr style="margin: 8px 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-300);">',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/Ninjaneer87/andrejground-lab',
+            },
+          ],
+        },
+        {
           title: 'Lab',
           items: [
             {
@@ -173,11 +193,35 @@ const config: Config = {
               label: 'Hooks',
               to: '/lab/category/hooks',
             },
+            {
+              html: '<hr style="margin: 8px 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-300);">',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/Ninjaneer87/andrejground-lab/tree/main/packages/lab',
+            },
+            {
+              label: 'npm',
+              href: 'https://www.npmjs.com/package/@andrejground/lab',
+            },
+          ],
+        },
+        {
+          title: 'Blog',
+          items: [
+            {
+              label: 'Welcome to AndrejGround',
+              to: '/blog/welcome-to-andrejground',
+            },
           ],
         },
         {
           title: 'Andrej',
           items: [
+            {
+              label: 'contact@andrejground.com',
+              href: 'mailto:contact@andrejground.com',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/Ninjaneer87',
@@ -187,21 +231,12 @@ const config: Config = {
               href: 'https://www.linkedin.com/in/andrejforgac87/',
             },
             {
+              label: 'StackBlitz',
+              href: 'https://stackblitz.com/@Ninjaneer87',
+            },
+            {
               label: 'X',
               href: 'https://x.com/andrejground',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'Lab GitHub',
-              href: 'https://github.com/Ninjaneer87/andrejground-lab',
             },
           ],
         },
