@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'AndrejGround',
-  tagline: 'Tips, tricks and how-to\'s on frontend development and beyond',
+  tagline: "Tips, tricks and how-to's on frontend development and beyond",
   favicon: 'img/favicon.ico',
   plugins: [
     // require.resolve('./src/plugins/watch-lab'),
@@ -91,13 +91,13 @@ const config: Config = {
     metadata: [
       {
         name: 'description',
-        content: 'Tips, tricks and how-to\'s on frontend development and beyond',
+        content: "Tips, tricks and how-to's on frontend development and beyond",
       },
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: 'AndrejGround' },
       {
         property: 'og:description',
-        content: 'Tips, tricks and how-to\'s on frontend development and beyond',
+        content: "Tips, tricks and how-to's on frontend development and beyond",
       },
       { property: 'og:url', content: 'https://andrejground.com' },
       { property: 'og:site_name', content: 'AndrejGround' },
@@ -105,7 +105,7 @@ const config: Config = {
       { name: 'twitter:title', content: 'AndrejGround' },
       {
         name: 'twitter:description',
-        content: 'Tips, tricks and how-to\'s on frontend development and beyond',
+        content: "Tips, tricks and how-to's on frontend development and beyond",
       },
       { name: 'twitter:creator', content: '@andrejground' },
     ],
@@ -122,10 +122,25 @@ const config: Config = {
       },
       items: [
         {
-          type: 'doc',
-          docId: 'getting-started/introduction',
-          position: 'left',
+          type: 'dropdown',
           label: 'Lab',
+          collapsed: false,
+          position: 'left',
+          items: [
+            {
+              type: 'doc',
+              docId: 'getting-started/introduction',
+              label: 'Docs',
+            },
+            {
+              href: 'https://github.com/Ninjaneer87/andrejground-lab/tree/main/packages/lab',
+              label: 'GitHub',
+            },
+            {
+              href: 'https://www.npmjs.com/package/@andrejground/lab',
+              label: 'npm',
+            },
+          ],
         },
         { to: '/blog', label: 'Blog', position: 'left' as const },
         {
