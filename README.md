@@ -8,7 +8,7 @@ Part playground, part blog, part portfolio. A place where I build, document and 
 
 | Package | Description |
 | --- | --- |
-| [`@andrejground/lab`](./packages/lab) | React component & hooks library |
+| [`@andrejground/lab`](./packages/lab) | React component & hooks library [![npm](https://img.shields.io/npm/v/@andrejground/lab)](https://www.npmjs.com/package/@andrejground/lab) |
 | [`site`](./packages/site) | Docusaurus-powered docs & blog |
 
 ## Links

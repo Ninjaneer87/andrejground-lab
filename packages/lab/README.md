@@ -1,5 +1,7 @@
 # @andrejground/lab
 
+[![npm](https://img.shields.io/npm/v/@andrejground/lab)](https://www.npmjs.com/package/@andrejground/lab)
+
 A customizable React component and hooks library. Each component exposes a `classNames` API so you can override every visual slot to match your own design system.
 
 ## Installation
