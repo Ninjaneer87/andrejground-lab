@@ -2,3 +2,7 @@ andrejground:
   label: AndrejGround
   permalink: /andrejground
   description: News and updates about AndrejGround
+diary:
+  label: Diary
+  permalink: /diary
+  description: Career experiences, reflections and thoughts
