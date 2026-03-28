@@ -289,3 +289,13 @@ button {
   border-bottom-color: var(--ifm-color-emphasis-300);
   box-shadow: none;
 }
+
+.blog-post-page .container {
+  max-width: 1900px !important;
+  margin: 0 auto;
+}
+
+.tooltip {
+  border-bottom: 1px dashed currentColor;
+  cursor: help !important;
+}

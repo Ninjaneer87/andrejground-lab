@@ -6,3 +6,19 @@ diary:
   label: Diary
   permalink: /diary
   description: Career experiences, reflections and thoughts
+guide:
+  label: Guide
+  permalink: /guide
+  description: Step-by-step technical guides and how-tos
+ssh:
+  label: SSH
+  permalink: /ssh
+  description: SSH keys, agents, and configuration
+1password:
+  label: 1Password
+  permalink: /1password
+  description: 1Password tips, integrations, and workflows
+devtools:
+  label: DevTools
+  permalink: /devtools
+  description: Developer tools, CLI utilities, and productivity
