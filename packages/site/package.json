@@ -50,8 +50,5 @@
   },
   "engines": {
     "node": ">=20.0"
-  },
-  "overrides": {
-    "node-forge": "^1.4.0"
   }
 }
