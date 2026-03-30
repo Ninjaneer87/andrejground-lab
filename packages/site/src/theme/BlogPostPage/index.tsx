@@ -38,10 +38,15 @@ function BlogPostPageContent({
   const canRenderTOC = !hideTableOfContents && toc.length > 0;
 
   const tocMobileRef = useRef<HTMLDivElement>(null);
-  const handleTocLinkClick = useCallback(() => {
-    const button = tocMobileRef.current?.querySelector('button');
-    button?.click();
-  }, []);
+  const handleTocLinkClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (e.target instanceof HTMLButtonElement) return;
+
+      const button = tocMobileRef.current?.querySelector('button');
+      button?.click();
+    },
+    [],
+  );
 
   return (
     <BlogLayout
