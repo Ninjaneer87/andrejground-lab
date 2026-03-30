@@ -65,7 +65,7 @@ function BlogPostPageContent({
         <div
           ref={tocMobileRef}
           onClick={handleTocLinkClick}
-          className="sticky-toc"
+          className="fixed-toc"
         >
           <TOCCollapsible
             toc={toc}

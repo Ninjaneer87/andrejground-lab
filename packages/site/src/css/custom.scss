@@ -296,10 +296,12 @@ button {
 }
 
 // Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
-.sticky-toc {
+.fixed-toc {
   @media screen and (max-width: 997px) {
-    position: sticky;
-    top: 80px;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
     z-index: 1;
   }
 }
@@ -310,7 +312,7 @@ button {
     background-color: var(--ifm-card-background-color);
 
     .table-of-contents {
-      max-height: 70vh;
+      max-height: 60dvh;
       overflow-y: auto;
     }
   }
@@ -329,6 +331,6 @@ button {
 .blog-post-page :is(h2, h3, h4, h5, h6),
 .docs-doc-page :is(h2, h3, h4, h5, h6) {
   @media screen and (max-width: 997px) {
-    scroll-margin-top: 150px;
+    scroll-margin-top: 100px;
   }
 }

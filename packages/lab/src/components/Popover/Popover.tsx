@@ -42,7 +42,7 @@ import { Slot } from '@/components/utility/Slot';
 import { usePrevValue } from '@/hooks';
 
 const PopoverBase = forwardRef<
-  HTMLDivElement,
+  HTMLSpanElement,
   PopoverProps & PopoverComposition
 >(
   (
@@ -574,7 +574,7 @@ const PopoverBase = forwardRef<
             </ClientPortal>
           )}
 
-          <div
+          <span
             ref={ref}
             {...rest}
             className={cn(baseClassName, classNames?.base)}
@@ -633,7 +633,7 @@ const PopoverBase = forwardRef<
                 </div>
               </ClientPortal>
             )}
-          </div>
+          </span>
         </>
       </PopoverContext.Provider>
     );
