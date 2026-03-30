@@ -296,12 +296,17 @@ button {
 }
 
 // Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
-.blog-post-toc-mobile,
-.theme-doc-toc-mobile {
+.sticky-toc {
   @media screen and (max-width: 997px) {
     position: sticky;
     top: 80px;
     z-index: 1;
+  }
+}
+
+.blog-post-toc-mobile,
+.theme-doc-toc-mobile {
+  @media screen and (max-width: 997px) {
     background-color: var(--ifm-card-background-color);
 
     .table-of-contents {

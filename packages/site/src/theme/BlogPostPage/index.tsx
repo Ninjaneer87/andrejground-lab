@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, useCallback, useRef } from 'react';
 import clsx from 'clsx';
 import {
   HtmlClassNameProvider,
@@ -36,6 +36,16 @@ function BlogPostPageContent({
 
   const canRenderTOC = !hideTableOfContents && toc.length > 0;
 
+  const tocMobileRef = useRef<HTMLDivElement>(null);
+  const handleTocLinkClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!(e.target instanceof HTMLAnchorElement)) return;
+      const button = tocMobileRef.current?.querySelector('button');
+      button?.click();
+    },
+    [],
+  );
+
   return (
     <BlogLayout
       sidebar={sidebar}
@@ -52,16 +62,22 @@ function BlogPostPageContent({
       <ContentVisibility metadata={metadata} />
 
       {canRenderTOC && (
-        <TOCCollapsible
-          toc={toc}
-          minHeadingLevel={tocMinHeadingLevel}
-          maxHeadingLevel={tocMaxHeadingLevel}
-          className={clsx(
-            'blog-post-toc-mobile',
-            'margin-bottom--md',
-            'thin-scrollbar',
-          )}
-        />
+        <div
+          ref={tocMobileRef}
+          onClick={handleTocLinkClick}
+          className="sticky-toc"
+        >
+          <TOCCollapsible
+            toc={toc}
+            minHeadingLevel={tocMinHeadingLevel}
+            maxHeadingLevel={tocMaxHeadingLevel}
+            className={clsx(
+              'blog-post-toc-mobile',
+              'margin-bottom--md',
+              'thin-scrollbar',
+            )}
+          />
+        </div>
       )}
 
       <BlogPostItem>{children}</BlogPostItem>
