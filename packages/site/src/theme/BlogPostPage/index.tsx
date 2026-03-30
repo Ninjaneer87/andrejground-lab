@@ -41,8 +41,11 @@ function BlogPostPageContent({
   const handleTocLinkClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!(e.target instanceof HTMLAnchorElement)) return;
+
       const button = tocMobileRef.current?.querySelector('button');
-      button?.click();
+      setTimeout(() => {
+        button?.click();
+      }, 0);
     },
     [],
   );
