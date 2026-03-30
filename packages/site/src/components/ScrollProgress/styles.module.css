@@ -1,0 +1,26 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: transparent;
+  z-index: 5000;
+  width: 100%;
+}
+
+.progressBar {
+  height: 100%;
+  width: 100vw;
+  background: var(--ifm-color-primary);
+  transform: translateX(-100%);
+  will-change: transform;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 100px;
+  transition: translate 0.15s ease-out;
+}
+
+:global([data-theme='dark']) .glow {
+  box-shadow: 0px 0px 120px 30px var(--ifm-color-primary);
+}

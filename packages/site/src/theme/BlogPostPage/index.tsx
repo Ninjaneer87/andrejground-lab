@@ -18,6 +18,7 @@ import TOCCollapsible from '@theme/TOCCollapsible';
 import ContentVisibility from '@theme/ContentVisibility';
 import type { Props } from '@theme/BlogPostPage';
 import type { BlogSidebar } from '@docusaurus/plugin-content-blog';
+import ScrollProgress from '@site/src/components/ScrollProgress';
 
 function BlogPostPageContent({
   sidebar,
@@ -61,6 +62,7 @@ function BlogPostPageContent({
     >
       <ContentVisibility metadata={metadata} />
 
+      <ScrollProgress />
       {canRenderTOC && (
         <div
           ref={tocMobileRef}
