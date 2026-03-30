@@ -290,12 +290,40 @@ button {
   box-shadow: none;
 }
 
-.blog-post-page .container {
+.blog-wrapper .container {
   max-width: 1900px !important;
   margin: 0 auto;
+}
+
+// Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
+.blog-post-toc-mobile,
+.theme-doc-toc-mobile {
+  @media screen and (max-width: 997px) {
+    position: sticky;
+    top: 80px;
+    z-index: 1;
+    background-color: var(--ifm-card-background-color);
+
+    .table-of-contents {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+  }
+
+  @media screen and (min-width: 997px) {
+    display: none;
+  }
 }
 
 .tooltip {
   border-bottom: 1px dashed currentColor;
   cursor: help !important;
+}
+
+// Offset anchor scroll for TOC links (accounts for sticky navbar + mobile TOC)
+.blog-post-page :is(h2, h3, h4, h5, h6),
+.docs-doc-page :is(h2, h3, h4, h5, h6) {
+  @media screen and (max-width: 997px) {
+    scroll-margin-top: 150px;
+  }
 }

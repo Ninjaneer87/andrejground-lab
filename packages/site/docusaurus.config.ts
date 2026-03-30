@@ -11,6 +11,7 @@ const config: Config = {
   plugins: [
     // require.resolve('./src/plugins/watch-lab'),
     'docusaurus-plugin-sass',
+    require.resolve('./src/plugins/blog-tags-global'),
   ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -60,7 +61,7 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           blogSidebarTitle: 'Latest',
-          // blogSidebarCount: 0,
+          blogSidebarCount: 5,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -82,6 +83,10 @@ const config: Config = {
   ],
 
   themeConfig: {
+    tableOfContents: {
+      minHeadingLevel: 2, // Default
+      maxHeadingLevel: 4, // Increase this to show deeper headings
+    },
     docs: {
       sidebar: {
         hideable: true,

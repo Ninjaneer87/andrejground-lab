@@ -1,0 +1,41 @@
+.yearGroupHeading {
+  margin: 1rem 0.75rem 0.5rem;
+}
+
+.tagsSection {
+  margin: 1rem 0.75rem 0.5rem;
+}
+
+.tagsTitle {
+  font-size: var(--ifm-h3-font-size);
+  font-weight: var(--ifm-font-weight-bold);
+  margin-bottom: 0.5rem;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.tag {
+  display: inline-block;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  padding: 0.2rem 0.6rem;
+  color: var(--ifm-color-primary);
+  transition: all 0.2s;
+}
+
+.tag:hover {
+  text-decoration: none;
+  border-color: var(--ifm-color-primary);
+}
+
+.tagCount {
+  margin-left: 0.25rem;
+  opacity: 0.7;
+}

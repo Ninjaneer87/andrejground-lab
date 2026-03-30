@@ -1,0 +1,74 @@
+import React, { memo, type ReactNode } from 'react';
+import {
+  useVisibleBlogSidebarItems,
+  BlogSidebarItemList,
+} from '@docusaurus/plugin-content-blog/client';
+import { usePluginData } from '@docusaurus/useGlobalData';
+import Link from '@docusaurus/Link';
+import { NavbarSecondaryMenuFiller } from '@docusaurus/theme-common';
+import BlogSidebarContent from '@theme/BlogSidebar/Content';
+import type { Props } from '@theme/BlogSidebar/Mobile';
+import type { Props as BlogSidebarContentProps } from '@theme/BlogSidebar/Content';
+
+import styles from './styles.module.css';
+
+type BlogTag = {
+  label: string;
+  permalink: string;
+  count: number;
+};
+
+const ListComponent: BlogSidebarContentProps['ListComponent'] = ({ items }) => {
+  return (
+    <BlogSidebarItemList
+      items={items}
+      ulClassName="menu__list"
+      liClassName="menu__list-item"
+      linkClassName="menu__link"
+      linkActiveClassName="menu__link--active"
+    />
+  );
+};
+
+function BlogSidebarMobileSecondaryMenu({ sidebar }: Props): ReactNode {
+  const items = useVisibleBlogSidebarItems(sidebar.items);
+  const { tags } = usePluginData('blog-tags-global') as { tags: BlogTag[] };
+
+  return (
+    <>
+      <BlogSidebarContent
+        items={items}
+        ListComponent={ListComponent}
+        yearGroupHeadingClassName={styles.yearGroupHeading}
+      />
+
+      <hr />
+
+      {tags.length > 0 && (
+        <div className={styles.tagsSection}>
+          <ul className={styles.tagList}>
+            {tags.map((tag) => (
+              <li key={tag.permalink}>
+                <Link href={tag.permalink} className={styles.tag}>
+                  {tag.label}
+                  <span className={styles.tagCount}>{tag.count}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
+}
+
+function BlogSidebarMobile(props: Props): ReactNode {
+  return (
+    <NavbarSecondaryMenuFiller
+      component={BlogSidebarMobileSecondaryMenu}
+      props={props}
+    />
+  );
+}
+
+export default memo(BlogSidebarMobile);
