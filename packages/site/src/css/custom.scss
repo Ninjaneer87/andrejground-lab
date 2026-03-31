@@ -78,14 +78,12 @@ html[data-theme='dark'] {
 .navbar-icon-link {
   display: flex;
   align-items: center;
-  padding: 4px;
-  border-radius: 6px;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
 
-  &:hover,
-  &:focus-visible {
-    opacity: 1;
+  &:hover{
+    background: var(--ifm-color-emphasis-200);
   }
 
   svg {
