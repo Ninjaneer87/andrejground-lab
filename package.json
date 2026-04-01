@@ -25,5 +25,11 @@
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
   },
-  "packageManager": "pnpm@9.15.4"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild"
+    ]
+  },
+  "packageManager": "pnpm@10.11.0"
 }
