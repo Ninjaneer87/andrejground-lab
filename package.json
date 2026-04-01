@@ -1,16 +1,13 @@
 {
   "name": "andrejground-monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel --color | grep --line-buffered '\\S'",
-    "build:lab": "npm run build --workspace=@andrejground/lab",
-    "build:site": "npm run build --workspace=site",
-    "site": "npm run start --workspace=site",
-    "lint": "npm run lint --workspaces --if-present"
+    "build:lab": "turbo run build --filter=@andrejground/lab",
+    "build:site": "turbo run build --filter=site",
+    "site": "pnpm --filter site start",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -18,7 +15,6 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "concurrently": "^8.2.2",
     "eslint": "^9.19.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.26",
@@ -29,5 +25,5 @@
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
   },
-  "packageManager": "npm@10.9.3"
+  "packageManager": "pnpm@9.15.4"
 }
