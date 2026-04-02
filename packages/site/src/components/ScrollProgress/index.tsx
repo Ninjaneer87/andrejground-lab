@@ -32,6 +32,8 @@ export default function ScrollProgress() {
     window.addEventListener('scroll', onScroll);
     window.addEventListener('resize', onResize);
 
+    onScroll();
+
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
