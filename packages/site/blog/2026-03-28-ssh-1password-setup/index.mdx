@@ -14,6 +14,10 @@ A unified procedure for managing SSH keys across multiple GitHub and GitLab acco
 
 By the end of this guide, you'll have a setup where private keys never touch your filesystem, every SSH and Git operation is gated behind biometric authentication, commit signing works without GPG, and rotating keys across all your accounts is a single terminal session away.
 
+:::note
+This guide is written for **macOS**. The core concepts (1Password SSH agent, `op read`, lazy-loading context secrets, Git `includeIf`) apply cross-platform, but paths and biometric settings will differ on Linux and Windows.
+:::
+
 ## The problem
 
 Managing SSH keys the traditional way has real costs - and real risks.
@@ -61,9 +65,13 @@ brew install python3           # used for JSON parsing in glab helpers
 
 ### Enable 1Password SSH Agent
 
-This step requires the GUI.
+This step requires the GUI. Make sure these three options are enabled:
 
 **1Password → Settings → Developer → ✅ "Use the SSH Agent"**
+
+**1Password → Settings → Developer → ✅ "Integrate with 1Password CLI"**
+
+**1Password → Settings → Developer → ✅ "Intergrate with other apps"**
 
 You only need to do this once, ever.
 
@@ -93,12 +101,15 @@ Add the following to your `~/.zshrc`. The configuration variables at the top are
 
 Open the file in edit mode:
 ```bash
-nano ~/.zshrc
+code ~/.zshrc
 ```
 
 Add the configuration:
 ```bash title="~/.zshrc"
 # --- Configuration (customize these for your setup) ---
+# 1Password settings
+export OP_BIOMETRIC_UNLOCK_ENABLED=true
+export OP_ACCOUNT=https://my.1password.com/
 OP_VAULT_NAME="Personal"
 OP_SOCK_PATH=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
@@ -121,15 +132,45 @@ PERSONAL_EMAIL="you@gmail.com"
 GITCONFIG_WORK_PATH=~/.gitconfig-work
 GITCONFIG_PERSONAL_PATH=~/.gitconfig-personal
 
-# --- CLI tokens from 1Password ---
-export GITHUB_WORK_TOKEN=$(op read "op://$OP_VAULT_NAME/$GH_WORK_PAT_NAME/credential")
-export GITHUB_PERSONAL_TOKEN=$(op read "op://$OP_VAULT_NAME/$GH_PERSONAL_PAT_NAME/credential")
-export GITLAB_WORK_TOKEN=$(op read "op://$OP_VAULT_NAME/$GLAB_WORK_PAT_NAME/credential")
+# --- Context-aware secret loader ---
+_load_context_secrets() {
+  # 1. Determine the target context: explicit argument > current path
+  local target_context="personal"
+  if [[ "$1" == "work" || "$PWD" == *"/work/"* ]]; then
+    target_context="work"
+  fi
 
-# --- Stateless CLI aliases ---
-alias glab-work='GITLAB_TOKEN=$GITLAB_WORK_TOKEN glab'
-alias gh-work='GITHUB_TOKEN=$GITHUB_WORK_TOKEN gh'
-alias gh-personal='GITHUB_TOKEN=$GITHUB_PERSONAL_TOKEN gh'
+  # 2. THE GATE: If we are already in the correct context, stop immediately.
+  # This prevents redundant 1Password calls.
+  [[ "$CURRENT_OP_CONTEXT" == "$target_context" ]] && return
+
+  # 3. CONTEXT SWITCH: Handle the logic when you move between folders
+  if [[ "$target_context" == "work" ]]; then
+    # --- WORK SETUP ---
+    export GITHUB_TOKEN=$(op read "op://$OP_VAULT_NAME/$GH_WORK_PAT_NAME/credential")
+    export GITLAB_TOKEN=$(op read "op://$OP_VAULT_NAME/$GLAB_WORK_PAT_NAME/credential")
+
+    export CURRENT_OP_CONTEXT="work"
+    echo "🏢 Context: WORK"
+  else
+    # --- PERSONAL SETUP ---
+    export GITHUB_TOKEN=$(op read "op://$OP_VAULT_NAME/$GH_PERSONAL_PAT_NAME/credential")
+
+    # Clean up Work secrets
+    unset GITLAB_TOKEN
+
+    export CURRENT_OP_CONTEXT="personal"
+    echo "🏠 Context: PERSONAL"
+  fi
+}
+
+# --- Aliases to trigger the loader ---
+alias gh='_load_context_secrets; command gh'
+alias glab='_load_context_secrets; command glab'
+
+alias gh-work='_load_context_secrets work; command gh'
+alias glab-work='_load_context_secrets work; command glab'
+alias gh-personal='_load_context_secrets personal; command gh'
 ```
 
 Reload to apply the changes:
@@ -138,11 +179,19 @@ source ~/.zshrc
 ```
 
 :::note
-The `op read` calls will fail until the PATs are stored in 1Password (next section). After storing them, run `source ~/.zshrc` again to populate the token exports.
+The `op read` calls inside `_load_context_secrets` will fail until the PATs are stored in 1Password (next section). After storing them, reload with `source ~/.zshrc`.
 :::
 
+**How this works:**
+
+- **Lazy loading** - no `op read` at shell startup; tokens are fetched only when you actually run a CLI tool (`gh`, `glab`)
+- **Context detection** - `_load_context_secrets` accepts an optional argument (`work` or `personal`) to force a context; otherwise it falls back to checking `$PWD`
+- **Gate** - if `$CURRENT_OP_CONTEXT` already matches the detected context, the function returns immediately with zero 1Password calls
+- **Cleanup** - when switching contexts, secrets from the previous context are unset so they can't leak across boundaries
+- **Convenience aliases** - `gh-work`, `glab-work`, and `gh-personal` pass the context explicitly as an argument, so they work regardless of your current directory
+
 :::tip
-Each new terminal session triggers one 1Password biometric prompt. After that, `op read` calls use the cached biometric session (timeout depends on your 1Password settings).
+Because tokens are loaded lazily, opening a new terminal triggers **zero** biometric prompts. The first prompt only appears when you actually run a CLI tool that needs a token. See [Reducing biometric prompts](#reducing-biometric-prompts) for more ways to minimize prompts.
 :::
 
 ### Create Personal Access Tokens
@@ -420,9 +469,54 @@ git reset HEAD~1
 
 - **Signing keys on GitLab** - `glab ssh-key add` supports `--usage-type` but defaults to `auth_and_signing` when not specified, which is fine.
 
-- **PAT caching** - `.zshrc` exports PATs via `op read` at shell startup. If you revoke and recreate a PAT, open a **new terminal** (or `source ~/.zshrc`) to pick up the new token.
+- **PAT caching** - `_load_context_secrets` caches the active context in `$CURRENT_OP_CONTEXT`. If you revoke and recreate a PAT, run `unset CURRENT_OP_CONTEXT` (or open a new terminal) to force a fresh `op read` on the next CLI call.
 
 - **SSO authorization** - If your GitHub organization uses SSO, you must authorize each new SSH key for SSO access after uploading. Go to [GitHub → Settings → SSH keys](https://github.com/settings/keys) → **Configure SSO** next to the key. Without this, the key will be rejected for org repositories.
+
+---
+
+## Reducing biometric prompts
+
+1Password gates every `op read` and SSH operation behind biometric authentication (Touch ID). This is a security feature, but it can become tedious if you're making many CLI calls in quick succession. Here are the main levers to reduce prompt frequency without sacrificing security:
+
+### Lazy loading (already configured above)
+
+The `_load_context_secrets` function avoids running `op read` at shell startup. Tokens are only fetched when you actually use a CLI tool that needs them.
+
+- Opening a terminal: **zero prompts**
+- First `gh` / `glab` call: **one prompt** (loads all tokens for the current context)
+- Subsequent calls in the same context: **zero prompts** (gate check passes instantly)
+- Switching from `~/personal/` to `~/work/` (or vice versa): **one prompt** (context switch triggers a fresh load)
+
+### Extend the 1Password CLI session timeout
+
+By default, the `op` CLI session expires after 10 minutes of inactivity. You can extend this:
+
+**1Password → Settings → Security → Auto-lock → choose a longer interval** (e.g., 1 hour, 4 hours)
+
+This controls how long `op read` calls succeed before requiring re-authentication. A longer timeout means fewer prompts during extended work sessions.
+
+:::caution
+Extending the session timeout is a trade-off: longer sessions are more convenient but widen the window in which a compromised process could use your authenticated `op` session. Choose a timeout that matches your threat model.
+:::
+
+### Approve and Remember in 1Password SSH Agent
+
+For SSH operations (not CLI tokens), 1Password shows an authorization dialog the first time a process uses your key via the SSH agent. Under **Developer → SSH Agent → Advanced → Remember key approval**, you can choose how long the approval is cached:
+
+- **until 1Password locks** (shortest — resets when 1Password auto-locks)
+- **for 4 hours** / **for 12 hours** / **for 24 hours**
+- **until 1Password quits** (longest)
+
+### Summary
+
+| Action | Biometric prompts |
+| --- | --- |
+| Open new terminal | 0 |
+| First CLI call in session | 1 (lazy load) |
+| Same-context CLI calls | 0 (gate check) |
+| Context switch (work ↔ personal) | 1 |
+| SSH push/pull | 1 (cached until lock/quit/X hours) |
 
 ---
 
@@ -438,4 +532,5 @@ git reset HEAD~1
 - No private keys on disk
 - 1Password biometric unlock for SSH operations
 - PATs for `gh`/`glab` CLI stored in 1Password
-- Stateless CLI auth via aliases (`gh-work`, `gh-personal`, `glab-work`)
+- Lazy-loaded, context-aware CLI auth via aliases - zero biometric prompts until you actually need a token
+- Convenience aliases (`gh-work`, `gh-personal`, `glab-work`) for cross-context use
