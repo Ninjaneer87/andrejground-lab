@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import '@fontsource-variable/montserrat';
 import '@andrejground/lab/style.css';
 import Link from '@docusaurus/Link';
@@ -15,9 +15,28 @@ import { mdiArrowRightThin } from '@mdi/js';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const heroRef = headerRef.current;
+
+    const getFullHeight = () => {
+      // Use innerHeight to get the exact pixels currently available
+      const height = window.innerHeight;
+      heroRef.style.height = `${height - 60}px`;
+    };
+
+    getFullHeight();
+
+    // Optional: Only update on orientation change, not on every tiny scroll resize
+    window.addEventListener('orientationchange', getFullHeight);
+  }, []);
 
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header
+      className={clsx('hero hero--primary', styles.heroBanner)}
+      ref={headerRef}
+    >
       <div className="container">
         <div className={styles.heroRow}>
           <div className="">
