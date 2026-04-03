@@ -68,7 +68,14 @@ export default function Home(): ReactNode {
     >
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        {/* <HomepageFeatures /> */}
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
       </main>
     </Layout>
   );

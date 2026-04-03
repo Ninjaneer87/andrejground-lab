@@ -162,7 +162,7 @@ export default function HomepageFeatures(): ReactNode {
           </div>
         </FeatureSection>
 
-        {/* <FeatureSection
+        <FeatureSection
           title="Use the lab in"
           accent="your project"
           description={
@@ -208,7 +208,7 @@ import '@andrejground/lab/style.css';`}
             </div>
           </div>
           <p>Happy coding! 🫡</p>
-        </FeatureSection> */}
+        </FeatureSection>
       </div>
     </section>
   );
