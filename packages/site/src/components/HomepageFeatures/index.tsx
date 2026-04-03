@@ -80,8 +80,8 @@ function Feature({ to, title, svgImage, description }: FeatureItem) {
 export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
-      <Logo background />
-      <WaveSvg />
+      {/* <Logo background /> */}
+      {/* <WaveSvg /> */}
 
       <div className="container">
         <FeatureSection
