@@ -18,7 +18,16 @@ function HomepageHeader() {
 
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
+      <div>
+        <h1>AndrejGround</h1>
+        <h1>AndrejGround</h1>
+        <h1>AndrejGround</h1>
+        <h1>AndrejGround</h1>
+        <h1>AndrejGround</h1>
+        <h1>AndrejGround</h1>
+        <h1>AndrejGround</h1>
+      </div>
+      {/* <div className="container">
         <div className={styles.heroRow}>
           <div className="">
             <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
@@ -28,18 +37,18 @@ function HomepageHeader() {
             <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
               <span className={styles['heroTitle--primary']}>Andrej</span>Ground
               <br />
-              {/* <TypeAnimation
+              <TypeAnimation
                 className={styles.typing}
                 cursor={false}
                 sequence={['Lab', 1500, 'Guides', 1500, 'Tutorials', 1500]}
                 wrapper="span"
                 repeat={Infinity}
-              /> */}
+              />
             </Heading>
           </div>
 
           <div className="">
-            {/* <Logo /> */}
+            <Logo />
 
             <div className={styles.buttons}>
               <Link
@@ -54,7 +63,7 @@ function HomepageHeader() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 }
