@@ -80,11 +80,11 @@ function Feature({ to, title, svgImage, description }: FeatureItem) {
 export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
-      {/* <Logo background /> */}
-      {/* <WaveSvg /> */}
+      <Logo background />
+      <WaveSvg />
 
       <div className="container">
-        <FeatureSection
+        {/* <FeatureSection
           title="Look"
           accent="inside"
           description="Explore the hooks, components, utilities, tips and tricks you need or didn't know you need."
@@ -94,9 +94,9 @@ export default function HomepageFeatures(): ReactNode {
               <Feature key={idx} {...props} />
             ))}
           </div>
-        </FeatureSection>
+        </FeatureSection> */}
 
-        {/* <FeatureSection
+        <FeatureSection
           title="Fresh from"
           accent="the lab"
           description="See some of the latest experiments and ideas in action."
@@ -160,7 +160,7 @@ export default function HomepageFeatures(): ReactNode {
               </div>
             </div>
           </div>
-        </FeatureSection> */}
+        </FeatureSection>
 
         <FeatureSection
           title="Use the lab in"
