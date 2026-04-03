@@ -84,7 +84,7 @@ export default function HomepageFeatures(): ReactNode {
       <WaveSvg />
 
       <div className="container">
-        {/* <FeatureSection
+        <FeatureSection
           title="Look"
           accent="inside"
           description="Explore the hooks, components, utilities, tips and tricks you need or didn't know you need."
@@ -94,7 +94,7 @@ export default function HomepageFeatures(): ReactNode {
               <Feature key={idx} {...props} />
             ))}
           </div>
-        </FeatureSection> */}
+        </FeatureSection>
 
         <FeatureSection
           title="Fresh from"
@@ -162,7 +162,7 @@ export default function HomepageFeatures(): ReactNode {
           </div>
         </FeatureSection>
 
-        <FeatureSection
+        {/* <FeatureSection
           title="Use the lab in"
           accent="your project"
           description={
@@ -208,7 +208,7 @@ import '@andrejground/lab/style.css';`}
             </div>
           </div>
           <p>Happy coding! 🫡</p>
-        </FeatureSection>
+        </FeatureSection> */}
       </div>
     </section>
   );
