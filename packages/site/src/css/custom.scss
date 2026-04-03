@@ -56,7 +56,7 @@ html[data-theme='dark'] {
 }
 
 #__docusaurus {
-  min-height: 100lvh;
+  min-height: 100svh;
 }
 
 .navbar__title {
@@ -127,7 +127,7 @@ body {
   /* --------------------------------- */
 
   height: unset;
-  min-height: 100lvh; /* Make sure it covers the full viewport height */
+  min-height: 100svh; /* Make sure it covers the full viewport height */
   // background-color: #1a1a2e; /* Your primary background color */
   position: relative; /* Needed for the glass cards to be positioned relative to it */
 
@@ -294,7 +294,7 @@ button {
 }
 
 // Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
-.fixed-toc {
+.fixed-toc, .theme-doc-toc-mobile {
   @media screen and (max-width: 997px) {
     position: fixed;
     top: 44px;
@@ -302,6 +302,9 @@ button {
     right: 0;
     z-index: 1;
   }
+}
+.theme-doc-breadcrumbs {
+  margin-top: 1.3rem;
 }
 
 .blog-post-toc-mobile,
