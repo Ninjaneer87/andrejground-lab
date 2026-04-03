@@ -65,7 +65,7 @@
   // overflow: hidden;
   background-color: transparent;
   color: var(--ifm-font-color-base);
-  // min-height: calc(100svh - 60px);
+  min-height: calc(100svh - 60px);
 
   @media screen and (max-width: 996px) {
     padding: 2rem;
