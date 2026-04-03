@@ -39,7 +39,7 @@ function HomepageHeader() {
           </div>
 
           <div className="">
-            <Logo />
+            {/* <Logo /> */}
 
             <div className={styles.buttons}>
               <Link
