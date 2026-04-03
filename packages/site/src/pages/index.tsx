@@ -23,7 +23,7 @@ function HomepageHeader() {
     const getFullHeight = () => {
       // Use innerHeight to get the exact pixels currently available
       const height = window.innerHeight;
-      heroRef.style.height = `${height - 60}px`;
+      heroRef.style.minHeight = `${height - 60}px`;
     };
 
     getFullHeight();
