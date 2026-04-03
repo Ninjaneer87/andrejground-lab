@@ -27,14 +27,14 @@ function HomepageHeader() {
 
             <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
               <span className={styles['heroTitle--primary']}>Andrej</span>Ground
-              <br />
+              {/* <br />
               <TypeAnimation
                 className={styles.typing}
                 cursor={false}
                 sequence={['Lab', 1500, 'Guides', 1500, 'Tutorials', 1500]}
                 wrapper="span"
                 repeat={Infinity}
-              />
+              /> */}
             </Heading>
           </div>
 
