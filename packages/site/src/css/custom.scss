@@ -56,7 +56,7 @@ html[data-theme='dark'] {
 }
 
 #__docusaurus {
-  min-height: 100vh;
+  min-height: 100lvh;
 }
 
 .navbar__title {
@@ -127,7 +127,7 @@ body {
   /* --------------------------------- */
 
   height: unset;
-  min-height: 100vh; /* Make sure it covers the full viewport height */
+  min-height: 100lvh; /* Make sure it covers the full viewport height */
   // background-color: #1a1a2e; /* Your primary background color */
   position: relative; /* Needed for the glass cards to be positioned relative to it */
 
@@ -208,7 +208,7 @@ button {
 // Code block content
 .theme-code-block {
   pre.prism-code {
-    max-height: clamp(400px, 50vh, 500px);
+    max-height: clamp(400px, 50svh, 500px);
     overflow-y: auto;
     font-size: 0.875rem;
   }
@@ -311,7 +311,7 @@ button {
     border: 1px solid var(--ifm-color-emphasis-300);
 
     .table-of-contents {
-      max-height: 60dvh;
+      max-height: 60svh;
       overflow-y: auto;
     }
   }
