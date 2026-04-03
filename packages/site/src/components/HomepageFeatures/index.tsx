@@ -96,7 +96,7 @@ export default function HomepageFeatures(): ReactNode {
           </div>
         </FeatureSection>
 
-        <FeatureSection
+        {/* <FeatureSection
           title="Fresh from"
           accent="the lab"
           description="See some of the latest experiments and ideas in action."
@@ -160,7 +160,7 @@ export default function HomepageFeatures(): ReactNode {
               </div>
             </div>
           </div>
-        </FeatureSection>
+        </FeatureSection> */}
 
         <FeatureSection
           title="Use the lab in"
