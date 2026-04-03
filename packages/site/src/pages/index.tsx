@@ -66,9 +66,30 @@ export default function Home(): ReactNode {
       title={`Welcome to ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <HomepageHeader />
+      {/* <HomepageHeader /> */}
       <main>
         {/* <HomepageFeatures /> */}
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
+        <h1>Andrejground</h1>
         <h1>Andrejground</h1>
         <h1>Andrejground</h1>
         <h1>Andrejground</h1>
