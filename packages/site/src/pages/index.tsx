@@ -17,54 +17,54 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
 
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div>
-        <h1>AndrejGround</h1>
-        <h1>AndrejGround</h1>
-        <h1>AndrejGround</h1>
-        <h1>AndrejGround</h1>
-        <h1>AndrejGround</h1>
-        <h1>AndrejGround</h1>
-        <h1>AndrejGround</h1>
-      </div>
-      {/* <div className="container">
-        <div className={styles.heroRow}>
-          <div className="">
-            <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
-              {siteConfig.tagline}
-            </p>
+    <div>
+      <h1>AndrejGround</h1>
+      <h1>AndrejGround</h1>
+      <h1>AndrejGround</h1>
+      <h1>AndrejGround</h1>
+      <h1>AndrejGround</h1>
+      <h1>AndrejGround</h1>
+      <h1>AndrejGround</h1>
+    </div>
+    // <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    //   <div className="container">
+    //     <div className={styles.heroRow}>
+    //       <div className="">
+    //         <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
+    //           {siteConfig.tagline}
+    //         </p>
 
-            <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
-              <span className={styles['heroTitle--primary']}>Andrej</span>Ground
-              <br />
-              <TypeAnimation
-                className={styles.typing}
-                cursor={false}
-                sequence={['Lab', 1500, 'Guides', 1500, 'Tutorials', 1500]}
-                wrapper="span"
-                repeat={Infinity}
-              />
-            </Heading>
-          </div>
+    //         <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
+    //           <span className={styles['heroTitle--primary']}>Andrej</span>Ground
+    //           <br />
+    //           <TypeAnimation
+    //             className={styles.typing}
+    //             cursor={false}
+    //             sequence={['Lab', 1500, 'Guides', 1500, 'Tutorials', 1500]}
+    //             wrapper="span"
+    //             repeat={Infinity}
+    //           />
+    //         </Heading>
+    //       </div>
 
-          <div className="">
-            <Logo />
+    //       <div className="">
+    //         <Logo />
 
-            <div className={styles.buttons}>
-              <Link
-                className="button button--primary button--lg"
-                to="/lab/getting-started/introduction"
-              >
-                Go to Lab <Icon path={mdiArrowRightThin} size={1} />
-              </Link>
-              <Link className="button button--secondary button--lg" to="/blog">
-                What's new <Icon path={mdiArrowRightThin} size={1} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div> */}
-    </header>
+    //         <div className={styles.buttons}>
+    //           <Link
+    //             className="button button--primary button--lg"
+    //             to="/lab/getting-started/introduction"
+    //           >
+    //             Go to Lab <Icon path={mdiArrowRightThin} size={1} />
+    //           </Link>
+    //           <Link className="button button--secondary button--lg" to="/blog">
+    //             What's new <Icon path={mdiArrowRightThin} size={1} />
+    //           </Link>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </header>
   );
 }
 
