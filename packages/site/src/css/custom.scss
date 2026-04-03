@@ -82,7 +82,7 @@ html[data-theme='dark'] {
   border-radius: 50%;
   transition: background-color 0.2s;
 
-  &:hover{
+  &:hover {
     background: var(--ifm-color-emphasis-200);
   }
 
@@ -288,13 +288,23 @@ button {
   box-shadow: none;
 }
 
+.docs-doc-item-page {
+  @media screen and (max-width: 997px) {
+    .theme-layout-navbar {
+      border-bottom: 1px solid transparent;
+      box-shadow: none;
+    }
+  }
+}
+
 .blog-wrapper .container {
   max-width: 1900px !important;
   margin: 0 auto;
 }
 
 // Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
-.fixed-toc, .theme-doc-toc-mobile {
+.fixed-toc,
+.theme-doc-toc-mobile {
   @media screen and (max-width: 997px) {
     position: fixed;
     top: 44px;
@@ -304,7 +314,9 @@ button {
   }
 }
 .theme-doc-breadcrumbs {
-  margin-top: 1.3rem;
+  @media screen and (max-width: 997px) {
+    margin-top: 2rem;
+  }
 }
 
 .blog-post-toc-mobile,
