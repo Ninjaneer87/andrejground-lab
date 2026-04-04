@@ -12,8 +12,6 @@ import HomeSelectDemo from '@site/src/components/HomepageFeatures/HomeSelectDemo
 import HomeDropdownDemo from '@site/src/components/HomepageFeatures/HomeDropdownDemo';
 import HomePopoverDemo from '@site/src/components/HomepageFeatures/HomePopoverDemo';
 import HomeResizableDemo from '@site/src/components/HomepageFeatures/HomeResizableDemo';
-import ComponentA from '@site/src/components/test/ComponentA';
-import ComponentB from '@site/src/components/test/ComponentB';
 import WaveSvg from '@site/src/components/shared/WaveSvg';
 import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
@@ -159,11 +157,6 @@ export default function HomepageFeatures(): ReactNode {
 
               <div>
                 <HomeResizableDemo />
-              </div>
-              
-              <div style={{ marginTop: '2rem', display: 'none' }}>
-                <ComponentA />
-                <ComponentB />
               </div>
             </div>
           </div>
