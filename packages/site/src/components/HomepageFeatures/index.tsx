@@ -11,7 +11,6 @@ import Logo from '@site/src/components/Logo';
 import HomeSelectDemo from '@site/src/components/HomepageFeatures/HomeSelectDemo';
 import HomeDropdownDemo from '@site/src/components/HomepageFeatures/HomeDropdownDemo';
 import HomePopoverDemo from '@site/src/components/HomepageFeatures/HomePopoverDemo';
-import HomeResizableDemo from '@site/src/components/HomepageFeatures/HomeResizableDemo';
 import WaveSvg from '@site/src/components/shared/WaveSvg';
 import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
@@ -102,7 +101,7 @@ export default function HomepageFeatures(): ReactNode {
           description="See some of the latest experiments and ideas in action."
         >
           <div className="row">
-            <div className="col col--6 padding--md">
+            <div className="col col--4 padding--md">
               <Heading as={'h3'}>
                 <Link to="/lab/components/select">Select</Link>
               </Heading>
@@ -118,7 +117,7 @@ export default function HomepageFeatures(): ReactNode {
               </div>
             </div>
 
-            <div className="col col--6 padding--md">
+            <div className="col col--4 padding--md">
               <Heading as="h3">
                 <Link to="/lab/components/dropdown">Dropdown</Link>
               </Heading>
@@ -132,7 +131,7 @@ export default function HomepageFeatures(): ReactNode {
               </div>
             </div>
 
-            <div className="col col--6 padding--md">
+            <div className="col col--4 padding--md">
               <Heading as="h3">
                 <Link to="/lab/components/popover">Popover</Link>
               </Heading>
@@ -143,20 +142,6 @@ export default function HomepageFeatures(): ReactNode {
 
               <div>
                 <HomePopoverDemo />
-              </div>
-            </div>
-
-            <div className="col col--6 padding--md">
-              <Heading as="h3">
-                <Link to="/lab/components/resizable">Resizable</Link>
-              </Heading>
-              <p>
-                Resize horizontally any section or an element. Useful for side
-                panels, toolbars or horizontally stacked sections.
-              </p>
-
-              <div>
-                <HomeResizableDemo />
               </div>
             </div>
           </div>
