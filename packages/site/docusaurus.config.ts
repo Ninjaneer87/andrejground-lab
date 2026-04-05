@@ -108,6 +108,7 @@ const config: Config = {
       { property: 'og:site_name', content: 'AndrejGround' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'AndrejGround' },
+      { name: 'algolia-site-verification', content: '320C0FF23C41B79C' },
       {
         name: 'twitter:description',
         content: "Tips, tricks and how-to's on frontend development and beyond",
