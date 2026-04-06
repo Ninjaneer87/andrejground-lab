@@ -83,24 +83,29 @@ const config: Config = {
   ],
 
   themeConfig: {
-     algolia: {
+    algolia: {
       // The application ID provided by Algolia
       appId: '7VTDWVOW5W',
 
       // Public API key: it is safe to commit it
       apiKey: '6ceadd22c3f6f9d242ab286cdb01ada4',
-
       indexName: 'AndrejGround Lab',
 
       // Optional: see doc section below
       contextualSearch: true,
-
 
       // Optional: path for search page that enabled by default (`false` to disable it)
       searchPagePath: 'search',
 
       // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
       insights: false,
+      translations: {
+        modal: {
+          searchBox: {
+            placeholderText: 'Search...',
+          },
+        },
+      },
     },
     tableOfContents: {
       minHeadingLevel: 2, // Default
