@@ -11,7 +11,7 @@ export default function About(): ReactNode {
   return (
     <Layout
       title="About"
-      description="About Andrej Forgac - Frontend developer"
+      description="Andrej - a frontend developer from Serbia with 6+ years of experience building modern web applications"
     >
       <WaveSvg />
       <main className="container">

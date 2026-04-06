@@ -83,7 +83,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`Welcome to ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Tips, tricks and how-to's on frontend development and beyond"
     >
       <HomepageHeader />
       <main>
