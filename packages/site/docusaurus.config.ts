@@ -9,7 +9,7 @@ const config: Config = {
   tagline: "Tips, tricks and how-to's on frontend development and beyond",
   favicon: 'img/favicon.ico',
   plugins: [
-    '@docusaurus/plugin-vercel-analytics',
+    'vercel-analytics',
     'docusaurus-plugin-sass',
     require.resolve('./src/plugins/blog-tags-global'),
   ],
