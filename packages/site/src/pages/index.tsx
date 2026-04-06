@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, type ReactNode } from 'react';
 import '@fontsource-variable/montserrat';
 import '@andrejground/lab/style.css';
 import Link from '@docusaurus/Link';
@@ -17,7 +17,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   const headerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const heroRef = headerRef.current;
 
     const getFullHeight = () => {
