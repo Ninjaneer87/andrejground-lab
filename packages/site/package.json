@@ -17,6 +17,7 @@
   "dependencies": {
     "@andrejground/lab": "workspace:*",
     "@docusaurus/core": "3.9.2",
+    "@docusaurus/plugin-vercel-analytics": "^3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@mdi/js": "^7.4.47",
