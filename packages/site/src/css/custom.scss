@@ -55,6 +55,54 @@ html[data-theme='dark'] {
   --prism-background-color: #282c34;
 }
 
+.DocSearch {
+  --docsearch-text-color: var(--ifm-font-color-base);
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: var(--ifm-color-primary-bg);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-background-color);
+  /* Search box */
+  --docsearch-searchbox-background: var(--ifm-background-color);
+  --docsearch-searchbox-focus-background: var(--ifm-color-emphasis-100);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-background: var(--ifm-color-emphasis-100);
+  --docsearch-highlight-color: var(--ifm-color-primary);
+  --docsearch-hit-highlight-color: var(--ifm-color-primary-bg);
+  --docsearch-background-color: var(--ifm-color-primary-bg);
+  --docsearch-logo-color: var(--ifm-color-primary);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-background-surface-color);
+  --docsearch-key-gradient: linear-gradient(
+    -26.5deg,
+    var(--ifm-color-emphasis-200) 0%,
+    var(--ifm-color-emphasis-100) 100%
+  );
+  /* Search button */
+  --docsearch-search-button-background: transparent;
+  --docsearch-search-button-text-color: var(--ifm-font-color-base);
+  --docsearch-key-color: var(--ifm-color-primary);
+  --docsearch-key-background: var(--ifm-color-primary-bg);
+  --docsearch-icon-color: var(--ifm-color-primary);
+}
+
+// "Powered by Algolia" DocSearch logo
+.DocSearch-Logo {
+  svg {
+    path,
+    rect {
+      fill: var(--ifm-color-primary);
+    }
+  }
+}
+// No-results search icon
+.DocSearch-Screen-Icon {
+  svg {
+    stroke: var(--ifm-color-primary);
+  }
+}
+
 #__docusaurus {
   min-height: 100svh;
 }
