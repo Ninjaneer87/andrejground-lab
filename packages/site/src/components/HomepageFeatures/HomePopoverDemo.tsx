@@ -38,7 +38,7 @@ function HomePopoverDemo() {
                   <div className={styles.headerContent}>
                     <div>Andrej Forgac</div>
                     <small className={styles.secondaryText}>
-                      @andrejforgac87
+                      @andrejforgac
                     </small>
                   </div>
                 </div>
@@ -46,7 +46,7 @@ function HomePopoverDemo() {
                 <SitePopover openOnHover placement="top-center" delayHide={500}>
                   <SitePopover.Trigger>
                     <a
-                      href="https://www.linkedin.com/in/andrejforgac87/"
+                      href="https://www.linkedin.com/in/andrejforgac/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="button button--primary"
