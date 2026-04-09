@@ -162,11 +162,11 @@ const config: Config = {
               label: 'Getting Started',
             },
             {
-              to: '/lab/components/dropdown',
+              to: '/lab/category/components',
               label: 'Components',
             },
             {
-              to: '/lab/hooks/useDebouncedCallback',
+              to: '/lab/category/hooks',
               label: 'Hooks',
             },
             {
