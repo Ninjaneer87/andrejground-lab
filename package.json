@@ -28,8 +28,14 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
+      "@swc/core",
       "esbuild"
-    ]
+    ],
+    "overrides": {
+      "lodash": ">=4.18.1",
+      "serialize-javascript": ">=7.0.5",
+      "sirv": ">=3.0.2"
+    }
   },
   "packageManager": "pnpm@10.32.1"
 }

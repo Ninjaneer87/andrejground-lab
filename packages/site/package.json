@@ -16,9 +16,10 @@
   },
   "dependencies": {
     "@andrejground/lab": "workspace:*",
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/plugin-vercel-analytics": "^3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
+    "@docusaurus/core": "3.10.0",
+    "@docusaurus/faster": "3.10.0",
+    "@docusaurus/plugin-vercel-analytics": "^3.10.0",
+    "@docusaurus/preset-classic": "3.10.0",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
@@ -32,9 +33,9 @@
     "sass": "^1.96.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
+    "@docusaurus/module-type-aliases": "3.10.0",
+    "@docusaurus/tsconfig": "3.10.0",
+    "@docusaurus/types": "3.10.0",
     "typescript": "~5.6.2"
   },
   "browserslist": {
