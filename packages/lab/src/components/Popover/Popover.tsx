@@ -95,6 +95,7 @@ const PopoverBase = forwardRef<
     const showDelayRef = useRef<NodeJS.Timeout | null>(null);
     const hideDelayRef = useRef<NodeJS.Timeout | null>(null);
     const fitPlacementRef = useRef<PopoverPlacement | null>(null);
+    const isPointerFocusRef = useRef(false);
 
     const onOpenRef = useRef(onOpen);
     const onCloseRef = useRef(onClose);
@@ -294,9 +295,16 @@ const PopoverBase = forwardRef<
       [handleToggle],
     );
 
+    const onPointerDown = useCallback(() => {
+      isPointerFocusRef.current = true;
+    }, []);
+
     const onTriggerFocusHandler = useCallback(
-      (e: React.FocusEvent<HTMLDivElement>) => {
-        if (!e.target.matches(':focus-visible')) return;
+      (_e: React.FocusEvent<HTMLDivElement>) => {
+        if (isPointerFocusRef.current) {
+          isPointerFocusRef.current = false;
+          return;
+        }
         if (isDisabled) return;
 
         if (openOnFocus) {
@@ -319,7 +327,7 @@ const PopoverBase = forwardRef<
     }, [isDisabled, shouldCloseOnTriggerBlur, handleClose, onTriggerBlurRef]);
 
     const handleMouseEnter = useCallback(() => {
-      if (isDisabled) return;
+      if (isDisabled || isPointerFocusRef.current) return;
 
       if (showDelayRef.current) clearTimeout(showDelayRef.current);
       if (hideDelayRef.current) clearTimeout(hideDelayRef.current);
@@ -546,6 +554,7 @@ const PopoverBase = forwardRef<
       'data-popover-trigger-root-id': rootPopoverId ?? popoverId,
       'data-popover-trigger-current-id': popoverId,
       onKeyDown: onTriggerKeyDown,
+      onPointerDown,
       onFocus: onTriggerFocusHandler,
       onBlur: onTriggerBlurHandler,
       tabIndex: isDisabled ? -1 : 0,
