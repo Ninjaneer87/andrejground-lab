@@ -32,6 +32,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       fullWidthTriggerWrapper,
       openOnFocus = true,
       size = 'small',
+      shouldCloseOnTriggerBlur,
       ...rest
     },
     ref,
@@ -63,7 +64,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
         shouldCloseOnScroll={false}
         shouldCloseOnClickOutside={shouldCloseOnClickOutside}
         shouldCloseOnEsc={shouldCloseOnEsc}
-        shouldCloseOnTriggerBlur
+        shouldCloseOnTriggerBlur={shouldCloseOnTriggerBlur}
         backdrop="none"
         focusTriggerOnClose={false}
         placement={placement}
