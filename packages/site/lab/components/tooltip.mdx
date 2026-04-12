@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import Link from '@docusaurus/Link';
+import { PopoverPlacementTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/shared';
+import { PopoverSizeTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/popover';
+import { TooltipClassNamesTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/tooltip';
 import {
   tooltipControlledTsx,
   tooltipPlacementsTsx,
@@ -104,3 +107,35 @@ Use `hoverableContent` prop to keep the tooltip visible when hovering over the t
     <CodeBlock language="tsx">{tooltipControlledTsx}</CodeBlock>
   </TabItem>
 </Tabs>
+
+## API
+
+### Tooltip Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | The element that triggers the tooltip |
+| `content` | `ReactNode` | **required** | Content displayed inside the tooltip |
+| `placement` | <PopoverPlacementTypePopover /> | `"top-center"` | Preferred placement of the tooltip relative to the trigger |
+| `offset` | `number` | `8` | Distance in pixels between the tooltip and the trigger |
+| `size` | <PopoverSizeTypePopover /> | `"small"` | Controls the width of the tooltip |
+| `isOpen` | `boolean` | - | Controls the tooltip open state (controlled mode) |
+| `isDisabled` | `boolean` | - | Disables the tooltip |
+| `showArrow` | `boolean` | `true` | Shows an arrow pointing toward the trigger |
+| `shouldFlip` | `boolean` | `true` | Flips placement when there is not enough space |
+| `shouldCloseOnClickOutside` | `boolean` | `true` | Closes the tooltip when clicking outside of it |
+| `shouldCloseOnEsc` | `boolean` | `true` | Closes the tooltip when the Escape key is pressed |
+| `shouldCloseOnTriggerBlur` | `boolean` | `true` | Closes the tooltip when the trigger loses focus |
+| `openOnFocus` | `boolean` | `true` | Opens the tooltip when the trigger receives focus |
+| `delayShow` | `number` | `0` | Delay in milliseconds before showing the tooltip |
+| `delayHide` | `number` | `0` (or `200` when `hoverableContent`) | Delay in milliseconds before hiding the tooltip |
+| `hoverableContent` | `boolean` | `false` | Keeps the tooltip open while hovering over its content |
+| `triggerWrapper` | `boolean` | - | Wraps the trigger in a span instead of using Slot |
+| `fullWidthTriggerWrapper` | `boolean` | - | Makes the trigger wrapper take full width |
+| `onOpen` | `() => void` | - | Callback fired when the tooltip opens |
+| `onClose` | `() => void` | - | Callback fired when the tooltip closes |
+| `onClickOutside` | `() => void` | - | Callback fired when clicking outside the tooltip |
+| `onOpenChange` | `(isOpen: boolean) => void` | - | Callback fired when the open state changes |
+| `onTriggerFocus` | `() => void` | - | Callback fired when the trigger receives focus |
+| `onTriggerBlur` | `() => void` | - | Callback fired when the trigger loses focus |
+| `classNames` | <TooltipClassNamesTypePopover /> | - | Custom class names for the tooltip slots |
