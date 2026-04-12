@@ -11,6 +11,18 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import Link from '@docusaurus/Link';
+import { PopoverPlacementTypePopover, InfiniteScrollPropsTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/shared';
+import { PopoverSizeTypePopover, BackdropTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/popover';
+import {
+  SelectClassNamesTypePopover,
+  SelectItemClassNamesTypePopover,
+  SelectSectionClassNamesTypePopover,
+  SelectTruncateTypePopover,
+  SelectItemTruncateTypePopover,
+  SelectSectionTruncateTypePopover,
+  OptionItemTypePopover,
+  RenderOptionTypePopover,
+} from '@site/src/components/site-lab/TypePopover/popovers/select';
 import {
   selectUsageTsx,
   selectSectionsTsx,
@@ -165,3 +177,98 @@ Use `infiniteScrollProps` to load more options as the user scrolls. Combine with
     <CodeBlock language="tsx">{selectControlledTsx}</CodeBlock>
   </TabItem>
 </Tabs>
+
+## API
+
+### Select Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode \| ((item: T) => ReactNode)` | - | Select content using composition pattern or render function |
+| `trigger` | `ReactNode` | - | Element that triggers the select |
+| `items` | <OptionItemTypePopover />`[]` | - | The list of selectable options |
+| `value` | `T[]` | - | The currently selected options (controlled mode) |
+| `defaultValue` | `T[]` | - | The initially selected options (uncontrolled mode) |
+| `placeholder` | `string` | `"Select"` | Placeholder text shown when no value is selected |
+| `multiple` | `boolean` | `false` | Enables multi-select mode |
+| `search` | `boolean \| ((items: T[]) => T[])` | - | Enables search filtering; pass a function for custom filtering |
+| `label` | `ReactNode` | - | Label displayed above or beside the select |
+| `isRequired` | `boolean` | - | Marks the select as required and shows an asterisk |
+| `fullWidth` | `boolean` | `false` | Makes the select take the full width of its container |
+| `isOpen` | `boolean` | - | Controls the select open state (controlled mode) |
+| `isDisabled` | `boolean` | - | Disables the select trigger |
+| `isLoading` | `boolean` | - | Shows a loading indicator inside the select |
+| `autoFocus` | `"first-item" \| "last-item" \| "menu" \| "none"` | `"menu"` | Controls which item receives focus when the select opens |
+| `size` | <PopoverSizeTypePopover /> | `"trigger"` | Controls the width of the select popover |
+| `backdrop` | <BackdropTypePopover /> | - | The backdrop style displayed behind the select |
+| `shouldFlip` | `boolean` | `true` | Flips placement when there is not enough space |
+| `shouldBlockScroll` | `boolean` | `false` | Blocks page scroll when the select is open |
+| `shouldCloseOnScroll` | `boolean` | `false` | Closes the select when the page is scrolled |
+| `shouldCloseOnClickOutside` | `boolean` | `true` | Closes the select when clicking outside of it |
+| `shouldCloseOnEsc` | `boolean` | `true` | Closes the select when the Escape key is pressed |
+| `shouldCloseOnSelection` | `boolean` | - | Whether selecting an item closes the select |
+| `showArrow` | `boolean` | `false` | Shows an arrow pointing toward the trigger |
+| `offset` | `number` | - | Distance in pixels between the select and the trigger |
+| `growContent` | `boolean` | - | Allows the select content to grow beyond the trigger width |
+| `openOnLabelClick` | `boolean` | - | Opens the select when the label is clicked |
+| `popOnSelection` | `boolean` | - | Removes selected items from the options list |
+| `isAddNewOption` | `boolean` | - | Shows "Add \<value\>" option when no results are found |
+| `addNewLabel` | `string` | `"Add"` | Custom label prefix for the "Add new" option |
+| `topContent` | `ReactNode` | - | Content rendered above the listbox |
+| `bottomContent` | `ReactNode` | - | Content rendered below the listbox |
+| `caret` | `ReactNode` | - | Custom caret element replacing the default indicator |
+| `showCaret` | `boolean` | - | Shows or hides the caret indicator |
+| `truncate` | <SelectTruncateTypePopover /> | `{ itemText: false, valueChipText: true, itemDescription: false, sectionTitle: true, valueText: true }` | Controls text truncation for various select parts |
+| `description` | `ReactNode` | - | Helper text displayed below the select |
+| `errorMessage` | `ReactNode` | - | Error message displayed below the select |
+| `noResultsMessage` | `ReactNode` | - | Message displayed when search yields no results |
+| `renderOption` | <RenderOptionTypePopover /> | - | Custom render function for each option in the listbox |
+| `renderValue` | `(selectedItems: T[]) => ReactNode` | - | Custom render function for the selected value display |
+| `infiniteScrollProps` | <InfiniteScrollPropsTypePopover /> | - | Configuration for infinite scrolling within the listbox |
+| `onSelectionChange` | `(value: T[], action: "added" \| "removed", item: T) => void` | - | Callback fired when the selection changes |
+| `onClose` | `(selectedItems?: T[]) => void` | - | Callback fired when the select popover closes |
+| `onSearchChange` | `(searchQuery: string) => void` | - | Callback fired when the search query changes |
+| `onAddNewOption` | `(newOption: T) => void` | - | Callback fired when a new option is added |
+| `onOpen` | `() => void` | - | Callback fired when the select opens |
+| `onClickOutside` | `() => void` | - | Callback fired when clicking outside the select |
+| `onOpenChange` | `(isOpen: boolean) => void` | - | Callback fired when the open state changes |
+| `onTriggerFocus` | `() => void` | - | Callback fired when the trigger receives focus |
+| `onTriggerBlur` | `() => void` | - | Callback fired when the trigger loses focus |
+| `triggerWrapper` | `boolean` | - | Wraps the trigger in a span instead of using Slot |
+| `fullWidthTriggerWrapper` | `boolean` | - | Makes the trigger wrapper take full width |
+| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: false }` | Configuration for focus trap behavior |
+| `classNames` | <SelectClassNamesTypePopover /> | - | Custom class names for the select slots |
+
+### Select.Item Props
+
+Extends <OptionItemTypePopover /> (`value`, `text`, `textContent`, `description`, `disabled`).
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Item content |
+| `value` | `string \| number` | **required** | Unique identifier for the option |
+| `text` | `string` | **required** | Display text for the option |
+| `shouldCloseOnSelection` | `boolean` | `true` | Whether selecting this item closes the select |
+| `disabled` | `boolean` | - | Disables the item |
+| `showDisabledStyles` | `boolean` | `true` | Shows disabled visual styles without disabling interaction |
+| `startContent` | `ReactNode` | - | Content rendered before the item text |
+| `endContent` | `ReactNode` | - | Content rendered after the item text |
+| `description` | `ReactNode` | - | Additional description displayed below the option text |
+| `onAddNewOption` | `(newOption: T) => void` | - | Callback fired when a new option is added via this item |
+| `truncate` | <SelectItemTruncateTypePopover /> | - | Override global truncate settings for this item |
+| `classNames` | <SelectItemClassNamesTypePopover /> | - | Custom class names for the item slots |
+
+### Select.Section Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Section content |
+| `title` | `ReactNode` | - | Title displayed above the section |
+| `isStickyTitle` | `boolean` | `true` | Keeps the section title visible while the section scrolls |
+| `showDivider` | `boolean` | - | Shows a visual divider below this section |
+| `truncate` | <SelectSectionTruncateTypePopover /> | - | Override global truncate settings for this section |
+| `classNames` | <SelectSectionClassNamesTypePopover /> | - | Custom class names for the section slots |
+
+### Select.Divider
+
+This component has no props. It renders a visual separator between sections.
