@@ -1,4 +1,4 @@
-import React, { type ReactNode, useCallback, useRef } from 'react';
+import React, { type ReactNode } from 'react';
 import clsx from 'clsx';
 import {
   HtmlClassNameProvider,
@@ -19,6 +19,7 @@ import ContentVisibility from '@theme/ContentVisibility';
 import type { Props } from '@theme/BlogPostPage';
 import type { BlogSidebar } from '@docusaurus/plugin-content-blog';
 import ScrollProgress from '@site/src/components/ScrollProgress';
+import { useMobileTOC } from '@site/src/hooks/useMobileTOC';
 
 function BlogPostPageContent({
   sidebar,
@@ -36,17 +37,7 @@ function BlogPostPageContent({
   } = frontMatter;
 
   const canRenderTOC = !hideTableOfContents && toc.length > 0;
-
-  const tocMobileRef = useRef<HTMLDivElement>(null);
-  const handleTocLinkClick = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (e.target instanceof HTMLButtonElement) return;
-
-      const button = tocMobileRef.current?.querySelector('button');
-      button?.click();
-    },
-    [],
-  );
+  const { tocMobileRef, handleTocLinkClick } = useMobileTOC();
 
   return (
     <BlogLayout

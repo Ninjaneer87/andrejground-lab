@@ -1,4 +1,4 @@
-import React, { type ReactNode, useCallback, useRef } from 'react';
+import React, { type ReactNode } from 'react';
 import clsx from 'clsx';
 import {
   HtmlClassNameProvider,
@@ -9,6 +9,7 @@ import DocItemLayout from '@theme/DocItem/Layout';
 import DocItemMetadata from '@theme/DocItem/Metadata';
 import TOCCollapsible from '@theme/TOCCollapsible';
 import type { Props } from '@theme/DocItem';
+import { useMobileTOC } from '@site/src/hooks/useMobileTOC';
 
 function DocItemContentWrapper({
   children,
@@ -25,16 +26,7 @@ function DocItemContentWrapper({
 
   const canRenderTOC = !hideTableOfContents && toc.length > 0;
 
-  const tocMobileRef = useRef<HTMLDivElement>(null);
-  const handleTocLinkClick = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (e.target instanceof HTMLButtonElement) return;
-
-      const button = tocMobileRef.current?.querySelector('button');
-      button?.click();
-    },
-    [],
-  );
+  const { tocMobileRef, handleTocLinkClick } = useMobileTOC();
 
   return (
     <DocItemLayout>
@@ -71,7 +63,7 @@ export default function DocItem(props: Props): ReactNode {
           ThemeClassNames.wrapper.docsPages,
           ThemeClassNames.page.docsDocPage,
           docHtmlClassName,
-          'docs-doc-item-page'
+          'docs-doc-item-page',
         )}
       >
         <DocItemMetadata />
