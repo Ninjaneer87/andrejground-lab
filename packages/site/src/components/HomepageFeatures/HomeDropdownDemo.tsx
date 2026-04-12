@@ -24,10 +24,7 @@ function HomeDropdownDemo() {
       {() => (
         <SiteDropdown>
           <SiteDropdown.Trigger>
-            <SiteTooltip
-              content="Open actions menu"
-              shouldCloseOnTriggerBlur={false}
-            >
+            <SiteTooltip content="Open actions menu">
               <button className="button button--secondary button--outline">
                 Actions <Icon path={mdiMenuDown} size={1} />
               </button>

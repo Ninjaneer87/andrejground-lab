@@ -296,12 +296,7 @@ const PopoverBase = forwardRef<
 
     const onTriggerFocusHandler = useCallback(
       (e: React.FocusEvent<HTMLDivElement>) => {
-        // if (
-        //   !e.target.matches(
-        //     ':focus-visible, a[href], button, input, select, textarea, details, audio[controls], video[controls]',
-        //   )
-        // )
-        //   return;
+        if (!e.target.matches(':focus-visible')) return;
         if (e.target !== e.currentTarget) return;
         if (isDisabled) return;
 

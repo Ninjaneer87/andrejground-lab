@@ -32,7 +32,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       fullWidthTriggerWrapper,
       openOnFocus = true,
       size = 'small',
-      shouldCloseOnTriggerBlur,
+      shouldCloseOnTriggerBlur = true,
       ...rest
     },
     ref,
