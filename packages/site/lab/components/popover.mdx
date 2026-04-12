@@ -8,6 +8,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import Link from '@docusaurus/Link';
+import { PopoverPlacementTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/shared';
+import {
+  PopoverClassNamesTypePopover,
+  PopoverSizeTypePopover,
+  BackdropTypePopover,
+} from '@site/src/components/site-lab/TypePopover/popovers/popover';
 import {
   popoverControlledTsx,
   popoverPlacementsTsx,
@@ -111,3 +117,56 @@ Compound pattern is also supported:
     <CodeBlock language="tsx">{popoverBackdropTsx}</CodeBlock>
   </TabItem>
 </Tabs>
+
+## API
+
+### Popover Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Popover content (expects `Popover.Trigger` and `Popover.Content`) |
+| `trigger` | `ReactNode` | - | Element that triggers the popover |
+| `content` | `ReactNode` | - | Content displayed inside the popover |
+| `size` | <PopoverSizeTypePopover /> | - | Controls the width of the popover content |
+| `isOpen` | `boolean` | - | Controls the popover open state (controlled mode) |
+| `isDisabled` | `boolean` | - | Disables the popover trigger |
+| `isNested` | `boolean` | `false` | Indicates the popover is nested inside another popover |
+| `placement` | <PopoverPlacementTypePopover /> | `"bottom-center"` | Preferred placement of the popover relative to the trigger |
+| `offset` | `number` | `8` | Distance in pixels between the popover and the trigger |
+| `backdrop` | <BackdropTypePopover /> | `"none"` | The backdrop style displayed behind the popover |
+| `shouldFlip` | `boolean` | `true` | Flips placement when there is not enough space |
+| `shouldBlockScroll` | `boolean` | `true` | Blocks page scroll when the popover is open |
+| `shouldCloseOnScroll` | `boolean` | `false` | Closes the popover when the page is scrolled |
+| `shouldCloseOnClickOutside` | `boolean` | `true` | Closes the popover when clicking outside of it |
+| `shouldCloseOnEsc` | `boolean` | `true` | Closes the popover when the Escape key is pressed |
+| `shouldCloseOnTriggerBlur` | `boolean` | `false` | Closes the popover when the trigger loses focus |
+| `showArrow` | `boolean` | `false` | Shows an arrow pointing toward the trigger |
+| `openOnHover` | `boolean` | - | Opens the popover on hover instead of click |
+| `openOnFocus` | `boolean` | `false` | Opens the popover when the trigger receives focus |
+| `focusTriggerOnClose` | `boolean` | `true` | Returns focus to the trigger when the popover closes |
+| `delayShow` | `number` | `0` | Delay in milliseconds before showing the popover |
+| `delayHide` | `number` | `0` | Delay in milliseconds before hiding the popover |
+| `hoverableContent` | `boolean` | `true` | Keeps the popover open while hovering over its content |
+| `growContent` | `boolean` | `false` | Allows the popover content to grow beyond the trigger width |
+| `onOpen` | `() => void` | - | Callback fired when the popover opens |
+| `onClose` | `() => void` | - | Callback fired when the popover closes |
+| `onClickOutside` | `() => void` | - | Callback fired when clicking outside the popover |
+| `onOpenChange` | `(isOpen: boolean) => void` | - | Callback fired when the open state changes |
+| `onTriggerFocus` | `() => void` | - | Callback fired when the trigger receives focus |
+| `onTriggerBlur` | `() => void` | - | Callback fired when the trigger loses focus |
+| `triggerWrapper` | `boolean` | `false` | Wraps the trigger in a span instead of using Slot |
+| `fullWidthTriggerWrapper` | `boolean` | `false` | Makes the trigger wrapper take full width |
+| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: true }` | Configuration for focus trap behavior |
+| `classNames` | <PopoverClassNamesTypePopover /> | - | Custom class names for the popover slots |
+
+### Popover.Trigger Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | A single element that acts as the popover trigger |
+
+### Popover.Content Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Content displayed inside the popover |

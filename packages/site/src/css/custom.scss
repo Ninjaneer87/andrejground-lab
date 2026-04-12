@@ -394,6 +394,11 @@ button {
   cursor: help !important;
 }
 
+.markdown table {
+  width: 100%;
+  display: table;
+}
+
 // Offset anchor scroll for TOC links (accounts for sticky navbar + mobile TOC)
 .blog-post-page :is(h2, h3, h4, h5, h6),
 .docs-doc-page :is(h2, h3, h4, h5, h6) {
