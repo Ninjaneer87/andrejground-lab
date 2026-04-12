@@ -25,11 +25,9 @@ function HomeDropdownDemo() {
         <SiteDropdown>
           <SiteDropdown.Trigger>
             <SiteTooltip content="Open actions menu">
-              <div>
-                <button className="button button--secondary button--outline">
-                  Actions <Icon path={mdiMenuDown} size={1} />
-                </button>
-              </div>
+              <button className="button button--secondary button--outline">
+                Actions <Icon path={mdiMenuDown} size={1} />
+              </button>
             </SiteTooltip>
           </SiteDropdown.Trigger>
           <SiteDropdown.Menu>
