@@ -158,20 +158,20 @@ Use the `as` prop to render items as different elements - links, anchors, or any
 | `trigger` | `ReactNode` | - | Element that triggers the dropdown |
 | `shouldCloseOnSelection` | `boolean` | `true` | Whether the dropdown closes after an item is selected |
 | `caret` | `ReactNode` | - | Custom caret element replacing the default indicator |
-| `showCaret` | `boolean` | `false` | Shows or hides the caret indicator |
+| `showCaret` | `boolean` | `isNested` | Shows or hides the caret indicator |
 | `autoFocus` | `"first-item" \| "last-item" \| "menu" \| "none"` | `"menu"` | Controls which item receives focus when the dropdown opens |
 | `isOpen` | `boolean` | - | Controls the dropdown open state (controlled mode) |
 | `isDisabled` | `boolean` | - | Disables the dropdown trigger |
 | `isNested` | `boolean` | `false` | Indicates the dropdown is nested inside another dropdown |
-| `placement` | <PopoverPlacementTypePopover /> | `"bottom-center"` | Preferred placement of the dropdown relative to the trigger |
+| `placement` | <PopoverPlacementTypePopover /> | `isNested ? "right-start" : "bottom-center"` | Preferred placement of the dropdown relative to the trigger |
 | `offset` | `number` | - | Distance in pixels between the dropdown and the trigger |
 | `backdrop` | `"none" \| "transparent" \| "opaque" \| "blur"` | - | The backdrop style displayed behind the dropdown |
 | `shouldFlip` | `boolean` | `true` | Flips placement when there is not enough space |
 | `shouldBlockScroll` | `boolean` | `true` | Blocks page scroll when the dropdown is open |
-| `shouldCloseOnScroll` | `boolean` | `false` | Closes the dropdown when the page is scrolled |
+| `shouldCloseOnScroll` | `boolean` | `!shouldBlockScroll` | Closes the dropdown when the page is scrolled |
 | `shouldCloseOnClickOutside` | `boolean` | `true` | Closes the dropdown when clicking outside of it |
 | `shouldCloseOnEsc` | `boolean` | `true` | Closes the dropdown when the Escape key is pressed |
-| `openOnHover` | `boolean` | `false` | Opens the dropdown on hover instead of click |
+| `openOnHover` | `boolean` | `isNested` | Opens the dropdown on hover instead of click |
 | `showArrow` | `boolean` | `false` | Shows an arrow pointing toward the trigger |
 | `growContent` | `boolean` | - | Allows the dropdown content to grow beyond the trigger width |
 | `onOpen` | `() => void` | - | Callback fired when the dropdown opens |
@@ -182,7 +182,7 @@ Use the `as` prop to render items as different elements - links, anchors, or any
 | `onTriggerBlur` | `() => void` | - | Callback fired when the trigger loses focus |
 | `triggerWrapper` | `boolean` | - | Wraps the trigger in a span instead of using Slot |
 | `fullWidthTriggerWrapper` | `boolean` | - | Makes the trigger wrapper take full width |
-| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: false }` | Configuration for focus trap behavior |
+| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: autoFocus === "none" }` | Configuration for focus trap behavior |
 | `classNames` | <DropdownClassNamesTypePopover /> | - | Custom class names for the dropdown slots |
 
 ### Dropdown.Trigger Props

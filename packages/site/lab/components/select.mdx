@@ -236,7 +236,7 @@ Use `infiniteScrollProps` to load more options as the user scrolls. Combine with
 | `onTriggerBlur` | `() => void` | - | Callback fired when the trigger loses focus |
 | `triggerWrapper` | `boolean` | - | Wraps the trigger in a span instead of using Slot |
 | `fullWidthTriggerWrapper` | `boolean` | - | Makes the trigger wrapper take full width |
-| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: false }` | Configuration for focus trap behavior |
+| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: autoFocus === "none" }` | Configuration for focus trap behavior |
 | `classNames` | <SelectClassNamesTypePopover /> | - | Custom class names for the select slots |
 
 ### Select.Item Props

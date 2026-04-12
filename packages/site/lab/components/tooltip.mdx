@@ -128,7 +128,7 @@ Use `hoverableContent` prop to keep the tooltip visible when hovering over the t
 | `shouldCloseOnTriggerBlur` | `boolean` | `true` | Closes the tooltip when the trigger loses focus |
 | `openOnFocus` | `boolean` | `true` | Opens the tooltip when the trigger receives focus |
 | `delayShow` | `number` | `0` | Delay in milliseconds before showing the tooltip |
-| `delayHide` | `number` | `0` (or `200` when `hoverableContent`) | Delay in milliseconds before hiding the tooltip |
+| `delayHide` | `number` | `hoverableContent ? 200 : 0` | Delay in milliseconds before hiding the tooltip |
 | `hoverableContent` | `boolean` | `false` | Keeps the tooltip open while hovering over its content |
 | `triggerWrapper` | `boolean` | - | Wraps the trigger in a span instead of using Slot |
 | `fullWidthTriggerWrapper` | `boolean` | - | Makes the trigger wrapper take full width |

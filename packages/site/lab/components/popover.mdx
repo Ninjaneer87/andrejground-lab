@@ -136,7 +136,7 @@ Compound pattern is also supported:
 | `backdrop` | <BackdropTypePopover /> | `"none"` | The backdrop style displayed behind the popover |
 | `shouldFlip` | `boolean` | `true` | Flips placement when there is not enough space |
 | `shouldBlockScroll` | `boolean` | `true` | Blocks page scroll when the popover is open |
-| `shouldCloseOnScroll` | `boolean` | `false` | Closes the popover when the page is scrolled |
+| `shouldCloseOnScroll` | `boolean` | `!shouldBlockScroll` | Closes the popover when the page is scrolled |
 | `shouldCloseOnClickOutside` | `boolean` | `true` | Closes the popover when clicking outside of it |
 | `shouldCloseOnEsc` | `boolean` | `true` | Closes the popover when the Escape key is pressed |
 | `shouldCloseOnTriggerBlur` | `boolean` | `false` | Closes the popover when the trigger loses focus |

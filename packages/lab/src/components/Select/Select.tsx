@@ -239,7 +239,7 @@ function Select<T extends OptionItem>({
 
   const popoverContentClassName = cn('p-0');
   const baseClassName = cn(
-    fullWidth ? 'w-full' : 'w-80',
+    fullWidth ? 'w-full' : 'w-70',
     isDisabled ? 'opacity-60 pointer-events-none' : '',
   );
   const labelClassName = cn('mb-1 w-fit', isDisabled ? 'opacity-60' : '');
