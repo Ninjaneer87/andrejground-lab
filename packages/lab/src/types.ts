@@ -555,6 +555,7 @@ export type TooltipProps = {
   | 'onTriggerBlur'
   | 'openOnFocus'
   | 'size'
+  | 'shouldCloseOnTriggerBlur'
 >;
 
 // !Timeline types
