@@ -20,37 +20,69 @@ type PopoverClassNames = {
 };
 
 export type PopoverProps = {
+  /** The popover content when using the composition pattern */
   children?: React.ReactNode;
+  /** Element that triggers the popover */
   trigger?: React.ReactNode;
+  /** Content displayed inside the popover */
   content?: React.ReactNode;
+  /** Controls the width of the popover content */
   size?: PopoverSize;
+  /** Flips placement when there is not enough space */
   shouldFlip?: boolean;
+  /** Blocks page scroll when the popover is open */
   shouldBlockScroll?: boolean;
+  /** Closes the popover when clicking outside of it */
   shouldCloseOnClickOutside?: boolean;
+  /** Closes the popover when the Escape key is pressed */
   shouldCloseOnEsc?: boolean;
+  /** Closes the popover when the page is scrolled */
   shouldCloseOnScroll?: boolean;
+  /** Opens the popover when the trigger receives focus */
   openOnFocus?: boolean;
+  /** Closes the popover when the trigger loses focus */
   shouldCloseOnTriggerBlur?: boolean;
+  /** The backdrop style displayed behind the popover */
   backdrop?: Backdrop;
+  /** Preferred placement of the popover relative to the trigger */
   placement?: PopoverPlacement;
+  /** Distance in pixels between the popover and the trigger */
   offset?: number;
+  /** Disables the popover trigger */
   isDisabled?: boolean;
+  /** Controls the popover open state (controlled mode) */
   isOpen?: boolean;
+  /** Shows an arrow pointing toward the trigger */
   showArrow?: boolean;
+  /** Callback fired when the popover opens */
   onOpen?: () => void;
+  /** Callback fired when the popover closes */
   onClose?: () => void;
+  /** Callback fired when clicking outside the popover */
   onClickOutside?: () => void;
+  /** Callback fired when the trigger receives focus */
   onTriggerFocus?: () => void;
+  /** Callback fired when the trigger loses focus */
   onTriggerBlur?: () => void;
+  /** Callback fired when the open state changes */
   onOpenChange?: (isOpen: boolean) => void;
+  /** Indicates the popover is nested inside another popover */
   isNested?: boolean;
+  /** Opens the popover on hover instead of click */
   openOnHover?: boolean;
+  /** Returns focus to the trigger when the popover closes */
   focusTriggerOnClose?: boolean;
+  /** Delay in milliseconds before showing the popover */
   delayShow?: number;
+  /** Delay in milliseconds before hiding the popover */
   delayHide?: number;
+  /** Keeps the popover open while hovering over its content */
   hoverableContent?: boolean;
+  /** Allows the popover content to grow beyond the trigger width */
   growContent?: boolean;
+  /** Custom class names for the popover slots */
   classNames?: PopoverClassNames;
+  /** Configuration for focus trap behavior inside the popover */
   focusTrapProps?: {
     trapFocus?: boolean;
     autoFocus?: boolean;
@@ -126,10 +158,15 @@ type DropdownFooterClassNames = {
 };
 // !Dropdown types
 export type DropdownProps = {
+  /** Whether the dropdown closes after an item is selected */
   shouldCloseOnSelection?: boolean;
+  /** Custom caret element replacing the default indicator */
   caret?: React.ReactNode;
+  /** Shows or hides the caret indicator */
   showCaret?: boolean;
+  /** Custom class names for the dropdown slots */
   classNames?: DropdownClassNames;
+  /** Controls which item receives focus when the dropdown opens */
   autoFocus?: ListAutoFocus;
 } & Omit<
   PopoverProps,
@@ -138,44 +175,56 @@ export type DropdownProps = {
 
 export type DropdownMenuProps = {
   children: React.ReactNode;
+  /** Whether the dropdown menu is currently visible */
   isOpen?: boolean;
   classNames?: DropdownMenuClassNames;
 };
 
 export type DropdownHeaderProps = {
   children: React.ReactNode;
+  /** Keeps the header visible while the menu scrolls */
   isSticky?: boolean;
   classNames?: DropdownHeaderClassNames;
 };
 
 export type DropdownFooterProps = {
   children: React.ReactNode;
+  /** Keeps the footer visible while the menu scrolls */
   isSticky?: boolean;
   classNames?: DropdownFooterClassNames;
 };
 
 export type DropdownSectionProps = {
   children: React.ReactNode;
+  /** Enables scrolling within this section */
   scrolling?: boolean;
+  /** Title displayed above the section */
   title?: React.ReactNode;
+  /** Keeps the section title visible while the section scrolls */
   isStickyTitle?: boolean;
+  /** Configuration for infinite scrolling within this section */
   infiniteScrollProps?: InfiniteScrollProps;
   classNames?: DropdownSectionClassNames;
 };
 
 export type DropdownItemProps<T extends ElementType = 'div'> = {
   children: React.ReactNode;
+  /** Visually highlights the item */
   isHighlighted?: boolean;
+  /** Whether selecting this item closes the dropdown */
   shouldCloseOnSelection?: boolean;
+  /** Disables the item */
   disabled?: boolean;
+  /** Shows disabled visual styles without disabling interaction */
   showDisabledStyles?: boolean;
+  /** Content rendered before the item text */
   startContent?: React.ReactNode;
+  /** Content rendered after the item text */
   endContent?: React.ReactNode;
+  /** Renders the item as a different HTML element or component */
   as?: T;
   classNames?: DropdownItemClassNames;
-  /**
-   * The description of the select.
-   */
+  /** The description of the dropdown item */
   description?: string;
 } & Omit<ComponentPropsWithRef<T>, 'children' | 'className'>;
 
@@ -272,11 +321,11 @@ export type SelectItemClassNames = {
    */
   mainContent?: string;
   /**
-   * Main content of the select item
+   * Text content of the select item
    */
   textContent?: string;
   /**
-   * Main content of the select item
+   * Description text of the select item
    */
   descriptionContent?: string;
   /**
@@ -318,8 +367,11 @@ export type SelectClassNames = {
      * The default representation of selected value
      */
     valueText?: string;
+    /** The chip representing a selected value (multi-select) */
     valueChip?: string;
+    /** The text inside a selected value chip */
     valueChipText?: string;
+    /** The search/autocomplete input field */
     searchInput?: string;
     /**
      * The selector icon of the select. This is the icon that rotates when the select is open (data-open).
@@ -386,35 +438,63 @@ export type RenderOption<T extends OptionItem> = ({
 }) => React.ReactNode;
 
 export type SelectProps<T extends OptionItem> = {
+  /** Callback fired when the selection changes */
   onSelectionChange?: OnSelectionChange<T>;
+  /** Enables multi-select mode */
   multiple?: boolean;
+  /** Custom caret element replacing the default indicator */
   caret?: React.ReactNode;
+  /** Shows or hides the caret indicator */
   showCaret?: boolean;
+  /** Makes the select take the full width of its container */
   fullWidth?: boolean;
+  /** Content rendered above the listbox */
   topContent?: React.ReactNode;
+  /** Content rendered below the listbox */
   bottomContent?: React.ReactNode;
+  /** The list of selectable options */
   items?: T[];
+  /** Placeholder text shown when no value is selected */
   placeholder?: string;
+  /** The currently selected options (controlled mode) */
   value?: T[];
+  /** The initially selected options (uncontrolled mode) */
   defaultValue?: T[];
+  /** Custom render function for each option in the listbox */
   renderOption?: RenderOption<T>;
+  /** Custom render function for the selected value display */
   renderValue?: (selectedItems: T[]) => React.ReactNode;
+  /** Select content when using the composition pattern or render function */
   children?:
     | React.ReactNode
     | ((item: T & { isSelected?: boolean }) => React.ReactNode);
+  /** Label displayed above or beside the select */
   label?: React.ReactNode;
+  /** Marks the select as required and shows an asterisk */
   isRequired?: boolean;
+  /** Callback fired when the select popover closes */
   onClose?: (selectedItems?: T[]) => void;
+  /** Opens the select when the label is clicked */
   openOnLabelClick?: boolean;
+  /** Whether selecting an item closes the select */
   shouldCloseOnSelection?: boolean;
+  /** Controls text truncation for various select parts */
   truncate?: SelectTruncate;
+  /** Controls which item receives focus when the select opens */
   autoFocus?: ListAutoFocus;
+  /** Enables search filtering; pass a function for custom filtering */
   search?: boolean | ((items: T[]) => T[]);
+  /** Callback fired when the search query changes */
   onSearchChange?: (searchQuery: string) => void;
+  /** Helper text displayed below the select */
   description?: React.ReactNode;
+  /** Error message displayed below the select */
   errorMessage?: React.ReactNode;
+  /** Message displayed when search yields no results */
   noResultsMessage?: React.ReactNode;
+  /** Configuration for infinite scrolling within the listbox */
   infiniteScrollProps?: InfiniteScrollProps;
+  /** Shows a loading indicator inside the select */
   isLoading?: boolean;
   /**
    * Removes selected from the options list. Works only with `items` prop.
@@ -454,12 +534,17 @@ export type SelectProps<T extends OptionItem> = {
 
 export type SelectItemProps<T extends OptionItem> = {
   children: React.ReactNode;
+  /** Whether selecting this item closes the select */
   shouldCloseOnSelection?: boolean;
+  /** Shows disabled visual styles without disabling interaction */
   showDisabledStyles?: boolean;
+  /** Content rendered before the item text */
   startContent?: React.ReactNode;
+  /** Content rendered after the item text */
   endContent?: React.ReactNode;
   classNames?: SelectItemClassNames;
   ref?: React.RefObject<HTMLLIElement | null>;
+  /** Callback fired when a new option is added via this item */
   onAddNewOption?: (newOption: T) => void;
   /**
    * Override global truncate settings for this item
@@ -473,8 +558,11 @@ export type SelectTriggerProps = {
 
 export type SelectSectionProps = {
   children: React.ReactNode;
+  /** Title displayed above the section */
   title?: React.ReactNode;
+  /** Keeps the section title visible while the section scrolls */
   isStickyTitle?: boolean;
+  /** Shows a visual divider below this section */
   showDivider?: boolean;
   classNames?: SelectSectionClassNames;
   /**
@@ -499,10 +587,15 @@ export type SelectCompositionProps<T extends OptionItem> = {
 };
 
 export type OptionItem = {
+  /** Unique identifier for the option */
   value: string | number;
+  /** Display text for the option */
   text: string;
+  /** Custom React content rendered in place of plain text */
   textContent?: React.ReactNode;
+  /** Additional description displayed below the option text */
   description?: React.ReactNode;
+  /** Disables the option */
   disabled?: boolean;
 };
 
@@ -514,8 +607,11 @@ export type OnSelectionChange<T extends OptionItem> = (value: {
 export type ListAutoFocus = 'first-item' | 'last-item' | 'menu' | 'none';
 
 export type InfiniteScrollProps = {
+  /** Callback fired when more items should be loaded */
   onLoadMore: (search?: string) => void;
+  /** Whether a load-more request is in progress */
   isLoading?: boolean;
+  /** Whether there are more items to load */
   hasMore: boolean;
 };
 
@@ -529,10 +625,15 @@ export type TooltipClassNames = {
 };
 
 export type TooltipProps = {
+  /** The element that triggers the tooltip */
   children?: React.ReactNode;
+  /** Content displayed inside the tooltip */
   content: React.ReactNode;
+  /** Custom class names for the tooltip slots */
   classNames?: TooltipClassNames;
+  /** Wraps the trigger in a span instead of using Slot */
   triggerWrapper?: boolean;
+  /** Makes the trigger wrapper take full width */
   fullWidthTriggerWrapper?: boolean;
 } & Pick<
   PopoverProps,
@@ -572,10 +673,15 @@ export type TimelineItemClassNames = {
 };
 
 export type TimelineItem = {
+  /** Unique name identifying this timeline step */
   name: string;
+  /** Content rendered beside the timeline dot */
   content: React.ReactNode;
+  /** Marks this step as the current active step */
   isActive?: boolean;
+  /** Custom content rendered inside the dot */
   dotContent?: React.ReactNode;
+  /** Custom class names for this item's slots */
   classNames?: TimelineItemClassNames;
 };
 
@@ -591,19 +697,31 @@ export type TimelineClassNames = {
 };
 
 export type RenderDotContext = {
+  /** The timeline item data */
   item: TimelineItem;
+  /** Zero-based index of the item */
   index: number;
+  /** Whether this is the active step */
   isActive: boolean;
+  /** Whether this step is before the active step */
   isPast: boolean;
+  /** Whether this step is after the active step */
   isFuture: boolean;
 };
 
 export type TimelineProps = {
+  /** The list of timeline steps */
   items: TimelineItem[];
+  /** Visual variant of the timeline */
   variant?: TimelineVariant;
+  /** Shows a pulse animation on the active step dot */
   showPulseOnActiveStep?: boolean;
+  /** Custom content rendered inside the active step dot */
   activeDotContent?: React.ReactNode;
+  /** Default content rendered inside every step dot */
   dotContent?: React.ReactNode;
+  /** Custom render function for each step dot */
   renderDot?: (ctx: RenderDotContext) => React.ReactNode;
+  /** Custom class names for the timeline slots */
   classNames?: TimelineClassNames;
 };
