@@ -103,6 +103,10 @@ html[data-theme='dark'] {
   }
 }
 
+.DocSearch-Button:focus-visible {
+  outline: 1px solid var(--ifm-color-primary);
+}
+
 #__docusaurus {
   min-height: 100svh;
 }
