@@ -145,7 +145,8 @@ html[data-theme='dark'] {
   width: fit-content;
   gap: 0.5rem;
 
-  &--fullwidth {
+  &--fullwidth,
+  &[title='Collapse sidebar'] {
     width: 100%;
   }
 }

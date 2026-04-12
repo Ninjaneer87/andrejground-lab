@@ -11,7 +11,7 @@ function HomePopoverDemo() {
           <SitePopover> 
             <SitePopover.Trigger>
               <SiteTooltip content="This is Tooltip over the Popover Trigger">
-                <div className={styles.flex}>
+                <button className={styles.flex}>
                   <img
                     className="avatar__photo"
                     src="/img/andrej.webp"
@@ -23,7 +23,7 @@ function HomePopoverDemo() {
                       AndrejGround maintainer
                     </small>
                   </div>
-                </div>
+                </button>
               </SiteTooltip>
             </SitePopover.Trigger>
 
