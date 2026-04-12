@@ -8,6 +8,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import Link from '@docusaurus/Link';
+import { PopoverPlacementTypePopover, InfiniteScrollPropsTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/shared';
+import {
+  DropdownClassNamesTypePopover,
+  DropdownTriggerClassNamesTypePopover,
+  DropdownMenuClassNamesTypePopover,
+  DropdownSectionClassNamesTypePopover,
+  DropdownItemClassNamesTypePopover,
+  DropdownHeaderClassNamesTypePopover,
+  DropdownFooterClassNamesTypePopover,
+  DropdownDividerClassNamesTypePopover,
+} from '@site/src/components/site-lab/TypePopover/popovers/dropdown';
 import {
   dropdownUsageTsx,
   dropdownSectionsTsx,
@@ -136,3 +147,102 @@ Use the `as` prop to render items as different elements - links, anchors, or any
     <CodeBlock language="tsx">{dropdownControlledTsx}</CodeBlock>
   </TabItem>
 </Tabs>
+
+## API
+
+### Dropdown Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Dropdown content (expects `Dropdown.Trigger` and `Dropdown.Menu`) |
+| `trigger` | `ReactNode` | - | Element that triggers the dropdown |
+| `shouldCloseOnSelection` | `boolean` | `true` | Whether the dropdown closes after an item is selected |
+| `caret` | `ReactNode` | - | Custom caret element replacing the default indicator |
+| `showCaret` | `boolean` | `false` | Shows or hides the caret indicator |
+| `autoFocus` | `"first-item" \| "last-item" \| "menu" \| "none"` | `"menu"` | Controls which item receives focus when the dropdown opens |
+| `isOpen` | `boolean` | - | Controls the dropdown open state (controlled mode) |
+| `isDisabled` | `boolean` | - | Disables the dropdown trigger |
+| `isNested` | `boolean` | `false` | Indicates the dropdown is nested inside another dropdown |
+| `placement` | <PopoverPlacementTypePopover /> | `"bottom-center"` | Preferred placement of the dropdown relative to the trigger |
+| `offset` | `number` | - | Distance in pixels between the dropdown and the trigger |
+| `backdrop` | `"none" \| "transparent" \| "opaque" \| "blur"` | - | The backdrop style displayed behind the dropdown |
+| `shouldFlip` | `boolean` | `true` | Flips placement when there is not enough space |
+| `shouldBlockScroll` | `boolean` | `true` | Blocks page scroll when the dropdown is open |
+| `shouldCloseOnScroll` | `boolean` | `false` | Closes the dropdown when the page is scrolled |
+| `shouldCloseOnClickOutside` | `boolean` | `true` | Closes the dropdown when clicking outside of it |
+| `shouldCloseOnEsc` | `boolean` | `true` | Closes the dropdown when the Escape key is pressed |
+| `openOnHover` | `boolean` | `false` | Opens the dropdown on hover instead of click |
+| `showArrow` | `boolean` | `false` | Shows an arrow pointing toward the trigger |
+| `growContent` | `boolean` | - | Allows the dropdown content to grow beyond the trigger width |
+| `onOpen` | `() => void` | - | Callback fired when the dropdown opens |
+| `onClose` | `() => void` | - | Callback fired when the dropdown closes |
+| `onClickOutside` | `() => void` | - | Callback fired when clicking outside the dropdown |
+| `onOpenChange` | `(isOpen: boolean) => void` | - | Callback fired when the open state changes |
+| `onTriggerFocus` | `() => void` | - | Callback fired when the trigger receives focus |
+| `onTriggerBlur` | `() => void` | - | Callback fired when the trigger loses focus |
+| `triggerWrapper` | `boolean` | - | Wraps the trigger in a span instead of using Slot |
+| `fullWidthTriggerWrapper` | `boolean` | - | Makes the trigger wrapper take full width |
+| `focusTrapProps` | `{ trapFocus?: boolean; autoFocus?: boolean }` | `{ trapFocus: true, autoFocus: false }` | Configuration for focus trap behavior |
+| `classNames` | <DropdownClassNamesTypePopover /> | - | Custom class names for the dropdown slots |
+
+### Dropdown.Trigger Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Trigger content |
+| `classNames` | <DropdownTriggerClassNamesTypePopover /> | - | Custom class names for the trigger slots |
+
+### Dropdown.Menu Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Menu content (`Dropdown.Section`, `Dropdown.Item`, etc.) |
+| `classNames` | <DropdownMenuClassNamesTypePopover /> | - | Custom class names for the menu slots |
+
+### Dropdown.Section Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Section content |
+| `scrolling` | `boolean` | - | Enables scrolling within this section |
+| `title` | `ReactNode` | - | Title displayed above the section |
+| `isStickyTitle` | `boolean` | `true` | Keeps the section title visible while the section scrolls |
+| `infiniteScrollProps` | <InfiniteScrollPropsTypePopover /> | - | Configuration for infinite scrolling within this section |
+| `classNames` | <DropdownSectionClassNamesTypePopover /> | - | Custom class names for the section slots |
+
+### Dropdown.Item Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Item content |
+| `isHighlighted` | `boolean` | - | Visually highlights the item |
+| `shouldCloseOnSelection` | `boolean` | - | Whether selecting this item closes the dropdown |
+| `disabled` | `boolean` | - | Disables the item |
+| `showDisabledStyles` | `boolean` | `disabled` | Shows disabled visual styles without disabling interaction |
+| `startContent` | `ReactNode` | - | Content rendered before the item text |
+| `endContent` | `ReactNode` | - | Content rendered after the item text |
+| `as` | `ElementType` | `"div"` | Renders the item as a different HTML element or component |
+| `description` | `string` | - | Description text displayed below the item content |
+| `classNames` | <DropdownItemClassNamesTypePopover /> | - | Custom class names for the item slots |
+
+### Dropdown.Header Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Header content |
+| `isSticky` | `boolean` | - | Keeps the header visible while the menu scrolls |
+| `classNames` | <DropdownHeaderClassNamesTypePopover /> | - | Custom class names for the header slots |
+
+### Dropdown.Footer Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Footer content |
+| `isSticky` | `boolean` | - | Keeps the footer visible while the menu scrolls |
+| `classNames` | <DropdownFooterClassNamesTypePopover /> | - | Custom class names for the footer slots |
+
+### Dropdown.Divider Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `classNames` | <DropdownDividerClassNamesTypePopover /> | - | Custom class names for the divider slots |

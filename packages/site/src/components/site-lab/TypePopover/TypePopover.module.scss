@@ -1,0 +1,17 @@
+.trigger {
+  cursor: pointer;
+  border-bottom: 1px dashed currentColor;
+
+  &:hover {
+    color: var(--ifm-color-primary);
+  }
+}
+
+.content {
+  max-width: clamp(300px, 50vw, 500px);
+
+  // remove margin from the code block
+  > div {
+    margin-bottom: 0;
+  }
+}
