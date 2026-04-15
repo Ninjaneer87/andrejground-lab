@@ -177,63 +177,10 @@ html[data-theme='dark'] {
 }
 
 body {
-  --dot-size: 1px; /* The size/radius of the dot */
-  --dot-spacing: 30px; /* The space between the dots */
-  --mouse-x: -9999px;
-  --mouse-y: -9999px;
-  --cursor-glow-size: 300px;
-  /* --------------------------------- */
-
   height: unset;
   min-height: 100svh; /* Make sure it covers the full viewport height */
   // background-color: #1a1a2e; /* Your primary background color */
   position: relative; /* Needed for the glass cards to be positioned relative to it */
-
-  isolation: isolate;
-
-  /* Base dots — always visible */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: -2;
-    background-image: radial-gradient(
-      circle at center,
-      var(--dot-color) var(--dot-size),
-      transparent var(--dot-size)
-    );
-    background-size: var(--dot-spacing) var(--dot-spacing);
-    background-repeat: repeat;
-  }
-
-  /* Cursor glow — clipped to dot shapes */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background: radial-gradient(
-      circle var(--cursor-glow-size) at var(--mouse-x) var(--mouse-y),
-      var(--cursor-glow-color) 0%,
-      transparent 100%
-    );
-    -webkit-mask-image: radial-gradient(
-      circle at center,
-      black var(--dot-size),
-      transparent var(--dot-size)
-    );
-    -webkit-mask-size: var(--dot-spacing) var(--dot-spacing);
-    -webkit-mask-repeat: repeat;
-    mask-image: radial-gradient(
-      circle at center,
-      black var(--dot-size),
-      transparent var(--dot-size)
-    );
-    mask-size: var(--dot-spacing) var(--dot-spacing);
-    mask-repeat: repeat;
-  }
 }
 
 hr {
