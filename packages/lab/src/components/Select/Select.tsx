@@ -265,7 +265,7 @@ function Select<T extends OptionItem>({
   const contentWrapperClassName =
     'relative outline-none! border-none! p-2 grow';
   const listboxClassName = cn(
-    'list-none pl-0 m-0 max-h-[250px] overflow-y-auto relative  scroll-pt-12',
+    'list-none pl-0 m-0 max-h-[250px] overflow-y-auto touch-auto relative  scroll-pt-12',
   );
   const helperWrapperClassName = cn('text-[0.75em] mt-1');
   const descriptionClassName = cn('opacity-60');
