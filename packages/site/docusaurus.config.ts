@@ -137,6 +137,10 @@ const config: Config = {
         name: 'twitter:description',
         content: "Tips, tricks and how-to's on frontend development and beyond",
       },
+      {
+        name: 'google-site-verification',
+        content: 'm1-drPhTSqBUc7vhvQi4UQDlvCooHp4unf4N3puHBXE',
+      },
       { name: 'twitter:creator', content: '@andrejground' },
     ],
     colorMode: {
@@ -277,7 +281,7 @@ const config: Config = {
               href: 'mailto:contact@andrejground.com',
             },
             {
-              label: 'Andrej\'s GitHub',
+              label: "Andrej's GitHub",
               href: 'https://github.com/Ninjaneer87',
             },
             {
