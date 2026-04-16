@@ -422,6 +422,14 @@ export type SelectClassNames = {
    * Will apply classNames to all SelectSection-s
    */
   section?: SelectSectionClassNames;
+  /**
+   * Will apply classNames to all SelectDivider-s
+   */
+  divider?: SelectDividerClassNames;
+};
+
+export type SelectDividerClassNames = {
+  base?: string;
 };
 
 export type SelectSectionClassNames = {
@@ -571,6 +579,10 @@ export type SelectSectionProps = {
   truncate?: SelectSectionTruncate;
 };
 
+export type SelectDividerProps = {
+  classNames?: SelectDividerClassNames;
+};
+
 export type SelectCompositionProps<T extends OptionItem> = {
   /**
    * SelectSection groups SelectItem components.
@@ -583,7 +595,7 @@ export type SelectCompositionProps<T extends OptionItem> = {
   /**
    * SelectDivider is a visual separator between sections.
    */
-  Divider?: React.FC;
+  Divider?: React.FC<SelectDividerProps>;
 };
 
 export type OptionItem = {

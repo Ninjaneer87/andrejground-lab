@@ -28,6 +28,7 @@ export function SelectClassNamesTypePopover() {
   errorMessage?: string;
   item?: SelectItemClassNames;
   section?: SelectSectionClassNames;
+  divider?: SelectDividerClassNames;
 };`}
     />
   );
@@ -58,6 +59,17 @@ export function SelectSectionClassNamesTypePopover() {
       code={`type SelectSectionClassNames = {
   base?: string;
   title?: string;
+};`}
+    />
+  );
+}
+
+export function SelectDividerClassNamesTypePopover() {
+  return (
+    <TypePopover
+      name="SelectDividerClassNames"
+      code={`type SelectDividerClassNames = {
+  base?: string;
 };`}
     />
   );

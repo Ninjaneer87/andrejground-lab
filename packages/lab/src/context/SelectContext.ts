@@ -3,6 +3,7 @@ import {
   OnSelectionChange,
   OptionItem,
   RenderOption,
+  SelectDividerClassNames,
   SelectItemClassNames,
   SelectSectionClassNames,
   SelectTruncate,
@@ -18,6 +19,7 @@ export type SelectContextType<T extends OptionItem = OptionItem> = {
   truncate?: SelectTruncate;
   itemClassNames?: SelectItemClassNames;
   sectionClassNames?: SelectSectionClassNames;
+  dividerClassNames?: SelectDividerClassNames;
   items?: T[];
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   searchValue: string;

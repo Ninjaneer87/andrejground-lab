@@ -122,7 +122,7 @@ function Select<T extends OptionItem>({
     ...truncateOverride,
   };
 
-  const { item: itemClassNames, section: sectionClassNames } = classNames || {};
+  const { item: itemClassNames, section: sectionClassNames, divider: dividerClassNames } = classNames || {};
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<T[]>([]);
   const [hasMountedDefaultValue, setHasMountedDefaultValue] = useState(false);
@@ -336,6 +336,7 @@ function Select<T extends OptionItem>({
     truncate,
     itemClassNames,
     sectionClassNames,
+    dividerClassNames,
     items: internalItems,
     searchValue,
     setSearchValue,
