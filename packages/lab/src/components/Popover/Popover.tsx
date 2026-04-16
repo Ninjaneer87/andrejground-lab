@@ -457,26 +457,26 @@ const PopoverBase = forwardRef<
     useEffect(() => {
       if (!isExpanded) return;
 
-      function handleScroll() {
+      function updateCoords() {
         if (shouldCloseOnScroll) {
           handleClose();
         }
         setContentCoords();
       }
 
-      document.addEventListener('scroll', handleScroll);
+      document.addEventListener('scroll', updateCoords);
 
       const vv = window.visualViewport;
       if (vv) {
-        vv.addEventListener('resize', handleScroll);
-        vv.addEventListener('scroll', handleScroll);
+        vv.addEventListener('resize', updateCoords);
+        vv.addEventListener('scroll', updateCoords);
       }
 
       return () => {
-        document.removeEventListener('scroll', handleScroll);
+        document.removeEventListener('scroll', updateCoords);
         if (vv) {
-          vv.removeEventListener('resize', handleScroll);
-          vv.removeEventListener('scroll', handleScroll);
+          vv.removeEventListener('resize', updateCoords);
+          vv.removeEventListener('scroll', updateCoords);
         }
       };
     }, [isExpanded, shouldCloseOnScroll, handleClose, setContentCoords]);
