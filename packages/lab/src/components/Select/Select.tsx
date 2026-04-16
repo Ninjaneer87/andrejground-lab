@@ -37,7 +37,7 @@ function Select<T extends OptionItem>({
   children,
   trigger,
   shouldFlip = true,
-  shouldBlockScroll = true,
+  shouldBlockScroll = false,
   shouldCloseOnScroll = false,
   shouldCloseOnClickOutside = true,
   shouldCloseOnEsc = true,

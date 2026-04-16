@@ -118,6 +118,7 @@ function HomeSelectDemoContent() {
     <>
       <SiteSelect
         openOnLabelClick
+        fullWidth
         items={items}
         defaultValue={PRESELECTED_POKEMONS}
         truncate={{
@@ -145,6 +146,7 @@ function HomeSelectDemoContent() {
 
       <SiteSelect
         openOnLabelClick
+        fullWidth
         label="Multi-select with sections"
         onSelectionChange={(value) => console.log(value)}
         multiple
