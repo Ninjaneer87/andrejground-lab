@@ -24,6 +24,8 @@ import {
   RenderOptionTypePopover,
 } from '@site/src/components/site-lab/TypePopover/popovers/select';
 import {
+  selectMySelectTsx,
+  selectMySelectScss,
   selectUsageTsx,
   selectSectionsTsx,
   selectControlledTsx,
@@ -64,6 +66,21 @@ Compound pattern is also supported:
 - `Select.Item`
 - `Select.Section`
 - `Select.Divider`
+
+## Customization
+
+Add your styles and your component is ready to be used.
+
+<div className="code-tabs">
+  <Tabs>
+    <TabItem value="MySelect.tsx" label="MySelect.tsx" default>
+      <CodeBlock language="tsx">{selectMySelectTsx}</CodeBlock>
+    </TabItem>
+    <TabItem value="MySelect.module.scss" label="MySelect.module.scss">
+      <CodeBlock language="scss">{selectMySelectScss}</CodeBlock>
+    </TabItem>
+  </Tabs>
+</div>
 
 ## Usage
 

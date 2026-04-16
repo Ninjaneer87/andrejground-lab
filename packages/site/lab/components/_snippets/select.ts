@@ -1,3 +1,64 @@
+export const selectMySelectTsx = `import { OptionItem, Select, SelectProps } from '@andrejground/lab';
+import styles from './MySelect.module.scss';
+
+type Props<T extends OptionItem> = SelectProps<T>;
+
+function MySelect<T extends OptionItem>(props: Props<T>) {
+  return (
+    <Select
+      {...props}
+      classNames={{
+        popover: { content: styles.popoverContent },
+        trigger: {
+          base: styles.triggerBase,
+          valueChip: styles.triggerValueChip,
+        },
+        section: { title: styles.sectionTitle },
+        item: { base: styles.itemBase },
+      }}
+    />
+  );
+}
+
+MySelect.Section = Select.Section;
+MySelect.Item = Select.Item;
+MySelect.Divider = Select.Divider;
+
+export default MySelect;`;
+
+export const selectMySelectScss = `.popoverContent {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.triggerBase {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.sectionTitle {
+  background-color: var(--section-bg-color);
+}
+
+.itemBase {
+  &:hover,
+  &:active,
+  &:focus-visible,
+  &:focus-within {
+    background-color: var(--item-hover-bg-color);
+  }
+}
+
+.triggerValueChip {
+  background-color: var(--chip-bg-color);
+  border-color: transparent;
+  outline-color: transparent;
+  border-radius: 4px;
+  color: inherit;
+}`;
+
 export const selectUsageTsx = `import { Select, type OptionItem } from '@andrejground/lab';
 
 const ITEMS: OptionItem[] = [
