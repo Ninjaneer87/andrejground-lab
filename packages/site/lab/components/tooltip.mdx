@@ -12,6 +12,8 @@ import { PopoverPlacementTypePopover } from '@site/src/components/site-lab/TypeP
 import { PopoverSizeTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/popover';
 import { TooltipClassNamesTypePopover } from '@site/src/components/site-lab/TypePopover/popovers/tooltip';
 import {
+  tooltipMyTooltipTsx,
+  tooltipMyTooltipScss,
   tooltipControlledTsx,
   tooltipPlacementsTsx,
   tooltipUsageTsx,
@@ -35,6 +37,21 @@ A Tooltip is a small, non-interactive overlay that displays brief informational 
 ```tsx
 import { Tooltip } from '@andrejground/lab';
 ```
+
+## Customization
+
+Add your styles and your component is ready to be used.
+
+<div className="code-tabs">
+  <Tabs>
+    <TabItem value="MyTooltip.tsx" label="MyTooltip.tsx" default>
+      <CodeBlock language="tsx">{tooltipMyTooltipTsx}</CodeBlock>
+    </TabItem>
+    <TabItem value="MyTooltip.module.scss" label="MyTooltip.module.scss">
+      <CodeBlock language="scss">{tooltipMyTooltipScss}</CodeBlock>
+    </TabItem>
+  </Tabs>
+</div>
 
 ## Usage
 

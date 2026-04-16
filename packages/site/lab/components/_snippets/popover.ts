@@ -1,3 +1,30 @@
+export const popoverMyPopoverTsx = `import { Popover, PopoverProps } from '@andrejground/lab';
+import styles from './MyPopover.module.scss';
+
+type Props = PopoverProps;
+
+function MyPopover(props: Props) {
+  return (
+    <Popover
+      {...props}
+      classNames={{
+        content: styles.popoverContent,
+      }}
+    />
+  );
+}
+
+MyPopover.Content = Popover.Content;
+MyPopover.Trigger = Popover.Trigger;
+
+export default MyPopover;`;
+
+export const popoverMyPopoverScss = `.popoverContent {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}`;
+
 export const popoverUsageTsx = `import { Popover } from '@andrejground/lab';
 
 export default function App() {

@@ -1,3 +1,57 @@
+export const dropdownMyDropdownTsx = `import { Dropdown, DropdownProps } from '@andrejground/lab';
+import styles from './MyDropdown.module.scss';
+
+type Props = DropdownProps;
+
+function MyDropdown(props: Props) {
+  return (
+    <Dropdown
+      {...props}
+      classNames={{
+        popover: { content: styles.popoverContent },
+        item: { base: styles.itemBase },
+        section: { base: styles.sectionBase, title: styles.sectionTitle },
+        divider: { base: styles.dividerBase },
+      }}
+    />
+  );
+}
+
+MyDropdown.Menu = Dropdown.Menu;
+MyDropdown.Header = Dropdown.Header;
+MyDropdown.Footer = Dropdown.Footer;
+MyDropdown.Section = Dropdown.Section;
+MyDropdown.Item = Dropdown.Item;
+MyDropdown.Trigger = Dropdown.Trigger;
+MyDropdown.Divider = Dropdown.Divider;
+
+export default MyDropdown;`;
+
+export const dropdownMyDropdownScss = `.popoverContent {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.sectionTitle {
+  background-color: transparent;
+  font-size: 80%;
+}
+
+.itemBase {
+  &:hover,
+  &:active,
+  &:focus-visible,
+  &:focus-within,
+  &[data-highlighted-item='true'] {
+    background-color: var(--item-hover-bg-color);
+  }
+}
+
+.dividerBase {
+  background-color: var(--divider-color);
+}`;
+
 export const dropdownUsageTsx = `import { Dropdown } from '@andrejground/lab';
 
 export default function App() {

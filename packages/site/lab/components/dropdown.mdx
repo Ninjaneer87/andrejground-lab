@@ -20,6 +20,8 @@ import {
   DropdownDividerClassNamesTypePopover,
 } from '@site/src/components/site-lab/TypePopover/popovers/dropdown';
 import {
+  dropdownMyDropdownTsx,
+  dropdownMyDropdownScss,
   dropdownUsageTsx,
   dropdownSectionsTsx,
   dropdownControlledTsx,
@@ -71,6 +73,21 @@ Compound pattern is also supported:
 - `Dropdown.Divider`
 - `Dropdown.Header`
 - `Dropdown.Footer`
+
+## Customization
+
+Add your styles and your component is ready to be used.
+
+<div className="code-tabs">
+  <Tabs>
+    <TabItem value="MyDropdown.tsx" label="MyDropdown.tsx" default>
+      <CodeBlock language="tsx">{dropdownMyDropdownTsx}</CodeBlock>
+    </TabItem>
+    <TabItem value="MyDropdown.module.scss" label="MyDropdown.module.scss">
+      <CodeBlock language="scss">{dropdownMyDropdownScss}</CodeBlock>
+    </TabItem>
+  </Tabs>
+</div>
 
 ## Usage
 

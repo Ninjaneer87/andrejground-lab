@@ -1,3 +1,28 @@
+export const tooltipMyTooltipTsx = `import { Tooltip, TooltipProps } from '@andrejground/lab';
+import styles from './MyTooltip.module.scss';
+
+type Props = TooltipProps;
+
+function MyTooltip(props: Props) {
+  return (
+    <Tooltip
+      {...props}
+      classNames={{
+        ...props.classNames,
+        content: styles.tooltipContent,
+      }}
+    />
+  );
+}
+
+export default MyTooltip;`;
+
+export const tooltipMyTooltipScss = `.tooltipContent {
+  background-color: var(--tooltip-bg-color);
+  color: var(--tooltip-text-color);
+  border: 1px solid var(--tooltip-border-color);
+}`;
+
 export const tooltipUsageTsx = `import { Tooltip } from '@andrejground/lab';
 
 export default function App() {
