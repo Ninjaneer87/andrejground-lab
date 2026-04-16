@@ -32,11 +32,12 @@ type RectMetrics = {
 
 function getViewportMetrics(viewportElement?: Element | null): ViewportMetrics {
   if (!viewportElement) {
+    const vv = window.visualViewport;
     return {
       width: window.innerWidth,
       height: window.innerHeight,
-      left: 0,
-      top: 0,
+      left: -(vv?.offsetLeft ?? 0),
+      top: -(vv?.offsetTop ?? 0),
     };
   }
 

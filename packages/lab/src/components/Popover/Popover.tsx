@@ -466,8 +466,18 @@ const PopoverBase = forwardRef<
 
       document.addEventListener('scroll', handleScroll);
 
+      const vv = window.visualViewport;
+      if (vv) {
+        vv.addEventListener('resize', handleScroll);
+        vv.addEventListener('scroll', handleScroll);
+      }
+
       return () => {
         document.removeEventListener('scroll', handleScroll);
+        if (vv) {
+          vv.removeEventListener('resize', handleScroll);
+          vv.removeEventListener('scroll', handleScroll);
+        }
       };
     }, [isExpanded, shouldCloseOnScroll, handleClose, setContentCoords]);
 
