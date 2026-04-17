@@ -7,7 +7,53 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'AndrejGround',
   tagline: "Tips, tricks and how-to's on frontend development and beyond",
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon/favicon.ico',
+  headTags: [
+    // Icon 96x96
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        href: '/img/favicon/favicon-96x96.png',
+        sizes: '96x96',
+      },
+    },
+    // SVG Icon
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/img/favicon/favicon.svg',
+      },
+    },
+    // Apple Touch Icon
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/img/favicon/apple-touch-icon.png',
+      },
+    },
+    // Apple Mobile Web App Title
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'apple-mobile-web-app-title',
+        content: 'AG',
+      },
+    },
+    // Web Manifest
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'manifest',
+        href: '/img/favicon/site.webmanifest',
+      },
+    },
+  ],
   plugins: [
     'vercel-analytics',
     'docusaurus-plugin-sass',
