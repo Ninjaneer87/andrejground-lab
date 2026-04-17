@@ -338,9 +338,12 @@ button {
   }
 }
 
+.container {
+  max-width: 96rem !important;
+}
+
 .blog-wrapper .container {
   max-width: 1900px !important;
-  margin: 0 auto;
 }
 
 // Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
