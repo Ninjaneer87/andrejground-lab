@@ -90,7 +90,8 @@ html[data-theme='dark'] {
 }
 
 // "Powered by Algolia" DocSearch logo
-.DocSearch-Logo {
+.DocSearch-Logo,
+a[aria-label='Powered by Algolia'] {
   svg {
     path,
     rect {

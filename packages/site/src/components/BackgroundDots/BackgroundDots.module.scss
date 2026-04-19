@@ -12,7 +12,7 @@
   isolation: isolate;
 }
 
-/* Base dots — always visible */
+/* Base dots - always visible */
 .dots {
   position: absolute;
   inset: 0;
@@ -26,7 +26,7 @@
   background-repeat: repeat;
 }
 
-/* Cursor glow — clipped to dot shapes */
+/* Cursor glow - clipped to dot shapes */
 .glow {
   position: absolute;
   inset: 0;
