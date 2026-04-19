@@ -3,6 +3,7 @@ import SelectSections from '@site/src/components/lab/Select/SelectSections';
 import SelectControlled from '@site/src/components/lab/Select/SelectControlled';
 import SelectMultiple from '@site/src/components/lab/Select/SelectMultiple';
 import SelectSearchable from '@site/src/components/lab/Select/SelectSearchable';
+import SelectAddNewOption from '@site/src/components/lab/Select/SelectAddNewOption';
 import SelectMultipleSearchable from '@site/src/components/lab/Select/SelectMultipleSearchable';
 import SelectAsyncInfiniteScroll from '@site/src/components/lab/Select/SelectAsyncInfiniteScroll';
 import SelectTruncateOff from '@site/src/components/lab/Select/SelectTruncateOff';
@@ -32,6 +33,7 @@ import {
   selectControlledTsx,
   selectMultipleTsx,
   selectSearchableTsx,
+  selectAddNewOptionTsx,
   selectMultipleSearchableTsx,
   selectAsyncInfiniteScrollTsx,
   selectTruncateOffTsx,
@@ -130,6 +132,19 @@ Enable `search` to let users filter options by typing in the trigger input.
   </TabItem>
   <TabItem value="code" label="Code">
     <CodeBlock language="tsx">{selectSearchableTsx}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Add New Option
+
+Enable `isAddNewOption` together with `search` to let users add custom options that don't exist in the list. When the search query doesn't match any existing option, an "Add \<value\>" action appears.
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default className="preview-tab">
+    <SelectAddNewOption />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    <CodeBlock language="tsx">{selectAddNewOptionTsx}</CodeBlock>
   </TabItem>
 </Tabs>
 
@@ -232,6 +247,7 @@ Use `infiniteScrollProps` to load more options as the user scrolls. Combine with
 | `popOnSelection` | `boolean` | - | Removes selected items from the options list |
 | `isAddNewOption` | `boolean` | - | Shows "Add \<value\>" option when no results are found |
 | `addNewLabel` | `string` | `"Add"` | Custom label prefix for the "Add new" option |
+| `clearSearchOnSelection` | `boolean` | `true` | Clears the search input when an option is selected |
 | `topContent` | `ReactNode` | - | Content rendered above the listbox |
 | `bottomContent` | `ReactNode` | - | Content rendered below the listbox |
 | `caret` | `ReactNode` | - | Custom caret element replacing the default indicator |

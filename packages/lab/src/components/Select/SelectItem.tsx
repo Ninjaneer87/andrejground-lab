@@ -47,8 +47,10 @@ function SelectItem<T extends OptionItem>({
     focusSearch,
     lastFocusedIndex,
     popOnSelection,
+    clearSearchOnSelection,
     currentOptions,
     search,
+    setSearchValue,
   } = selectContext;
 
   const { handleCloseRoot } = popoverRootContext;
@@ -105,6 +107,10 @@ function SelectItem<T extends OptionItem>({
 
     if (!search) {
       focusItem({ index: lastFocusedIndex });
+    }
+
+    if (clearSearchOnSelection && search) {
+      setSearchValue('');
     }
 
     if (multiple && popOnSelection && search && focusSearch) {

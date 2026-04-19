@@ -84,6 +84,7 @@ function Select<T extends OptionItem>({
   isAddNewOption,
   onAddNewOption,
   addNewLabel = 'Add',
+  clearSearchOnSelection = true,
   infiniteScrollProps,
   isLoading,
   showArrow = false,
@@ -122,7 +123,11 @@ function Select<T extends OptionItem>({
     ...truncateOverride,
   };
 
-  const { item: itemClassNames, section: sectionClassNames, divider: dividerClassNames } = classNames || {};
+  const {
+    item: itemClassNames,
+    section: sectionClassNames,
+    divider: dividerClassNames,
+  } = classNames || {};
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<T[]>([]);
   const [hasMountedDefaultValue, setHasMountedDefaultValue] = useState(false);
@@ -258,7 +263,9 @@ function Select<T extends OptionItem>({
   const triggerValueChipClassName = cn('inline-flex items-center max-w-full');
   const triggerValueChipTextClassName = cn(
     'text-start',
-    truncate?.valueChipText ? 'line-clamp-1 break-all' : 'min-w-0 wrap-anywhere',
+    truncate?.valueChipText
+      ? 'line-clamp-1 break-all'
+      : 'min-w-0 wrap-anywhere',
   );
   const triggerSelectorIconClassName = cn('ml-auto inline-flex items-center');
 
@@ -303,10 +310,14 @@ function Select<T extends OptionItem>({
     isAddNewOption &&
     trimmedSearchValue &&
     selected.every(
-      (item) => trimmedSearchValue && item.text !== trimmedSearchValue,
+      (item) =>
+        trimmedSearchValue &&
+        item.text?.toLowerCase() !== trimmedSearchValue.toLowerCase(),
     ) &&
     internalItems?.every(
-      (item) => trimmedSearchValue && item.text !== trimmedSearchValue,
+      (item) =>
+        trimmedSearchValue &&
+        item.text?.toLowerCase() !== trimmedSearchValue.toLowerCase(),
     );
 
   const showNoFilteredResults =
@@ -345,6 +356,7 @@ function Select<T extends OptionItem>({
     onSearchChange,
     focusSearch: search ? focusSearch : undefined,
     popOnSelection,
+    clearSearchOnSelection,
     currentOptions: filteredItems,
     lastFocusedIndex,
   };
@@ -555,7 +567,7 @@ function Select<T extends OptionItem>({
                     text={searchValue}
                     shouldCloseOnSelection={false}
                   >
-                    {addNewLabel} <b>&ldquo;{searchValue}&rdquo;</b>;
+                    {addNewLabel} <b>&ldquo;{searchValue}&rdquo;</b>
                   </SelectItem>
                 )}
 

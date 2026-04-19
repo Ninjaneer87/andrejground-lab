@@ -523,6 +523,10 @@ export type SelectProps<T extends OptionItem> = {
    */
   addNewLabel?: string;
   /**
+   * Clears the search input when an option is selected. Defaults to `true`.
+   */
+  clearSearchOnSelection?: boolean;
+  /**
    * Allows to set custom class names for the Select slots.
    */
   classNames?: SelectClassNames;

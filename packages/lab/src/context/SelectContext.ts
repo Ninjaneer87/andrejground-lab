@@ -29,6 +29,7 @@ export type SelectContextType<T extends OptionItem = OptionItem> = {
   onSearchChange?: (searchQuery: string) => void;
   focusSearch?: () => void;
   popOnSelection?: boolean;
+  clearSearchOnSelection?: boolean;
   currentOptions?: T[];
 };
 

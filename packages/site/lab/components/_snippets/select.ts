@@ -207,6 +207,31 @@ export default function App() {
   );
 }`;
 
+export const selectAddNewOptionTsx = `import { Select, type OptionItem } from '@andrejground/lab';
+
+const ITEMS: OptionItem[] = [
+  { value: 'cat', text: 'Cat' },
+  { value: 'dog', text: 'Dog' },
+  { value: 'rabbit', text: 'Rabbit' },
+  { value: 'mouse', text: 'Mouse' },
+  { value: 'snake', text: 'Snake' },
+  { value: 'bird', text: 'Bird' },
+  { value: 'fish', text: 'Fish' },
+];
+
+export default function App() {
+  return (
+    <Select
+      items={ITEMS}
+      placeholder="Search or add animals"
+      label="Add new option"
+      openOnLabelClick
+      search
+      isAddNewOption
+    />
+  );
+}`;
+
 export const selectAsyncInfiniteScrollTsx = `import React from 'react';
 import { Select, debounceCallback, type OptionItem } from '@andrejground/lab';
 
