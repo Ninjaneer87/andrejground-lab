@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "AndrejGround",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "AndrejGround logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Lab": {
+    "message": "Lab",
+    "description": "Navbar item with label Lab"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.About": {
+    "message": "About",
+    "description": "Navbar item with label About"
+  },
+  "item.label.Getting Started": {
+    "message": "Getting Started",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Components": {
+    "message": "Components",
+    "description": "Navbar item with label Components"
+  },
+  "item.label.Hooks": {
+    "message": "Hooks",
+    "description": "Navbar item with label Hooks"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.npm": {
+    "message": "npm",
+    "description": "Navbar item with label npm"
+  }
+}
