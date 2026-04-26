@@ -12,7 +12,7 @@ A unified procedure for managing SSH keys across multiple GitHub and GitLab acco
 
 {/* truncate */}
 
-By the end of this guide, you'll have a setup where private keys never touch your filesystem, every SSH and Git operation is gated behind biometric authentication, commit signing works without GPG, and rotating keys across all your accounts is a single terminal session away.
+By the end of this guide, you'll have a setup where private keys never touch your filesystem, SSH and Git operations are gated behind biometric authentication by default, commit signing works without GPG, and rotating keys across all your accounts is a single terminal session away.
 
 :::note
 This guide is written for **macOS**. The core concepts (1Password SSH agent, `op read`, lazy-loading context secrets, Git `includeIf`) apply cross-platform, but paths and biometric settings will differ on Linux and Windows.
@@ -24,7 +24,7 @@ Managing SSH keys the traditional way has real costs - and real risks.
 
 **Security:** 
 
-Private keys sitting in `~/.ssh` are a prime target. Recent supply chain attacks have focused specifically on exfiltrating environment variables and credentials from developer machines and CI runners. A plaintext private key on disk is one compromised dependency away from being leaked.
+Private keys sitting in `~/.ssh` are a prime target. Recent supply chain attacks have focused specifically on exfiltrating environment variables and credentials from developer machines and CI runners. A private key on disk - especially one without a passphrase - is one compromised dependency away from being leaked.
 
 **Operational pain:**
 - **Key rotation** is manual and tedious - generate new keys, update every remote, fix configs, hope you didn't miss one
@@ -34,8 +34,8 @@ Private keys sitting in `~/.ssh` are a prime target. Recent supply chain attacks
 - **Multi-account confusion** - pushing with the wrong identity to the wrong repo because SSH and Git configs are out of sync
 
 **How 1Password SSH Agent helps:**
-- **No private keys on disk** - keys live exclusively in 1Password's encrypted vault, never in `~/.ssh`
-- **Biometric-gated access** - every SSH operation requires Touch ID / fingerprint, so a compromised process can't silently use your keys
+- **No private keys on disk** - private keys live exclusively in 1Password's encrypted vault; only `.pub` files are stored in `~/.ssh`
+- **Biometric-gated access** - SSH operations require Touch ID / fingerprint by default; even with approval caching, private key material stays non-extractable, so a compromised process can't steal your keys for offline or remote use
 - **Single source of truth** - one place to manage keys, rotate them, and revoke access
 - **Built-in SSH signing** - commit signing without GPG, using the same keys you authenticate with
 
@@ -71,7 +71,7 @@ This step requires the GUI. Make sure these three options are enabled:
 
 **1Password → Settings → Developer → ✅ "Integrate with 1Password CLI"**
 
-**1Password → Settings → Developer → ✅ "Intergrate with other apps"**
+**1Password → Settings → Developer → ✅ "Integrate with other apps"**
 
 You only need to do this once, ever.
 
