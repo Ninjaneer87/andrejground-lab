@@ -1,0 +1,22 @@
+.sourceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  // font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+    color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-bottom: 0.75rem;
+
+  &:hover {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
