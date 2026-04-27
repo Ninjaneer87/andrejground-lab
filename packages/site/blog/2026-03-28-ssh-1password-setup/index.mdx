@@ -1,6 +1,6 @@
 ---
 slug: ssh-1password-setup
-title: "SSH Key Setup and Rotation with 1Password SSH Agent"
+title: "SSH Key Management and Rotation for Multiple Git Accounts with 1Password"
 authors: [andrej]
 tags: [guide, ssh, 1password, devtools]
 draft: false
@@ -12,7 +12,14 @@ A unified procedure for managing SSH keys across multiple GitHub and GitLab acco
 
 {/* truncate */}
 
-By the end of this guide, you'll have a setup where private keys never touch your filesystem, SSH and Git operations are gated behind biometric authentication by default, commit signing works without GPG, and rotating keys across all your accounts is a single terminal session away.
+By the end of this guide, you'll have a setup where: 
+- Local repos are split in `~/work` and `~/personal` directories
+- SSH keys are used for both authentication and signing (no GPG overhead)
+  - one for work accounts (GitHub + GitLab)
+  - one for personal account (GitHub)
+- private keys never touch your filesystem
+- SSH and Git operations are gated behind biometric authentication by default
+- rotating keys across all your accounts is a single terminal session away
 
 :::note
 This guide is written for **macOS**. The core concepts (1Password SSH agent, `op read`, lazy-loading context secrets, Git `includeIf`) apply cross-platform, but paths and biometric settings will differ on Linux and Windows.
@@ -214,7 +221,7 @@ PATs cannot be created from the CLI - use the web UI.
 ### Store PATs in 1Password
 
 :::caution
-`op item create` does not <SiteTooltip content={<span>An upsert is a database operation that will <b>update</b> an existing row if a specified value already exists in a table, and <b>insert</b> a new row if the specified value doesn't already exist.</span>}><span className="tooltip">upsert</span></SiteTooltip> - running this twice creates duplicate items. The delete guards below ensure old items are removed first. On first run, the deletes silently skip.
+`op item create` does not <SiteTooltip content={<span>An <b>upsert</b> is a database operation that will <b>update</b> an existing row if a specified value already exists in a table, and <b>insert</b> a new row if the specified value doesn't already exist.</span>}><span className="tooltip">upsert</span></SiteTooltip> - running this twice creates duplicate items. The delete guards below ensure old items are removed first. On first run, the deletes silently skip.
 :::
 
 ```bash
