@@ -168,21 +168,9 @@ const config: Config = {
         name: 'description',
         content: "Tips, tricks and how-to's on frontend development and beyond",
       },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'AndrejGround' },
-      {
-        property: 'og:description',
-        content: "Tips, tricks and how-to's on frontend development and beyond",
-      },
-      { property: 'og:url', content: 'https://andrejground.com' },
       { property: 'og:site_name', content: 'AndrejGround' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'AndrejGround' },
       { name: 'algolia-site-verification', content: '320C0FF23C41B79C' },
-      {
-        name: 'twitter:description',
-        content: "Tips, tricks and how-to's on frontend development and beyond",
-      },
       {
         name: 'google-site-verification',
         content: 'm1-drPhTSqBUc7vhvQi4UQDlvCooHp4unf4N3puHBXE',
