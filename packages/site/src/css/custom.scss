@@ -345,6 +345,10 @@ button {
 
 .blog-wrapper .container {
   max-width: 1900px !important;
+
+  img {
+    border-radius: 20px;
+  }
 }
 
 // Blog mobile TOC - visible only on mobile, hidden on desktop (sidebar TOC handles it)
