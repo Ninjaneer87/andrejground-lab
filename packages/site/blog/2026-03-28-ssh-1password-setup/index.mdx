@@ -84,7 +84,7 @@ This step requires the GUI. Make sure these three options are enabled:
 
 You only need to do this once, ever.
 
-### My setup
+### `work` and `personal` repositories setup
 
 I manage three Git accounts: a **personal GitHub**, a **work GitHub**, and a **work GitLab**. This guide follows that setup. Most people only need two (personal GitHub + work GitHub) - if that's you, just skip the GitLab parts and the guide still applies.
 
@@ -284,6 +284,23 @@ Host gitlab-work
 :::warning[Important]
 `IdentityFile` must point to the path **without** the `.pub` extension. OpenSSH uses this path to locate the `.pub` file (appending `.pub` automatically) and sends it to the 1Password agent for matching. Pointing directly to a `.pub` file causes "invalid format" errors on OpenSSH 10+.
 :::
+
+1Password SSH agent is in charge of managing the identities. 
+Each git account has an alias that points to the corresponding SSH key. 
+
+Two ways to wire an alias to the corresponding repository:
+
+1. Manually specify the remote URL for each repository (useful for existing repositories)
+
+```bash title="~/work/repo"
+git remote set-url origin git@github-work:username/repo.git
+```
+
+2. Use the alias when cloning a new repository
+
+```bash title="~/work"
+git clone git@github-work:username/repo.git
+```
 
 ### Git config (`~/.gitconfig`)
 
