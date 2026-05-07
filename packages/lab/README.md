@@ -40,7 +40,6 @@ import { Select, Dropdown, Popover } from '@andrejground/lab';
 - [**Dropdown**](https://andrejground.com/lab/components/dropdown) - nested dropdowns, sections, keyboard navigation
 - [**Popover**](https://andrejground.com/lab/components/popover) - flexible positioning, focus trapping, backdrop options
 - [**Tooltip**](https://andrejground.com/lab/components/tooltip) - built on top of Popover
-- [**Resizable**](https://andrejground.com/lab/components/resizable) - drag-to-resize panels with persisted width
 
 ### Hooks
 
