@@ -1,6 +1,9 @@
 {
   "name": "andrejground-monorepo",
   "private": true,
+  "engines": {
+    "node": ">=24.22.1"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel --color | grep --line-buffered '\\S'",
